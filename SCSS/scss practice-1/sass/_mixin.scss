@@ -1,0 +1,20 @@
+@mixin btn($bg-color) {
+    background-color: $bg-color;
+    padding: 3rem;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 1rem;
+}
+
+@each $key, $value in $color_palette {
+    .btn1_#{$key} {
+        @include btn($value);
+    }
+    .btn2_#{$key} {
+        @include btn($value);
+    }
+    .btn3_#{$key} {
+        @include btn($value);
+    }
+}

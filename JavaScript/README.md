@@ -1,0 +1,1 @@
+All this example of file writing in a synchronus way 

@@ -1,0 +1,30 @@
+header{
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  color: brown;
+}
+header h3{
+    font-style: italic;
+    font-feature-settings: "aalt";
+    color: black;
+    font-palette:  monochrome;
+}
+div.Container{
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin:auto;
+    padding: 10px;
+    width: 85%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-direction: row;
+}
+div.item{
+    box-sizing: border-box;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: lightgrey;
+    border-radius: 5px;
+}

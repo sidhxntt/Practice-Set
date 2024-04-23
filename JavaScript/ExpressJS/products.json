@@ -1,0 +1,80 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "age": 25,
+        "email": "john.doe@example.com",
+        "address": "123 Main St, Anytown, USA",
+        "phone": "+1 (555) 123-4567"
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "age": 30,
+        "email": "jane.smith@example.com",
+        "address": "456 Elm St, Othertown, USA",
+        "phone": "+1 (555) 987-6543"
+      },
+      {
+        "id": 3,
+        "name": "Alice Johnson",
+        "age": 40,
+        "email": "alice.johnson@example.com",
+        "address": "789 Oak St, AnotherTown, USA",
+        "phone": "+1 (555) 543-2109"
+      },
+      {
+        "id": 4,
+        "name": "Alice Johnson",
+        "age": 40,
+        "email": "alice.johnson@example.com",
+        "address": "789 Oak St, AnotherTown, USA",
+        "phone": "+1 (555) 543-2109"
+      },
+      {
+        "id": 5,
+        "name": "Alice Johnson",
+        "age": 40,
+        "email": "alice.johnson@example.com",
+        "address": "789 Oak St, AnotherTown, USA",
+        "phone": "+1 (555) 543-2109"
+      }
+
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Product A",
+        "price": 10.99,
+        "category": "Electronics"
+      },
+      {
+        "id": 2,
+        "name": "Product B",
+        "price": 20.49,
+        "category": "Clothing"
+      },
+      {
+        "id": 3,
+        "name": "Product C",
+        "price": 5.99,
+        "category": "Home & Garden"
+      },
+      {
+        "id": 4,
+        "name": "Product C",
+        "price": 5.99,
+        "category": "Home & Garden"
+      },
+      {
+        "id": 5,
+        "name": "Product C",
+        "price": 5.99,
+        "category": "Home & Garden"
+      }
+
+    ]
+
+  }
+  

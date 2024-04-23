@@ -1,0 +1,30 @@
+{
+    "name": "Alice",
+    "age": 28,
+    "city": "New York",
+    "email": "alice@example.com",
+    "interests": ["reading", "traveling", "cooking"],
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "zip": "10001"
+    },
+    "friends": [
+      {
+        "name": "Bob",
+        "age": 30,
+        "city": "Los Angeles"
+      },
+      {
+        "name": "Charlie",
+        "age": 25,
+        "city": "Chicago"
+      },
+      {
+        "name": "David",
+        "age": 32,
+        "city": "San Francisco"
+      }
+    ]
+  }
+  

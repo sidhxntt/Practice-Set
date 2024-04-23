@@ -1,0 +1,16 @@
+@each $property, $map in $utilities {
+  $symbol: map-get($map, "prefix"); // Corrected syntax for map-get
+  $value_map: map-get($map, "values"); // Changed variable name to avoid conflict
+
+  @each $key, $value in $value_map {
+    @if $key == "default" {
+      .#{$symbol} {
+        #{$property}: $value;
+      }
+    } @else {
+      .#{$symbol}_#{$key} {
+        #{$property}: $value;
+      }
+    }
+  }
+}

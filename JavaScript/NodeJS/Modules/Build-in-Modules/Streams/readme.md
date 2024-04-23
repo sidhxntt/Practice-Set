@@ -1,0 +1,2 @@
+
+Streams in Node.js are an essential feature for handling data efficiently, especially when working with large amounts of data or dealing with data in real-time. Streams provide a way to read or write data piece by piece (or chunk by chunk), rather than loading the entire data into memory at once. This can significantly reduce memory usage and improve performance.

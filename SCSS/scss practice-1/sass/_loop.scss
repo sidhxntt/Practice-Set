@@ -1,0 +1,17 @@
+@each $key, $value in $color_palette {
+    .text_#{$key}{
+        color: $value;
+    }
+    .bg_#{$key}{
+        background-color: $value;
+    }
+
+    // @for $i from 1 through 9 {
+    //     .text_#{$key}_light_#{$i}{
+    //         color: mix(white, $value ,$i*10);
+    //     }
+    //     .bg_#{$key}_light_#{$i}{
+    //         color: mix(white, $value ,$i*10);
+    //     }
+    // }
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 936660,
+      "nice": 0,
+      "sys": 426580,
+      "idle": 6268220,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 871860,
+      "nice": 0,
+      "sys": 401040,
+      "idle": 6381980,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 746320,
+      "nice": 0,
+      "sys": 328780,
+      "idle": 6596300,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 656080,
+      "nice": 0,
+      "sys": 260790,
+      "idle": 6769920,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 582120,
+      "nice": 0,
+      "sys": 112800,
+      "idle": 7021660,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 471850,
+      "nice": 0,
+      "sys": 78290,
+      "idle": 7173070,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 332250,
+      "nice": 0,
+      "sys": 54330,
+      "idle": 7339930,
+      "irq": 0
+    }
+  },
+  {
+    "model": "Apple M1",
+    "speed": 2400,
+    "times": {
+      "user": 274260,
+      "nice": 0,
+      "sys": 43730,
+      "idle": 7410500,
+      "irq": 0
+    }
+  }
+]

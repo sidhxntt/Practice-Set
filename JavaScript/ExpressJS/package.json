@@ -1,0 +1,19 @@
+{
+  "name": "expressjs",
+  "version": "1.0.0",
+  "description": "npx allows you to execute packages directly from the npm registry or from your local node_modules folder. This means you can run commands from packages without needing to install them globally or add them to your project's dependencies.",
+  "main": "Application_Middleware.js",
+  "scripts": {
+    "start": "nodemon JSON.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "moment": "^2.30.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "HTML",
+			"path": "."
+		},
+		{
+			"name": "html5up-ethereal",
+			"path": "../../../../Downloads/html5up-ethereal"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "HTML"
+	}
+}

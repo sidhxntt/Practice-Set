@@ -1,0 +1,177 @@
+{
+  "lo0": [
+    {
+      "address": "127.0.0.1",
+      "netmask": "255.0.0.0",
+      "family": "IPv4",
+      "mac": "00:00:00:00:00:00",
+      "internal": true,
+      "cidr": "127.0.0.1/8"
+    },
+    {
+      "address": "::1",
+      "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": true,
+      "cidr": "::1/128",
+      "scopeid": 0
+    },
+    {
+      "address": "fe80::1",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": true,
+      "cidr": "fe80::1/64",
+      "scopeid": 1
+    }
+  ],
+  "ap1": [
+    {
+      "address": "fe80::f088:cff:feae:f5b1",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "f2:88:0c:ae:f5:b1",
+      "internal": false,
+      "cidr": "fe80::f088:cff:feae:f5b1/64",
+      "scopeid": 11
+    }
+  ],
+  "en0": [
+    {
+      "address": "192.168.29.234",
+      "netmask": "255.255.255.0",
+      "family": "IPv4",
+      "mac": "d0:88:0c:ae:f5:b1",
+      "internal": false,
+      "cidr": "192.168.29.234/24"
+    },
+    {
+      "address": "fe80::1c9b:ffb1:8be1:f63d",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "d0:88:0c:ae:f5:b1",
+      "internal": false,
+      "cidr": "fe80::1c9b:ffb1:8be1:f63d/64",
+      "scopeid": 12
+    },
+    {
+      "address": "2405:201:4017:e0c6:c48:b05d:3370:c2c3",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "d0:88:0c:ae:f5:b1",
+      "internal": false,
+      "cidr": "2405:201:4017:e0c6:c48:b05d:3370:c2c3/64",
+      "scopeid": 0
+    },
+    {
+      "address": "2405:201:4017:e0c6:21df:448a:a3cc:2f47",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "d0:88:0c:ae:f5:b1",
+      "internal": false,
+      "cidr": "2405:201:4017:e0c6:21df:448a:a3cc:2f47/64",
+      "scopeid": 0
+    }
+  ],
+  "awdl0": [
+    {
+      "address": "fe80::7845:c3ff:fee4:bb65",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "7a:45:c3:e4:bb:65",
+      "internal": false,
+      "cidr": "fe80::7845:c3ff:fee4:bb65/64",
+      "scopeid": 13
+    }
+  ],
+  "llw0": [
+    {
+      "address": "fe80::7845:c3ff:fee4:bb65",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "7a:45:c3:e4:bb:65",
+      "internal": false,
+      "cidr": "fe80::7845:c3ff:fee4:bb65/64",
+      "scopeid": 14
+    }
+  ],
+  "utun0": [
+    {
+      "address": "fe80::fa5:ab64:be5:8823",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::fa5:ab64:be5:8823/64",
+      "scopeid": 15
+    }
+  ],
+  "utun1": [
+    {
+      "address": "fe80::a727:4c63:b69f:1e4f",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::a727:4c63:b69f:1e4f/64",
+      "scopeid": 16
+    }
+  ],
+  "utun2": [
+    {
+      "address": "fe80::bbe1:f112:5779:89ae",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::bbe1:f112:5779:89ae/64",
+      "scopeid": 17
+    }
+  ],
+  "utun3": [
+    {
+      "address": "fe80::ce81:b1c:bd2c:69e",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::ce81:b1c:bd2c:69e/64",
+      "scopeid": 18
+    }
+  ],
+  "utun4": [
+    {
+      "address": "fe80::bae7:1726:9e2c:bcd4",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::bae7:1726:9e2c:bcd4/64",
+      "scopeid": 19
+    }
+  ],
+  "utun5": [
+    {
+      "address": "fe80::410:f8f0:5e2c:946e",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::410:f8f0:5e2c:946e/64",
+      "scopeid": 20
+    }
+  ],
+  "utun6": [
+    {
+      "address": "fe80::b63e:db4c:6a11:b0e5",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "internal": false,
+      "cidr": "fe80::b63e:db4c:6a11:b0e5/64",
+      "scopeid": 21
+    }
+  ]
+}

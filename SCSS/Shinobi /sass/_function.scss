@@ -1,0 +1,6 @@
+@function light_comp($color) {
+    $complement: complement($color); // Corrected spelling to "complement()"
+    $light_complement: lighten($complement, 30%); // Added percentage for lightening
+    @return $light_complement;
+  }
+  

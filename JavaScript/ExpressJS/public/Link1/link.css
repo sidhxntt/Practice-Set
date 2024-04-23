@@ -1,0 +1,9 @@
+body{
+    background-color: black;
+}
+.carousel-inner{
+    height:20cm;
+}
+.carousel-item{
+    object-fit: cover;
+}

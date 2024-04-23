@@ -1,0 +1,15 @@
+$color_palette: (
+  primary_color: #cb793a,
+  secondary_color: #5f0f40,
+  tertiary_color: #9a031e,
+  primary_color_light: #fcdc4d,
+  secondary_color_dark: #321325,
+);
+
+$fonts: (
+  font_family: "Roboto, sans-serif",
+  font_size: 16px,
+  font_weight: 400,
+);
+
+@debug map-has-key($map: $color_palette, $key: 'black');

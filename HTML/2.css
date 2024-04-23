@@ -1,0 +1,26 @@
+.body{
+    margin: 0;
+    padding: 0;
+    background-image: url('Pic.avif'); /* Replace 'your-image.jpg' with your image file path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Set the height to cover the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Set text color to white or any contrasting color */
+    font-family: Arial, sans-serif;
+    opacity:  0.75; /* Add a transparent overlay to darken the image */
+}
+.content{
+    text-align: center;
+}
+.button{
+    margin-bottom: 0vmax;
+    padding: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    
+}

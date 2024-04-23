@@ -1,0 +1,19 @@
+.faq{
+    padding:10px 12%;
+    text-align: center;
+    font-size: 18px;
+}
+.faq h2{
+    font-size: 40px;
+    font-weight: 900;
+}
+ul{
+   width: 100%;
+    margin:60px, auto;
+    max-width: 750px;
+}
+li{
+    list-style: none;
+    width: 100%;
+    padding:5px;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+
+  <style>
+    #First{
+        background-color: beige;
+        list-style: none;
+        display: flex;
+        padding:30px;
+        justify-content: right;
+        margin: 20px;
+        border: 1px  solid black;
+        border-radius: 40px;
+    }
+    #First a{
+        text-decoration: none;
+        color: black;
+        margin: 10px;
+        font-weight: 600;
+    }
+    #Menu{
+        border:1px  solid grey;
+        display: flex;
+        flex-direction: column;
+        padding:40px;
+        margin: 20px;
+    }
+    #Menu ul {
+       display: flex;
+       justify-content: space-evenly;
+       list-style: none;
+       margin: 20px;
+       padding:10px;
+       border:1px  solid grey;
+       margin-right: -150px;
+    }
+    #Menu ul li{
+        border-right:1px  solid grey ;
+        margin:-10px;
+        padding:10px,0;
+        width: 150px;
+        
+    }
+  </style>
+
+
+  <body>
+    <ul id="First"">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <ol>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+    </ol>
+    <ol id="Menu">
+        <li>Content-1
+            <ul>
+                <li>Subcontent-1.1</li>
+                <li>Subcontent-1.2</li>
+                <li>Subcontent-1.3</li>
+                <li>Subcontent-1.4</li>
+                <li>Subcontent-1.5</li>
+            </ul>
+        </li>
+        <li>Content-2
+            <ul>
+                <li>Subcontent-2.1</li>
+                <li>Subcontent-2.2</li>
+                <li>Subcontent-2.3</li>
+                <li>Subcontent-2.4</li>
+                <li>Subcontent-2.5</li>
+            </ul>
+        </li>
+
+    </ol>
+  </body>
+</html>

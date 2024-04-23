@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Parent Div Block with Child Divs Inline</title>
+  <style>
+    .parent {
+      background-color: lightgray;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between; 
+    }
+    
+    .child1 {
+      display: flex;
+      justify-content: space-between;
+      background-color: lightblue;
+      padding: 5px;
+      margin: 5px;
+      width: 50%;
+      border: 1px solid black;
+    }
+    .child2{
+        display: inline-block;
+        background-color: lightblue;
+    }
+    .child3{
+        display: flex;
+        background-color: lightblue;
+        flex-direction: column-reverse;
+    }
+ 
+  </style>
+</head>
+<body>
+
+<div class="parent">
+  <div class="child1">Child 1
+    <div class="child1.1">Child 1.1</div>
+  </div>
+
+  <div class="child2">Child 2</div>
+  <div class="child3">Child 3</div>
+</div>
+<hr>
+</div>
+</body>
+</html>

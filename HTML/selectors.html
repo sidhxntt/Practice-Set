@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container-1 {
+        background-color: yellow;
+      }
+      .container-1 ~  .container-2 {
+        background-color: rgb(159, 116, 140);
+      }
+      .container-1 + p{
+        background-color: seagreen;
+      }
+      .container-1 +p ~p{
+        background-color: aqua;
+      }
+      .subcontainer-2 p{
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Descendant Selector</h2>
+
+    <p>
+      The descendant selector matches all elements that are descendants of a
+      specified element.
+    </p>
+
+    <div class="container-1">
+      <p>Paragraph 1 in the div.</p>
+      <p>Paragraph 2 in the div.</p>
+      <div class="subcontainer-1">
+        <p>Paragraph 3 in the div.</p>
+        <p>Paragraph 4 in the div.</p>
+      </div>
+    </div>
+    <p>HEADER</p>
+    <p>HEADER</p>
+    <p>HEADER</p>
+    <p>HEADER</p>
+    <p>HEADER</p>
+    <div class="container-2">
+      <p>Paragraph 5. Not in a div.</p>
+      <p>Paragraph 6. Not in a div.</p>
+      <div class="subcontainer-2">
+        <p>Paragraph 7 in the div.</p>
+        <p>Paragraph 8 in the div.</p>
+      </div>
+    </div>
+  </body>
+</html>

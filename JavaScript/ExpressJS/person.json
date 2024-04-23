@@ -1,0 +1,76 @@
+{
+    "person": {
+      "name": "John Doe",
+      "age": 30,
+      "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "state": "CA",
+        "zipcode": "12345"
+      },
+      "phone_numbers": [
+        {
+          "type": "home",
+          "number": "555-1234"
+        },
+        {
+          "type": "work",
+          "number": "555-5678"
+        }
+      ],
+      "emails": [
+        "john.doe@example.com",
+        "johndoe@gmail.com"
+      ],
+      "family_members": [
+        {
+          "relation": "spouse",
+          "name": "Jane Doe"
+        },
+        {
+          "relation": "child",
+          "name": "Alice Doe",
+          "age": 5
+        },
+        {
+          "relation": "child",
+          "name": "Bob Doe",
+          "age": 8
+        }
+      ]
+    },
+    "company": {
+      "name": "Acme Corporation",
+      "address": {
+        "street": "456 Oak St",
+        "city": "Sometown",
+        "state": "NY",
+        "zipcode": "54321"
+      },
+      "employees": [
+        {
+          "name": "Alice Smith",
+          "position": "Software Engineer",
+          "department": "Engineering"
+        },
+        {
+          "name": "Bob Johnson",
+          "position": "Marketing Manager",
+          "department": "Marketing"
+        },
+        {
+          "name": "Charlie Brown",
+          "position": "HR Manager",
+          "department": "Human Resources"
+        },
+        {
+          "name": "David Lee",
+          "position": "Financial Analyst",
+          "department": "Finance"
+        }
+      ],
+      "revenue": 10000000,
+      "industry": "Technology"
+    }
+  }
+  

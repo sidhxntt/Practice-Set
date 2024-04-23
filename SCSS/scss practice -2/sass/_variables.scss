@@ -1,0 +1,49 @@
+//theme colors
+$primary:#326dee;
+$secondary: #1ac888;
+$error: #d32752;
+$info: #f6c31c;
+
+//colors
+$color_pallete: (
+    'primary': $primary,
+    'secondary': $secondary,
+    'error': $error,
+    'info': $info,
+    'blue': blue,
+    'red': red,
+    'yellow':yellow,
+    'green': green,
+    'orange': orange,
+    'purple': purple,
+    'gray':gray,
+    'black':black,
+    'white':white,
+);
+
+.test_btn{
+    background-color: map-get($map: $color_pallete, $key: 'purple' );
+}
+//spacing
+$base_padding: 0.75rem;
+$base_margin: 0.75rem;
+
+//borders
+$base_border_thickness: 1px;
+$base_border_radius: 20px;
+
+//box-shadow
+$base_box-shadow :-6px 5px 48px -19px rgba(0,0,0,0.75);
+
+//font-sizes
+$base_font_size: 0.75rem;
+$font_size_xxs: $base_font_size* 0.25;
+$font_size_xs: $base_font_size* 0.5;
+$font_size_sm: $base_font_size* 0.75;
+$font_size_md: $base_font_size *1;
+$font_size_lg: $base_font_size *1.5;
+$font_size_xl: $base_font_size *2;
+$font_size_xxl: $base_font_size *3;
+$font_size_xxxl: $base_font_size *5;
+
+//

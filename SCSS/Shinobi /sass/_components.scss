@@ -1,0 +1,89 @@
+@use 'sass:math';
+//card
+.card{
+    display: block;
+    padding: $base_padding;
+    border: $base_border_thickness solid white;
+    box-shadow: $base_box-shadow;
+    border-radius: math.div($base_border_radius ,4);
+
+    .card_title{
+        font-size: $font_size_lg;
+        padding-bottom: $base_padding;
+        font-weight: bold;
+    }
+
+    .card_body{
+        font-size: $base_font_size;
+        a{
+            text-decoration: underline;
+        }
+    }
+}
+
+//button
+@mixin btn($bg_color :#e2e2e2){
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    border: 0;
+    padding: $base_padding $base_padding*2;
+    border-radius: $base_border_radius;
+    background-color: $bg_color;
+}
+.btn{
+ @include btn;
+}
+
+@each $key, $val in $color_pallete{
+    .btn_#{$key} {
+        @include btn($val);
+        &:hover {
+            background-color: lighten($val, 10%);
+        }
+    }
+    .btn_outlined_#{$key} {
+        @include btn(white);
+        border: $base_border_thickness solid $val;
+        &:hover {
+            background-color: lighten($val, 10%);
+        }
+    }
+    .btn_complementary_#{$key}{
+        @include btn($val);
+        color: light_comp($val);
+        &:hover{
+            color:$val;
+            background-color: light_comp($val);
+        }
+
+    }
+}
+
+//navbar
+%flex_layout{ //placeholder ie it will not be compiled as class in css
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.navbar{
+    @extend %flex_layout;
+    padding: $base_padding $base_padding*2;
+    box-shadow: $base_box-shadow;
+
+    .site_title{
+        font-size: $font_size_lg;
+    }
+    .container{
+        @extend %flex_layout;
+
+    }
+}
+@each $key, $val in $color_pallete{
+    .navbar_#{$key}{
+        @extend .navbar;
+        background-color: $val;
+    }
+}

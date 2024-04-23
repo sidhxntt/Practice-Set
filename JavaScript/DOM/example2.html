@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input Form</title>
+
+<script>
+function processData() {
+    // Get the input value
+    let userInput = parseInt(document.getElementById("userInput").value);
+    let para = document.createElement("p");
+    
+    if(userInput % 2 == 0) {
+        para.innerHTML = "The number is even.";
+    } else {
+        para.innerHTML = "The number is odd.";
+    }
+
+    // Append the paragraph element to the body of the document
+    document.body.appendChild(para);
+}
+</script>
+
+</head>
+<body>
+
+<form onsubmit="event.preventDefault(); processData();">
+    <label for="userInput">Enter some number:</label>
+    <input type="number" id="userInput" name="userInput">
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

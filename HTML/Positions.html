@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <style>
+    .parent{
+        border: 1px solid black;
+        margin: 0;
+        padding:20px;   
+        position:  relative;  
+        height: 300vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .child1{
+        background-color: aqua;
+        border: 1px solid black;
+        padding:20px;
+        position: relative;
+        left:20px;
+    }
+    .child2{
+        background-color: seagreen;
+        border: 1px solid black;
+        padding:20px;
+        position: absolute;
+        top:0;
+        right: 0;
+    }
+    .child3{
+        background-color: yellowgreen;
+        border: 1px solid black;
+        padding:20px;
+        position: sticky;
+        top:0;
+    }
+  </style>
+  <body>
+    <div class="parent">
+      <h2>Parent</h2>
+      <div class="child1">Child 1</div>
+      <div class="child2">Child 2</div>
+      <div class="child3">Child 3</div>
+    </div>
+
+    <script src="" async defer></script>
+  </body>
+</html>
