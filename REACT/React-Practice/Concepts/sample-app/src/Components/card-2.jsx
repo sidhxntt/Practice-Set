@@ -1,4 +1,4 @@
-const Card2 = ({ title, name, desc, handleClick }) => {
+const Card2 = ({ title, name, desc, handleClick, count }) => {
   return (
     <div className="cards">
       <h2>{title}</h2>
@@ -10,7 +10,8 @@ const Card2 = ({ title, name, desc, handleClick }) => {
       />
       <h3>{name}</h3>
       <p>{desc}</p>
-      <button onClick={handleClick}>Counter</button>
+      <button onClick={handleClick}>Counter</button>  
+      <p>Counter: {count}</p>
     </div>
   );
 };
