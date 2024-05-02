@@ -18,3 +18,7 @@ const hooks_samples = (count) => {
 
 export default hooks_samples;
 //usually used for background processes such as authentication, authourisation, fetching etc
+
+//useEffect() is a hook in React, which allows you to perform side effects in function components. 
+//Side effects refer to any code that affects something outside of the component, such as fetching data,
+// subscribing to events, or manually changing the DOM.

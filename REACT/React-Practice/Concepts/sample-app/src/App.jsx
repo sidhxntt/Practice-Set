@@ -1,3 +1,5 @@
+//JSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement()  and/or appendChild() methods. 
+//It cant return more than one element therefore should be wrapped in some tags.
 import Navbar from "./Components/navbar";
 import Footer from "./Components/footer";
 import Card1 from "./Components/card-1";
@@ -5,7 +7,13 @@ import Card2 from "./Components/card-2";
 import Counter from "./Components/Main_counter";
 import List_items from "./Components/lists";
 import React, { useState, useEffect, useRef } from "react";
-import hooks_samples from "./Components/hooks";
+import hooks_samples from "./Components/useEffect";
+import { Component1 } from "./Components/useContext(prob)";
+import { Component_1} from "./Components/useContext(sol)";
+import EventListner from "./Components/event_listner";
+import ExpensiveComputation from "./Components/useMemo";
+//Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
+// They are JS function that takes props as arguments and output markup
 
 function App() {
   // useState is a hook that allows us to have state in functional components and when state changes the component re-renders
@@ -14,7 +22,8 @@ function App() {
   const [count, setCount] = useState(0);
   const [showcontent, setShowcontent]= useState(true);
   const btnRef = useRef();
-
+//useRef() hook is primarily used to create mutable references to DOM elements or any other value that persists across 
+//renders without causing a re-render when the value changes unike useState() that causes re-render when its value is changed.
   const handleClick = () => {
     setCount(count + 1);
   };
@@ -58,7 +67,21 @@ function App() {
         {showcontent && <p>This text will toggle wrt to buttons aka CONDITIONAL RENDERING</p>}
         {showcontent ? <button onClick={()=>{setShowcontent(false)}}>Click to Hide</button> : <button onClick={()=>{setShowcontent(true)}}>Click to show</button>}
       </div>
+      <hr />
       <List_items/>
+      {/* UseContext Prob */}
+      <hr />
+      <div>
+        <h1>The Problem useContext() is trying to solve</h1>
+        <Component1/>
+        <hr />
+        <h1>The Problem solved using useContext() </h1>
+        <Component_1/>
+        <hr />
+        <EventListner/>
+        <hr />
+      </div>
+      <ExpensiveComputation/>
       <Footer />
     </>
   );
