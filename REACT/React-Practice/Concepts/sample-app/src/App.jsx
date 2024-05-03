@@ -6,12 +6,16 @@ import Card1 from "./Components/card-1";
 import Card2 from "./Components/card-2";
 import Counter from "./Components/Main_counter";
 import List_items from "./Components/lists";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import hooks_samples from "./Components/useEffect";
 import { Component1 } from "./Components/useContext(prob)";
 import { Component_1} from "./Components/useContext(sol)";
 import EventListner from "./Components/event_listner";
 import ExpensiveComputation from "./Components/useMemo";
+import Todos from "./Components/memo";
+import Example1 from "./Components/useRef";
+import Example2 from "./Components/usecallback";
+
 //Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
 // They are JS function that takes props as arguments and output markup
 
@@ -21,6 +25,8 @@ function App() {
   // Its just  a local variable wrt the component that can be rendered to the DOM
   const [count, setCount] = useState(0);
   const [showcontent, setShowcontent]= useState(true);
+  const [todos, setTodos] = useState(["todo 1", "todo 2"]);
+  const [adjective, setAdjective] = useState("good");
   const btnRef = useRef();
 //useRef() hook is primarily used to create mutable references to DOM elements or any other value that persists across 
 //renders without causing a re-render when the value changes unike useState() that causes re-render when its value is changed.
@@ -29,14 +35,22 @@ function App() {
   };
   // hooks_samples(count);
   // useEffect used for app component but not card-1
-  
+
+
+const change_adjective = useCallback(
+  () => {
+    setAdjective('bad')
+  },
+  [],
+)
+
   return (
     <>
       <Navbar />
       <div className="card_holder">
         {/* Props, i.e., passing values from parent to children components */}
         {/* Basically, components are JavaScript functions that take props as arguments and output markup */}
-        {/* Everything here is basically a function call for greet and everything that it takes is an argument (props) */}
+        {/* Everything here is basically a function call for Card and everything that it takes is an argument (props) */}
         <Card1 title={"Card-Title-1"} name={"Heading-1"} desc={"Paraaa"} />
         <Card1 title={"Card-Title-2"} name={"Heading-2"} desc={"Paraaa"} />
         <Card1 title={"Card-Title-3"} name={"Heading-3"} desc={"Paraaa"} />
@@ -56,7 +70,7 @@ function App() {
           count={count}
         />
       </div>
-
+      <div className="main">
       <button ref={btnRef} onClick={handleClick}>Counter Button</button> 
       {/* ref is a special prop that allows us to access the DOM element directly without DOM manupilation */}
       <Counter count={count} />
@@ -71,6 +85,7 @@ function App() {
       <List_items/>
       {/* UseContext Prob */}
       <hr />
+
       <div>
         <h1>The Problem useContext() is trying to solve</h1>
         <Component1/>
@@ -81,10 +96,23 @@ function App() {
         <EventListner/>
         <hr />
       </div>
+
       <ExpensiveComputation/>
+      <h2>As count changes entire component will be re-rendered except Todos as its using memo</h2>
+      <Todos todos={todos}/> 
+      <hr />
+      <h1>UseRef() usage</h1>
+      <Example1/>
+      <h1>UseCallback() usage</h1>
+      <Example2 count={count} handleClick={handleClick} adjective={adjective} change_adjective={change_adjective}/>
+    </div>
       <Footer />
     </>
   );
 }
 
 export default App;
+//in react if a child component re-renders will the parent component too?
+// Yes , by default if parent changes all its direct children are re-rendered but that re-render doesn't necessarily changes the actual DOM , 
+// thats how React works , only visible changes are updated to real DOM.
+

@@ -47,4 +47,4 @@ export default ExpensiveComputation;
 
 // useMemo() caches the the value from an expensive function or any general value ie it makes it skip rendering if its dependecy array is not updated 
 // Memo caches the component ie it makes it skip rendering if its props have not changed.
-// useCallback() caches the func ie it makes it skip rendering if its arguments have not changed.
+// useCallback() caches the func ie it makes it skip rendering if its dependecy array have not changed. everytime component re-renders function changes because in js func1()!=func2() and if passed a prop in a children component it will cause it to re-render
