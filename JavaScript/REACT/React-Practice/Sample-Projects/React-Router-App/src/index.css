@@ -137,3 +137,22 @@ form input, form textarea {
 form label span {
   margin-bottom: 10px;
 }
+
+.careers > a {
+  display: block;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 4px;
+  margin: 20px 0;
+  text-decoration: none;
+}
+.careers > a:hover p {
+  color: var(--primary);
+}
+.careers > a p {
+  margin: 0;
+}
+.careers > a p:last-child {
+  font-size: 0.8em;
+  color: #bbb;
+}
