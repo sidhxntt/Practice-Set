@@ -16,8 +16,9 @@ Callback functions in JavaScript are functions that are passed as arguments to o
 
 #### Promises
 
-- Promises in JavaScript are used for handling asynchronous operations. It connects Producer code ,something ie taking time such as fetching & uploading over the network, authentication, authorisation etc to consumer code that does something with the result of the producing code.
+- Promises in JavaScript are used for managing asynchronous operations. They act as a bridge between producer code, which involves tasks that take time to complete such as fetching data from a server, uploading files, or handling authentication and authorization, and consumer code, which deals with processing the results of these tasks.
 
-- Promises are a way to ensure that the consumer code receives a promise from the producer code and does not have to wait for the result of the producer code to be available before it can perform actions with it. The rest of the code can continue synchronously without waiting for the result of the producer code. As soon as a promise is resolved/rejected by the producer code, it becomes available to the consumer code without halting the main thread of the process.
+- Promises ensure that the consumer code receives a placeholder (promise) from the producer code, allowing it to continue execution without blocking the main thread. This means that the rest of the code can proceed synchronously, even though the result of the asynchronous operation isn't immediately available. Once the asynchronous operation is completed, the promise is resolved or rejected, and the consumer code can then handle the result or error, respectively.
 
-- In other words it a way to make asynchronous nature of JS more synchronous.
+- In essence, promises enable a more synchronous-like flow in asynchronous JavaScript code by providing a mechanism for handling asynchronous tasks without blocking the execution of other code.
+- In JavaScript, when you're dealing with promises and using async/await, the code execution will proceed to the next line only after the promise has been resolved.
