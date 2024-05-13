@@ -3,12 +3,14 @@ import RootLayout from "@Layout/RootLayout";
 import Home from "@Components/Home";
 import About from "@Components/About";
 import ErrorPage from "@Layout/error_page";
+
 import HelpLayout from "@Layout/Help_Layout";
 import Faq from "@Components/FAQ";
 import Contact, { contactAction } from "@Components//Contact";
+
 import CareersLayout from "@Layout/Career_layout";
-import Careers from "@Components/Careers";
-import CareerDetails from "@Components/CareerDetails";
+import Careers, {careersLoader} from "@Components/Careers";
+import CareerDetails, {careersDetailsLoader} from "@Components/CareerDetails";
 
 const routes = createBrowserRouter([
     {
@@ -36,7 +38,7 @@ const routes = createBrowserRouter([
             {
               path: "contact",
               element: <Contact />,
-              action: {contactAction}
+              action: contactAction
             },
           ],
         },
@@ -46,12 +48,14 @@ const routes = createBrowserRouter([
           children:[
             {
               path: '',
-              element: <Careers/>
+              element: <Careers/>,
+              loader: careersLoader
             },
             {
               path: ':id',
               errorElement: <ErrorPage />,
               element: <CareerDetails/>,
+              loader: careersDetailsLoader
             },
           ]
         }

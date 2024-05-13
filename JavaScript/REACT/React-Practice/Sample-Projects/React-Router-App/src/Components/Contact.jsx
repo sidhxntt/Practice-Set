@@ -11,32 +11,36 @@ export default function Contact() {
       <Form method="post" action="/help/contact">
         <label>
           <span>Your email:</span>
-          <input type="email" name="email" required />
+          <input type="email" name="email" />
         </label>
         <label>
           <span>Your message:</span>
-          <textarea name="message" required></textarea>
+          <textarea name="message"></textarea>
         </label>
-        <button>Submit</button>
-
+        <button type="submit">Submit</button>
         {data && data.error && <p>{data.error}</p>}
       </Form>
     </div>
   );
 }
-
+//Action function
+// Request object is a object wrapping all the form inputs
 export const contactAction = async ({ request }) => {
   const data = await request.formData();
-
   const submission = {
     email: data.get("email"),
     message: data.get("message"),
   };
-
-  console.log(submission);
+  if (!submission.email) {
+    return { error: "Email is required." };
+  }
   if (submission.message.length < 10) {
     return { error: "Message must be over 10 chars long." };
   }
-  
-  return redirect("/");
+  if (submission.message.length > 20) {
+    return { error: "Message must be under 20 chars long." };
+  }
+    console.log(submission);
+    return redirect("/");
+
 };
