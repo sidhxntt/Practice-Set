@@ -1,0 +1,6 @@
+.Navbar{
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-evenly;
+    padding:5px;
+}
