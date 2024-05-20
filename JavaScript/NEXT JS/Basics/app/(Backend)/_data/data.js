@@ -1,4 +1,4 @@
-export default data = [
+export const data = [
     {
         id: 1,
         name: 'John Doe',
@@ -20,4 +20,4 @@ export default data = [
         phone: '444343533',
         address: '6788 Main St',
     }
-]
+];
