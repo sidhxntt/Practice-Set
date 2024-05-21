@@ -1,51 +1,41 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 
 const app = express();
-const port = 3000;
 
-// Middleware
+// middleware
 app.use(express.static('public'));
-app.use(express.json()); // To parse JSON bodies
-app.use(express.urlencoded({ extended: true })); // To parse URL-encoded bodies
+app.use(express.json());
 app.use(cookieParser());
 
-// View engine
+// view engine
 app.set('view engine', 'ejs');
 
-// Database connection
-const connect_to_database = async () => {
+// database connection
+const dbURI = 'mongodb://localhost:27017/Auth';
+
+const startServer = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/Auth', {
+    await mongoose.connect(dbURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
-    console.log("Connected to database");
-    // Start the server after a successful database connection
-    app.listen(port, () => {
-      console.log(`Example app listening on port http://localhost:${port}`);
+    console.log('Connected to MongoDB');
+    app.listen(3001, () => {
+      console.log('Server is running on port 3001');
     });
-  } catch (error) {
-    console.error("Failed to connect to database:", error);
+  } catch (err) {
+    console.error('Failed to connect to MongoDB', err);
   }
 };
 
-connect_to_database();
-
-// Routes
+startServer();
+// routes
+app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
-app.get('/smoothies', (req, res) => res.render('smoothies'));
-app.use(authRoutes); // Mount the auth routes
-
-//cookies
-app.get('/set-cookies', (req, res) => {
-  res.cookie('name', 'John Doe', { maxAge: 1000 * 60 * 60 * 24 ,httpOnly: true});
-  res.send('Cookie Visualisation')
-})
-app.get('/get-cookies', (req, res) => {
-  const cookies = req.cookies;
-  console.log(cookies)
-  res.send(cookies)
-})
+app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
+app.use(authRoutes);
