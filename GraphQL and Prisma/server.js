@@ -14,6 +14,10 @@ const Databse_function = async () => {
     await connectToDatabase();
     const { url } = await startStandaloneServer(server, {
         listen: { port: 4000 },
+        context: ({ req }) => {
+          const token = req.headers.authorization || '';
+          return { token };
+        }
       });
       console.log(`🚀  Server ready at: ${url}`);
   } catch (error) {
