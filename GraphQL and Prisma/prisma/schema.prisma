@@ -17,8 +17,9 @@ model Book {
 }
 
 model Author {
-  id    String   @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  age   Int
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  age    Int
   gender String
+  role   String @default("user")
 }
