@@ -59,6 +59,7 @@ const AuthorResolvers = {
           name,
           age,
           gender,
+          role, 
         },
       });
       const res = contextValue.res;

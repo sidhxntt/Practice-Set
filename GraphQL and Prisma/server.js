@@ -4,8 +4,9 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import express from "express";
 import http from "http";
 import cors from "cors";
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import connectToDatabase from "./connect_to_db.js";
-import { typeDefs,resolvers } from "./GraphQL/Index.js";
+import { typeDefs, resolvers } from "./GraphQL/Index.js";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -15,6 +16,7 @@ const server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
+
 await connectToDatabase();
 await server.start();
 
@@ -33,6 +35,15 @@ app.use(
     },
   })
 );
+
+// Proxy setup
+app.use('/proxy', createProxyMiddleware({
+  target: 'http://localhost:4000/', // Replace with your target server
+  changeOrigin: true,
+  pathRewrite: {
+    '^/proxy': '', // Remove /proxy from the request path
+  },
+}));
 
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
