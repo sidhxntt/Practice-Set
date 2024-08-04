@@ -1,15 +1,22 @@
 {
   "compilerOptions": {
-    "target": "esnext",               // or "esnext" for the latest features
-    "module": "esnext",               // or "esnext" for the latest module features
+    "target": "ES6",
+    "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",   // Recommended for module resolution
-    "skipLibCheck": true,         // Optional: Skip type checking of declaration files
-    "forceConsistentCasingInFileNames": true // Optional: Ensure consistent casing in filenames
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    // "paths": {
+    //   "@controllers/*": ["./src/controllers/*"],
+    //   "@routes/*": ["./src/routes/*"]
+    // },
+    "lib": ["ES6", "DOM"],
+    "skipLibCheck": true,
+    "declaration": true,
+    "sourceMap": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
