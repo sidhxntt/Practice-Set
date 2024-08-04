@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",               // or "esnext" for the latest features
+    "module": "esnext",               // or "esnext" for the latest module features
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",   // Recommended for module resolution
+    "skipLibCheck": true,         // Optional: Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true // Optional: Ensure consistent casing in filenames
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
