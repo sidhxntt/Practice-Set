@@ -1,4 +1,5 @@
 import home from "./home";
+
 import { Application } from "express";
 
 const allRoutes = (app: Application) => {
