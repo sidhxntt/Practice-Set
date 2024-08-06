@@ -1,0 +1,23 @@
+
+services:
+  docker-demo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-demo-image:learning
+    container_name: docker-demo-container
+    ports:
+      - "4000:4000"
+
+    environment:
+      - NODE_ENV=development
+
+    volumes:
+      - .:/usr/src/app
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  

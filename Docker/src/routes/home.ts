@@ -10,7 +10,7 @@ interface ResponseBody {
 router.get("/", async (req: Request, res: Response<ResponseBody>, next: NextFunction): Promise<void> => {
   try {
     const response: ResponseBody = {
-      message: "Welcome to Docker Tutorial using ts-node",
+      message: "Welcome to Docker Tutorial using ts-node 🐳",
     };
     res.status(200).json(response);
   } catch (error) {
@@ -25,7 +25,7 @@ router.get(
     const { slug } = req.params;
     try {
       const response: ResponseBody = {
-        message: "Welcome to Docker Tutorial using ts-node",
+        message: "Welcome to Docker Tutorial using ts-node 🐳",
         params: slug,
       };
       res.status(200).json(response);
