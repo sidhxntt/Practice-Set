@@ -20,7 +20,7 @@ app.use(express.json());
 const StartServer = (): void => {
   try {
     app.listen(port, () => {
-      console.log(`Example app listening on http://localhost:${port} 🐳`);
+      console.log(`Example app is now listening 🐳`);
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
