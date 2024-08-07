@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Honk:MORF,SHLN@25,0&family=Press+Start+2P&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.table .monitor-wrapper {
+  background: #000000;
+  width: 770px;
+  height: 180px;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.table .monitor-wrapper .monitor {
+  width: 700px;
+  height: 130px;
+  background-color: #344151;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: inset 0px 5px 10px 2px rgba(0, 0, 0, 0.3);
+}
+.table .monitor-wrapper .monitor p {
+  font-family: "Press Start 2P";
+  font-size: 60px;
+  position: relative;
+  display: inline-block;
+  animation: move 15s infinite linear;
+  color: #ebb55f;
+  font-weight: 700;
+  top: 20%;
+}
+
+@keyframes move {
+  from {
+    left: 800px;
+  }
+  to {
+    left: -5500px;
+  }
+}
+@import url("https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap");
+
+:root {
+  --clr-neon: hsl(317 100% 54%);
+  --clr-bg: hsl(323 21% 16%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  z-index: 9999;
+}
+h1 {
+  position: absolute;
+  left: 53%;
+  font-size: 200px;
+  font-family: "Mr De Haviland", cursive;
+  color: var(--clr-neon);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  top: 3cm;
+  z-index: -1;
+}
+.main {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 250px;
+  gap: 50px;
+}
+.neon-button {
+  font-size: small;
+
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--clr-neon);
+  border: var(--clr-neon) 0.125em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+  position: relative;
+}
+
+.neon-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-neon);
+  opacity: 0;
+  background-color: var(--clr-neon);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button:hover,
+.neon-button:focus {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.neon-button:hover::before,
+.neon-button:focus::before {
+  opacity: 1;
+}
+.neon-button:hover::after,
+.neon-button:focus::after {
+  opacity: 1;
+}
+
+.flicker-fast {
+  animation: flicker 1s linear infinite;
+}
+
+@keyframes flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 0.99;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.4;
+  }
+}

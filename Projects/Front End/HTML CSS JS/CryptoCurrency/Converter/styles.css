@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+
+* {
+  box-sizing: border-box;
+  color: white
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #111;
+  font-family: "Bebas Neue", sans-serif;
+  position: sticky;
+  top: 0; /* This will stick the element to the top of its container */
+}
+
+.sid_background {
+  background: black;
+}
+.bg-transparent {
+  background-color: transparent !important;
+}
+.nav_container {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  padding-top: 15px;
+  border-bottom: 1px solid white;
+}
+
+.container {
+  min-height: 100vh;
+  font-family: "Bebas Neue", sans-serif;
+  max-width: 80vw;
+  margin: auto;
+}
+
+.container h1,
+h2 {
+  margin: 50px 0;
+}
+.container h1{
+  font-size: 100px;
+}
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container form label {
+  font-size: 25px;
+}
+
+.container form input[type='number'],
+select,
+label {
+  font-size: 25px;
+  width: 20vw;
+  margin-bottom: 23px;
+  
+}
+.container form input[type='number'],select{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding-left:10px;
+padding-right:10px;
+font-size: medium;
+}
+
+.btn {
+  width: 144px;
+  padding: 5px 8px;
+  font-size: 20px;
+  background: #e0d0f5;
+  color: black;
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.output {
+display: none;
+font-family: "Bebas Neue", sans-serif;
+position: absolute;
+top:18cm;
+left:4.5cm;
+}
+
+.output table {
+  width: 50vw;
+  text-align: center;
+  border: 2px solid white;
+  font-size: 20px;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+
+}
+
+.output table th{
+  padding: 3px;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .container {
+      max-width: 95vw;
+  }
+  .container form input[type='number'],
+  select,
+  label {
+      width: 80vw;
+  }
+}
+
+footer {
+  font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #fdf0d5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    border: 1px solid black;
+    width: 30%;
+    background-color: #d4a373;
+    height: auto;
+    text-align: center;
+}
+li{
+    list-style:decimal;
+    text-align: left;
+}

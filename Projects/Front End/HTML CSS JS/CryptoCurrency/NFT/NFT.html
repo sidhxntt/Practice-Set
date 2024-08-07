@@ -1,0 +1,3252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>NFT</title>
+  </head>
+  
+  <header>
+   <div class="filter_container" onclick="openNav()">
+    <div></div>
+    <div></div>
+    <div></div>
+   </div>
+    <div class="nav_container">
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary bg-transparent"
+        data-bs-theme="dark"
+      >
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="/CryptoCurrency/Home/index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/CryptoCurrency/NFT/NFT.html"
+                  >NFT</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/CryptoCurrency/News/news.html">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/CryptoCurrency/Converter/converter.html">Converter</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <body class="sid_background">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+      <div class="container">
+        <div class="dropdown ">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Sort By Name
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li class="dropdown-item">Ascending</li>
+          <li class="dropdown-item">Descending</li>
+        </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="dropdown ">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Filter
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li class="dropdown-item">10</li>
+          <li class="dropdown-item">20</li>
+          <li class="dropdown-item">30</li>
+          <li class="dropdown-item">40</li>
+          <li class="dropdown-item">50</li>
+          <li class="dropdown-item">All</li>
+        </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active c-item">
+          <img src="./images/wallpaper.jpg" class="d-block w-100 c-img" alt="...">
+        </div>
+        <div class="carousel-item c-item">
+          <img src="./images/wallpaper2.jpeg" class="d-block w-100 c-img" alt="...">
+        </div>
+        <div class="carousel-item c-item">
+          <img src="./images/wallpaper3.jpeg" class="d-block w-100 c-img" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    
+    <div id="main">
+      <div class="main_container">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/1.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/2.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/3.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/4.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/5.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/6.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/7.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/8.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/9.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/10.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/11.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/12.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/13.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/14.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/15.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/16.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/17.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/18.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/19.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/20.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/21.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/22.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/23.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/24.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/25.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/26.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/27.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/28.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/29.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/30.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/31.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/32.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/33.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/34.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/35.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/36.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/37.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/38.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/39.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/40.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/41.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/42.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/43.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/44.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/45.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/46.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/47.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/48.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/49.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/50.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/51.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/52.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/53.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/54.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/55.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/56.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/57.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/58.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/59.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/60.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/1.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/2.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/3.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/4.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/5.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/6.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/7.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/8.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/9.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/10.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/11.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/12.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/13.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/14.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/15.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/16.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/17.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/18.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/19.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/20.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/21.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/22.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/23.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/24.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/25.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/26.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/27.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/28.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/29.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/30.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/31.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/32.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/33.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/34.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/35.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/36.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/37.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/38.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/39.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/40.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/41.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/42.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/43.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/44.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/45.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/46.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/47.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/48.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/49.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/50.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/51.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/52.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/53.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/54.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/55.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/56.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/57.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/58.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/59.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/60.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/1.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/2.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/3.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/4.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/5.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/6.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/7.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/8.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/9.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/10.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/11.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/12.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/13.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/14.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/15.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/16.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/17.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/18.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/19.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/20.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/21.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/22.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/23.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/24.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/25.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/26.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/27.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/28.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/29.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/30.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/31.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/32.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/33.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/34.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/35.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/36.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/37.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/38.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/39.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/40.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/41.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/42.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/43.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/44.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/45.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/46.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/47.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/48.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/49.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/50.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/51.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/52.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/53.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/54.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/55.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/56.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/57.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/58.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/59.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/60.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/1.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/2.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/3.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/4.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/5.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/6.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/7.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/8.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/9.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/10.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/11.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/12.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/13.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/14.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/15.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/16.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/17.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/18.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/19.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/20.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/21.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/22.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/23.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/24.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/25.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/26.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/27.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/28.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/29.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/30.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/31.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/32.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/33.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/34.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/35.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/36.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/37.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/38.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/39.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/40.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/41.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/42.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/43.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/44.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/45.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/46.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p> 
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/47.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/48.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>The Remnants</p>
+              <p>asset platform id: solana</p>
+              <p>symbol: REMNANTS</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/49.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/50.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/51.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/52.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/53.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/54.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/55.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/56.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/57.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/58.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/59.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="./images/60.avif" alt=Avatar"
+              style="width:200px;height:200px;object-fit:cover;">
+            </div>
+            <div class="flip-card-back">
+              <p>John Doe</p>
+              <p>Architect & Engineer</p>
+              <p>We love that guy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="NFT_info.js"></script>
+    <script src="sidebar.js"></script>
+  </body>
