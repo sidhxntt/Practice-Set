@@ -7,6 +7,7 @@ import decryptJWT from "/Users/siddhantgupta/Desktop/SID/Practice-Set/GraphQL an
 const AuthorResolvers = {
   Query: {
     getAllauthors: async (_, __, contextValue) => {
+      console.log(contextValue.token)
       if (!contextValue.token) {
         throw new GraphQLError("User is not authenticated", {
           extensions: {
@@ -16,7 +17,9 @@ const AuthorResolvers = {
         });
       }
         const decodedToken = await decryptJWT(contextValue.token);
+        console.log(decodedToken)
         const authorID = decodedToken.id;
+        console.log(authorID)
 
         const Author = await prisma.author.findUnique({
           where: { id: authorID },
@@ -34,6 +37,7 @@ const AuthorResolvers = {
     },
 
     getOneauthor: async (_, __, contextValue) => {
+      console.log(contextValue.token)
       if (!contextValue.token) {
         throw new GraphQLError("User is not authenticated", {
           extensions: {
