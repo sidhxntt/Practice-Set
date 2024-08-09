@@ -1,19 +1,32 @@
 "use client"
-import { OnSignup ,validatePassword} from "@/app/utils/signup";
+import { onSignup ,validatePassword} from "@/utils/signup";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
-
+import { useState,useEffect } from "react";
+import { useRouter } from 'next/navigation'
 
 const Signup = () => {
-    const {register, handleSubmit,watch,formState: { errors, isSubmitting, isValid, isSubmitSuccessful},} = useForm();
+    const {register, handleSubmit,watch,formState: {errors}} = useForm();
+    const [sucess, setSuccess] = useState("")
+    const [error, setError] = useState("")
+    const router = useRouter()
+
+    useEffect(() => {
+      if(sucess){
+        setTimeout(() => {
+          router.push("/")
+        }, 2000);
+      }
+    }, [sucess,router])
+    
 
   return (
     <section class="bg-white">
       <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">
         <form 
-        onSubmit={handleSubmit(OnSignup)}
+       onSubmit={handleSubmit((data) => onSignup(data, setSuccess, setError))}
         class="w-full max-w-md">
           <div class="flex justify-center mx-auto">
             <Image
@@ -172,7 +185,10 @@ const Signup = () => {
             <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
               Sign Up
             </button>
-
+              <div className="flex justify-centertext-sm mt-2">
+                {error && <p className=" text-red-600 ">{error}</p>}
+                {sucess && <p className=" text-green-600 ">{sucess}</p>}
+              </div>
             <div class="mt-6 text-center ">
               <Link
                 href="/"

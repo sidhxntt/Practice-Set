@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
-import { PrismaClient, User } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import createToken from "../controllers/jwt";
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -33,8 +34,9 @@ router.post(
       if (!passwordMatch) {
         return res.status(400).json({ message: "Incorrect Password" });
       }
-
-      return res.status(200).json({ message: "Login successful", result: existing_user });
+      const token =  await createToken(existing_user.id)
+      console.log("Login successful", token)
+      return res.status(200).json({ message: "Login successful"});
 
     } catch (error) {
       next(error);

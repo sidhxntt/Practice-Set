@@ -1,3 +1,5 @@
+
+
 const validatePassword = (value) => {
     const hasNumber = /\d/.test(value);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
@@ -23,8 +25,27 @@ const validatePassword = (value) => {
     }
   }
 
-const OnSignup = (data) =>{
-    console.log(data)
-}
+  const onSignup = async (data, setSuccess, setError) => {
+    try {
+      const response = await fetch("http://localhost:4000/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      } else {
+        setSuccess("Account created successfully");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      setError(error.message);
+    }
+  };
 
-export {validatePassword,OnSignup}
+
+export {validatePassword,onSignup}

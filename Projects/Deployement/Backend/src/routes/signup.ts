@@ -48,7 +48,7 @@ router.post(
             password: hashedPassword
           }
         });
-
+        console.log("User created successfully")
         return res.status(201).json({
           message: "User created successfully",
           result: user

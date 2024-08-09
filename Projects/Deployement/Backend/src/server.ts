@@ -6,10 +6,12 @@ import error_handling from "./controllers/error";
 
 const app: Express = express();
 const port = process.env.PORT_NUMBER;
+const Orign = process.env.ORIGIN;
+const server = process.env.SERVER
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: Orign,
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"],
   }),
@@ -20,7 +22,7 @@ app.use(express.json());
 const StartServer = (): void => {
   try {
     app.listen(port, () => {
-      console.log(`Example app is now listening at port: ${port}🐳`);
+      console.log(`Example app is now listening at: ${server}🐳`);
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
