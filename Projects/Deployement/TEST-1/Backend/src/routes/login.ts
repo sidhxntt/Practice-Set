@@ -35,7 +35,6 @@ router.post(
         return res.status(400).json({ message: "Incorrect Password" });
       }
       const token =  await createToken(existing_user.id)
-      console.log("Login successful", token)
       return res.status(200).json({ message: "Login successful"});
 
     } catch (error) {
