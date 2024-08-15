@@ -3,6 +3,7 @@ import express, { Express } from "express";
 import allRoutes from "./routes";
 import "dotenv/config";
 import error_handling from "./controllers/error";
+import connectToDatabase from "./db";
 
 const app: Express = express();
 const port = process.env.PORT_NUMBER;
@@ -19,8 +20,9 @@ app.use(
 
 app.use(express.json());
 
-const StartServer = (): void => {
+const StartServer = async(): Promise<void> => {
   try {
+    await connectToDatabase()
     app.listen(port, () => {
       console.log(`Example app is now listening at: ${server}🐳`);
     });
