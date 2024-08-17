@@ -58,3 +58,5 @@
 16. `sudo systemctl restart nginx`
 17. `pm2 start node_modules/.bin/next --name "nextjs-app" -- start`
 
+
+>> you can always use certbot for SSL certificate
