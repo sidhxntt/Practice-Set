@@ -1,0 +1,28 @@
+{
+  "name": "technical_trivia",
+  "version": "1.0.8",
+  "main": "game.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "bin": {
+    "technical_trivia": "./game.js"
+  },
+  "keywords": [
+    "cli",
+    "game",
+    "nodejs"
+  ],
+  "files": [
+    "game.js"
+  ],
+  "author": " Siddhant",
+  "license": "ISC",
+  "description": "A command-line game tool",
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "technical_trivia": "^1.0.2"
+  }
+}
