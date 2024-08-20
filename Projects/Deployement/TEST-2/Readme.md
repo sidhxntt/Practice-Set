@@ -1,4 +1,5 @@
-Deploying a full-stack application to AWS Elastic Beanstalk involves several steps, including preparing your application, creating and configuring an Elastic Beanstalk environment, and deploying the containers. Below is a step-by-step guide:
+# Deploying a full-stack application to AWS Elastic Beanstalk 
+involves several steps, including preparing your application, creating and configuring an Elastic Beanstalk environment, and deploying the containers. Below is a step-by-step guide:
 
 ### Step 1: Prerequisites
 1. **AWS Account**: Ensure you have an AWS account.

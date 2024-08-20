@@ -1,107 +1,189 @@
-# Heroku
-Deploying a full-stack app (Next.js frontend and Express backend) on Heroku involves a few steps. Here’s a guide to get you started:
+# Docker, K8s & EKS
+Deploying a full-stack application using AWS EKS (Elastic Kubernetes Service) involves several steps, including setting up the EKS cluster, configuring your application’s Kubernetes manifests, and deploying the application using these manifests. Below is a step-by-step guide to help you with the deployment.
 
-### 1. **Prepare Your Project**
-   Ensure your project is structured properly for deployment:
-   - **Frontend (Next.js)** should be in a folder, e.g., `client/`.
-   - **Backend (Express)** should be in a folder, e.g., `server/`.
-   - The root directory should have a `Dockerfile` and optionally a `docker-compose.yml` file.
+### Prerequisites
 
-### 2. **Dockerize Your Application**
-   Since your app is already containerized, you likely have a `Dockerfile`. Here's a basic example structure:
+1. **AWS Account**: Ensure you have an AWS account.
+2. **AWS CLI**: Install and configure the AWS CLI on your local machine.
+3. **kubectl**: Install `kubectl` to interact with your Kubernetes cluster.
+4. **eksctl**: Install `eksctl` to simplify EKS cluster creation.
+5. **Docker**: Ensure Docker is installed and running to build your images.
 
-   **Dockerfile (for full-stack app):**
-   ```dockerfile
-   # Backend
-   FROM node:18-alpine AS server
-   WORKDIR /app/server
-   COPY ./server/package*.json ./
-   RUN npm install
-   COPY ./server ./
-   
-   # Frontend
-   FROM node:18-alpine AS client
-   WORKDIR /app/client
-   COPY ./client/package*.json ./
-   RUN npm install
-   COPY ./client ./
-   RUN npm run build
+### Step 1: Create an EKS Cluster
 
-   # Final Stage
-   FROM node:18-alpine
-   WORKDIR /app
-   COPY --from=server /app/server /app/server
-   COPY --from=client /app/client /app/client
-   WORKDIR /app/server
-   CMD ["node", "index.js"]
+1. **Create an EKS Cluster using eksctl**:
+
+   ```bash
+   eksctl create cluster --name my-cluster --region us-west-2 --nodegroup-name my-nodes --node-type t2.micro --nodes 2 --nodes-min 1 --nodes-max 3 --managed
    ```
 
-   **docker-compose.yml (optional):**
-   ```yaml
-   version: '3.8'
-   services:
-     web:
-       build: .
+   This command creates a simple EKS cluster with a managed node group. Adjust the parameters as per your requirements.
+
+2. **Configure kubectl**:
+
+   Once the cluster is created, configure `kubectl` to connect to your EKS cluster:
+
+   ```bash
+   aws eks --region us-west-2 update-kubeconfig --name my-cluster
+   ```
+
+### Step 2: Build and Push Docker Images
+
+1. **Build Docker Images**:
+
+   Assuming your `Dockerfile` is ready for both frontend and backend:
+
+   ```bash
+   docker build -t my-frontend:latest ./frontend
+   docker build -t my-backend:latest ./backend
+   ```
+
+2. **Push Docker Images to ECR (Elastic Container Registry)**:
+
+   - Create ECR repositories:
+
+     ```bash
+     aws ecr create-repository --repository-name my-frontend --region us-west-2
+     aws ecr create-repository --repository-name my-backend --region us-west-2
+     ```
+
+   - Authenticate Docker to ECR:
+
+     ```bash
+     aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com
+     ```
+
+   - Tag and push the images:
+
+     ```bash
+     docker tag my-frontend:latest <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest
+     docker tag my-backend:latest <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest
+
+     docker push <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest
+     docker push <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest
+     ```
+
+### Step 3: Prepare Kubernetes Manifests
+
+1. **Create Kubernetes Deployment and Service Manifests**:
+
+   - For the frontend (`frontend-deployment.yaml`):
+
+     ```yaml
+     apiVersion: apps/v1
+     kind: Deployment
+     metadata:
+       name: frontend-deployment
+     spec:
+       replicas: 2
+       selector:
+         matchLabels:
+           app: frontend
+       template:
+         metadata:
+           labels:
+             app: frontend
+         spec:
+           containers:
+           - name: frontend
+             image: <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest
+             ports:
+             - containerPort: 3000
+     ---
+     apiVersion: v1
+     kind: Service
+     metadata:
+       name: frontend-service
+     spec:
+       type: LoadBalancer
+       selector:
+         app: frontend
        ports:
-         - "5000:5000"
-       environment:
-         - NODE_ENV=production
-   ```
+         - protocol: TCP
+           port: 80
+           targetPort: 3000
+     ```
 
-### 3. **Create a Heroku App**
-   If you haven’t already, create a Heroku app:
+   - For the backend (`backend-deployment.yaml`):
+
+     ```yaml
+     apiVersion: apps/v1
+     kind: Deployment
+     metadata:
+       name: backend-deployment
+     spec:
+       replicas: 2
+       selector:
+         matchLabels:
+           app: backend
+       template:
+         metadata:
+           labels:
+             app: backend
+         spec:
+           containers:
+           - name: backend
+             image: <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest
+             ports:
+             - containerPort: 5000
+     ---
+     apiVersion: v1
+     kind: Service
+     metadata:
+       name: backend-service
+     spec:
+       type: ClusterIP
+       selector:
+         app: backend
+       ports:
+         - protocol: TCP
+           port: 5000
+           targetPort: 5000
+     ```
+
+2. **Apply the Manifests**:
+
+   Deploy the frontend and backend to the EKS cluster:
+
    ```bash
-   heroku create your-app-name
+   kubectl apply -f frontend-deployment.yaml
+   kubectl apply -f backend-deployment.yaml
    ```
 
-### 4. **Add Docker Support on Heroku**
-   Enable Docker support for Heroku by using the following commands:
-   ```bash
-   heroku stack:set container
-   ```
+### Step 4: Access the Application
 
-### 5. **Deploy to Heroku**
-   Once your Dockerfile is set up correctly and you've created the Heroku app, you can deploy by pushing your code to Heroku:
+1. **Get the LoadBalancer URL**:
+
+   After applying the frontend service manifest, the EKS LoadBalancer will be provisioned by AWS. Run the following command to get the external IP:
 
    ```bash
-   git add .
-   git commit -m "Deploying to Heroku"
-   git push heroku main
+   kubectl get svc frontend-service
    ```
 
-   If your main branch is not named `main`, replace it with the correct branch name.
+2. **Access the Application**:
 
-### 6. **Set Environment Variables (if needed)**
-   If your application relies on environment variables, set them on Heroku:
+   Use the external IP or DNS name of the LoadBalancer to access your frontend, which should communicate with the backend via the service's internal DNS name (e.g., `http://backend-service:5000`).
+
+### Step 5: Monitor and Manage
+
+1. **Monitor Your Deployment**:
+
+   Use `kubectl` commands to monitor your deployments:
+
    ```bash
-   heroku config:set KEY_NAME=value
+   kubectl get pods
+   kubectl get svc
+   kubectl logs <pod-name>
    ```
 
-### 7. **View Logs**
-   To monitor your app:
+2. **Scaling**:
+
+   To scale your application, you can adjust the `replicas` field in your deployment manifests and reapply them, or use the following command:
+
    ```bash
-   heroku logs --tail
+   kubectl scale deployment frontend-deployment --replicas=3
    ```
 
-### 8. **Access Your Application**
-   After deployment, your app should be accessible at `https://your-app-name.herokuapp.com`.
+### Conclusion
 
-### 9. **Connect a Database (Optional)**
-   If your backend requires a database (like PostgreSQL), you can add a Heroku addon:
-   ```bash
-   heroku addons:create heroku-postgresql:hobby-dev
-   ```
-   Heroku will automatically set the database environment variables for you.
-
-### 10. **Scaling Your App (Optional)**
-   If you need to scale your app (add more dynos):
-   ```bash
-   heroku ps:scale web=1
-   ```
-
-### Troubleshooting Tips:
-- If you encounter issues, check your Dockerfile for errors or incompatibilities.
-- Make sure all necessary environment variables are set on Heroku.
-- Review logs to diagnose issues.
-
-This setup should deploy your full-stack app on Heroku using Docker.
+This guide provides a basic overview of deploying a containerized full-stack application on AWS EKS. Depending on your application’s complexity, you might need to configure additional resources like ConfigMaps, Secrets, Ingress controllers, and persistent storage.
