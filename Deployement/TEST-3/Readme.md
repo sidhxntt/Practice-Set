@@ -1,6 +1,15 @@
 # ECS & ECR
 Deploying a containerized full-stack application (Next.js frontend and Express backend) on AWS involves a series of detailed steps, from containerization to setting up infrastructure on AWS. Here's an in-depth guide to each step:
 
+1. `aws configure`
+2. `brew install amazon-ecs-cli`
+3. `ecs-cli configure --cluster my-cluster --default-launch-type EC2 --region us-east-1 --config-name my-config`
+4. `ecs-cli up --cluster-config my-config --keypair my-key --capability-iam --size 2 --instance-type t2.micro --region us-east-1`
+5. `ecs-cli compose --file docker-compose.yml --project-name my-project up`
+6. `ecs-cli ps`
+
+
+
 ### **1. Prepare Your Containers**
 
 #### **1.1. Dockerize the Next.js Frontend**

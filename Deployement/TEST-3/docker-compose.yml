@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  frontend:
+    image: your-dockerhub-username/frontend:latest
+    ports:
+      - "3000:3000" # Map port 3000 on the host to port 3000 in the container
+
+  backend:
+    image: your-dockerhub-username/backend:latest
+    ports:
+      - "4000:4000" # Map port 4000 on the host to port 4000 in the container
