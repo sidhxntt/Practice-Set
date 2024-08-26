@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextui-app-deployment
+  namespace: my-next
+  labels:
+    app: nextui-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nextui-app
+  template:
+    metadata:
+      labels:
+        app: nextui-app
+    spec:
+      containers:
+        - name: nextui-app
+          image: dedsec2002/testing:my-nextui-app 
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: docker-login
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextui-app-service
+  namespace: my-next 
+spec:
+  type: LoadBalancer
+  selector:
+    app: nextui-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
