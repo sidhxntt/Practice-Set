@@ -1,3 +1,29 @@
+# secret
+apiVersion: v1
+kind: Secret
+metadata:
+    name: backend-secret
+    namespace: auth     
+type: Opaque
+data:
+    DATABASE_URL: bW9uZ29kYitzcnY6Ly9zaWRkaGFudGcyMDAyOnV1OUdXV0lWVlR1UmhPNjlAY2x1c3RlcjAubHF6aGpkZC5tb25nb2RiLm5ldC9Vc2Vycw==
+    JWT_SECRET: Y2IxZjgzZDRjODVkZGY3ZmVjMjViZmM5NmEwMGM3OWYwMWQxMDAzZjFlN2Q1NmViNDJhMDMxZmZiY2RjOGQ1Yg==
+---
+
+#config_map
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-configmap
+  namespace: auth
+data:
+  MAX_AGE: "3600"
+  PORT_NUMBER: "4000"
+  ORIGIN: frontend-service
+  SERVER: backend-service
+---
+
+# depoloyment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +43,7 @@ spec:
     spec:
       containers:
       - name: express
-        image: dedsec2002/testing:backend-minikube
+        image: dedsec2002/testing:minikube-backend
         ports:
         - containerPort: 4000
         env:
@@ -53,3 +79,33 @@ spec:
               key: SERVER
       imagePullSecrets:
       - name: docker-login
+
+---
+# # service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: backend-service
+#   namespace: auth
+# spec:
+#   selector:
+#     app: express
+#   ports:
+#     - protocol: TCP
+#       port: 4000
+#       targetPort: 4000
+
+# service
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: auth # Namespace should be here under metadata
+spec:
+  type: LoadBalancer
+  selector:
+    app: express
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000

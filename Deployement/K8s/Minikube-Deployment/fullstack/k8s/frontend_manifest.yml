@@ -1,3 +1,13 @@
+# config_map
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-configmap
+  namespace: auth
+data:
+  APP_SERVER_URL: backend-service
+---
+# deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +27,7 @@ spec:
     spec:
       containers:
       - name: nextjs
-        image: dedsec2002/testing:frontend-minikube
+        image: dedsec2002/testing:minikube-frontend
         ports:
         - containerPort: 3000
         env:
@@ -28,3 +38,18 @@ spec:
               key: APP_SERVER_URL
       imagePullSecrets:
       - name: docker-login
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: auth
+spec:
+  selector:
+    app: nextjs
+  type: LoadBalancer  
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
