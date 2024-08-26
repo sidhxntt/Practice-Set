@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: auth
+  labels:
+    app: express
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express
+  template:
+    metadata:
+      labels:
+        app: express
+    spec:
+      containers:
+      - name: express
+        image: dedsec2002/testing:backend-minikube
+        ports:
+        - containerPort: 4000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: DATABASE_URL
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: JWT_SECRET
+        - name: MAX_AGE
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: MAX_AGE
+        - name: PORT_NUMBER
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: PORT_NUMBER
+        - name: ORIGIN
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: ORIGIN
+        - name: SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: SERVER
+      imagePullSecrets:
+      - name: docker-login

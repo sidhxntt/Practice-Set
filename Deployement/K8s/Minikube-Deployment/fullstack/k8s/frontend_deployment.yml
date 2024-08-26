@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: auth
+  labels:
+    app: nextjs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+  template:
+    metadata:
+      labels:
+        app: nextjs
+    spec:
+      containers:
+      - name: nextjs
+        image: dedsec2002/testing:frontend-minikube
+        ports:
+        - containerPort: 3000
+        env:
+        - name: APP_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-configmap
+              key: APP_SERVER_URL
+      imagePullSecrets:
+      - name: docker-login
