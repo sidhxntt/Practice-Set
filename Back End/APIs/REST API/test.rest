@@ -1,0 +1,77 @@
+GET http://localhost:3000
+###
+GET http://localhost:3000/users
+###
+POST  http://localhost:3000/users HTTP/1.1
+Host: localhost
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+    "name": "Siddhant Gupta",
+    "gender": "Male",
+    "age": 22,
+    "email": "siddhantg2002@gmail.com",
+    "password": "Music@2002",
+    "contact_number": 8851728513,
+    "status": "Relationship"
+}
+###
+POST  http://localhost:3000/users HTTP/1.1
+Host: localhost
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+    "name": "Priyanka Mishra",
+    "gender": "Female",
+    "age": 22,
+    "email": "PriyankaM2002@gmail.com",
+    "password": "Music@2002",
+    "contact_number": 8851728513,
+    "status": "Relationship"
+}
+###
+POST  http://localhost:3000/users HTTP/1.1
+Host: localhost
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+    "name": "Shashank Bhatele",
+    "gender": "Male",
+    "age": 22,
+    "email": "PriyankaM2002@gmail.com",
+    "password": "Music@2002",
+    "contact_number": 8851728513,
+    "status": "Relationship"
+}
+###
+POST  http://localhost:3000/users HTTP/1.1
+Host: localhost
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+    "name": "Moumita Gupta",
+    "gender": "Female",
+    "age": 50,
+    "email": "Moumitag14@gmail.com",
+    "password": "bubai@2002",
+    "contact_number": 8130777299,
+    "status": "Married"
+}
+###
+GET http://localhost:3000/users/66289f4c5dc09ea2175e7b5b
+###
+DELETE http://localhost:3000/users/6628a2ff4d1d29522f9615ca 
+###
+PATCH http://localhost:3000/users/66289f4c5dc09ea2175e7b5b
+Host: localhost
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+    "name":"Manish Gupta"
+}
+###

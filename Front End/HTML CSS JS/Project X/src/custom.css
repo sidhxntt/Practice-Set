@@ -1,0 +1,22 @@
+#post_button{
+    background-color: #1d9bf0;
+    width: 7cm;
+}
+
+button:hover{
+    background-color: #212529;
+    transition: 0.2s;
+}
+#post_button:hover{
+    background-color: #1a8cd8;
+}
+.subheader-1:hover ,.subheader-2:hover ,.subheader-3:hover{
+    background-color: #212529;
+    transition: 0.2s;
+}
+.header{
+    /* From https://css.glass */
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.5px);
+-webkit-backdrop-filter: blur(6.5px);
+}

@@ -1,0 +1,36 @@
+
+.Navbar {
+  display: flex;
+  justify-content: center;
+  padding: 2px;
+  box-shadow: 2px 9px 5px 0px rgba(51, 45, 36, 0.29);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+
+.div{
+  height: fit-content;
+  position: absolute;
+  right: 0.5cm;
+  top: 12px
+}
+  img {
+    cursor: pointer;
+    height: 2cm;
+  }
+}
+
+.user{
+  position: absolute;
+  left: 0.5cm;
+  top:20px;
+
+  .name{
+    font-size: 1em;
+    color: #000000;
+    position: relative;
+    bottom: 0.8cm;
+    left: 1.2cm;
+  }
+}

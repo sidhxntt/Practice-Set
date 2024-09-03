@@ -1,0 +1,41 @@
+
+.video{
+    opacity: 1;
+    filter: brightness(70%);
+}
+.section1{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: white;
+    animation: fadeInAnimation ease 15s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    p{
+        font-size: medium;
+        font-weight: 500;
+        font-style: italic;
+    }
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+.section2{
+    padding-bottom: 3cm;
+    padding-top: 1cm;
+
+    .div{
+        display: flex;
+        justify-content: center;
+    }
+}

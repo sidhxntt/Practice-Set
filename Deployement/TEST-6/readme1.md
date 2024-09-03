@@ -4,7 +4,7 @@
 ### PreRequists:
 - Install Docker and Docker Compose on your local machine
 - Install AWS CLI on your local machine
-- Pushinh docker images to either AWS ECR or Docker hub private registry
+- Push the docker images to either AWS ECR or Docker hub private registry
 
 ### 1. **Set Up an EC2 Instance**
    - **Launch an EC2 instance**:

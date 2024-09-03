@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    background: url(pexels-emiliano-arano-1350197.jpg) no-repeat;
+    background-position:top;
+   
+}
+form{
+    border:2px solid rgba(255,255,255,.2);
+    backdrop-filter:  blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 10cm;
+    background-color: transparent;
+    padding:50px;
+}
+form h1{
+    color: white;
+    text-align: center;
+}
+.input-field-1,.input-field-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.input-field-1 input,.input-field-2 input{
+    width: 100%;
+    border: none;
+    border: 1px solid rgba(255,255,255,.2);
+    border-right: none;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 40px 0 0 40px;
+    padding-left: 20px;
+    background-color: transparent; 
+    color: white;
+}
+.input-field-1 input::placeholder , .input-field-2 input::placeholder{
+    color: white;
+}
+.input-field-1 i,.input-field-2 i{
+    color:white;
+    border: none;
+    border: 1px solid rgba(255,255,255,.2);
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 0 40px 40px 0;
+    padding-right: 20px;
+    background-color: transparent;
+
+}
+.remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: small;
+    margin-top: 15px;
+}
+.remember-forgot a{
+    text-decoration: none;
+    color: white;
+    font-size: small;
+}
+button{
+    width: 100%;
+    margin-top: 15px;
+    height: 40px;
+    border: none;
+    border-radius: 40px;
+    padding:10px;
+    background-color: white;
+    border:1px solid white;
+    color:black;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.footer-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    color: white;
+    font-size: small;
+  }
+  .footer-1 a{
+    color: white;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: 700;
+  }
+  .footer-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    color: white;
+    font-size: x-small;
+  }
+ 
+ 
