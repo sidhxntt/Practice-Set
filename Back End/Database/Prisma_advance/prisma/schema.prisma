@@ -34,7 +34,7 @@ model Posts {
   id      Int       @id @default(autoincrement())
   title   String
   content String
-  user_id Int       // a foreign key field
+  user_id Int // a foreign key field
   user    User      @relation(fields: [user_id], references: [id]) // just for reference used by prisma in actual table user wont be displyed
   // summing up userid will be referencing id of User Model through prisma references such as posts in user model and user in Posts model.
   // (IMPLICIT)
@@ -63,4 +63,11 @@ model PostTag {
   tag     Tags  @relation(fields: [tag_id], references: [id])
 
   @@id([post_id, tag_id])
+}
+
+// for users to login to the api (EXTRA U CAN IGNORE)
+model Api_users {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
 }

@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
+import decryptJWT from "../controllers/decryption";
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
-router.get( "/",async (req: Request, res: Response, next: NextFunction) => {
+router.get( "/", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
     try {
         const users = await prisma.user.findMany({
             include: {
@@ -19,7 +20,7 @@ router.get( "/",async (req: Request, res: Response, next: NextFunction) => {
   }
 );
 
-router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/:id", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
     const user = await prisma.user.findUnique({
