@@ -23,7 +23,7 @@ model Profile {
   id      Int    @id @default(autoincrement())
   name    String
   gender  String
-  age     String
+  age     String 
   user_id Int    @unique // a forgein key field
   user    User   @relation(fields: [user_id], references: [id]) // just for reference used by prisma in actual table user wont be displyed
   // summing up userid will be referencing id of User Model through prisma references such as profile in user model and user in profile model.

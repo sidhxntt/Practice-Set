@@ -1,4 +1,3 @@
-import cors from "cors";
 import express, { Express } from "express";
 import allRoutes from "./routes";
 import "dotenv/config";
@@ -7,16 +6,7 @@ import connectToDatabase from "./db";
 
 const app: Express = express();
 const port = process.env.PORT_NUMBER;
-// const Orign = process.env.ORIGIN;
 const server = process.env.SERVER
-
-// app.use(
-//   cors({
-//     origin: Orign,
-//     credentials: true,
-//     methods: ["GET", "POST", "PATCH", "DELETE"],
-//   }),
-// );
 
 app.use(express.json());
 
