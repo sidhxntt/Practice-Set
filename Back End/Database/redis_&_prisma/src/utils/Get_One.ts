@@ -23,7 +23,7 @@ async function getone(
         }
 
         const data = await Prisma_model.findUnique({
-            where: { id: id }, // Use id here
+            where: { id: id },
         });
 
         if (!data) {
