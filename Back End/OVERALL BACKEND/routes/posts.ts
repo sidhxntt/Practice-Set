@@ -1,47 +1,21 @@
 import express, { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
 import decryptJWT from "../controllers/decryption";
+import prisma from "../prisma/prisma"
+import getAll from "../utils/getAll";
+import getone from "../utils/getone";
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
-router.get( "/", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const posts = await prisma.post.findMany({
-            include: {
-                user: true,
-                tags: true,
-            }
-        });
-        res.status(200).json(posts);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+// Get all users
+router.get("/", decryptJWT, async(req: Request, res: Response, next: NextFunction)=>{
+ getAll(req, res, next, prisma.post)
+}) 
 
-router.get("/:id", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const id = req.params.id;
-      const post = await prisma.posts.findUnique({
-        where: {
-          id: Number(id),
-        },
-        include: {
-          user: true,
-          tags: true,
-        },
-      });
-  
-      if (post) {
-        res.status(200).json(post);
-      } else {
-        res.status(404).json({ message: "Post not found" });
-      }
-    } catch (error) {
-      next(error);
-    }
-  });
-  
+// get one user
+router.get("/:userID", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
+  const userID: string = req.params.userID;
+  getone(req, res, next, prisma.post, userID)
+});
 
-export default router;
+
+export default router
