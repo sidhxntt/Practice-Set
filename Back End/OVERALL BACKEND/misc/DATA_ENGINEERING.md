@@ -135,3 +135,65 @@ The Bronze-Silver-Gold layering is essentially the foundation of the Lakehouse a
      - **Real-Time Inventory Alerts:** Low-stock notifications.
 
 Databricks Lakehouse enables the entire pipeline, ensuring scalability, efficiency, and advanced analytics on the same platform.
+---
+# DATABRICKS ARCHITECTURE
+Databricks leverages AWS resources and its own abstractions to provide a seamless data platform. Here's how it works:
+
+## 1. Databricks Workspace
+- The **Databricks Workspace** is the primary user interface (UI) where you can:
+  - Manage assets such as clusters, notebooks, workflows, jobs, libraries, etc.
+  - Collaborate on data engineering, data science, and analytics workloads.
+  
+## 2. EC2 Instances
+- Databricks uses **Amazon EC2 instances** to form clusters.
+- These clusters are the underlying compute resources that execute workloads.
+- Each EC2 instance runs the **Databricks Runtime**, which includes:
+  - **Apache Spark**
+  - **Delta Lake**
+  - Other tools and libraries optimized for performance and reliability.
+
+## 3. Databricks Runtime
+- A customized runtime provided by Databricks.
+- Pre-configured with:
+  - **Apache Spark**
+  - **Delta Lake**
+  - Other optimized libraries.
+- Designed to run distributed data processing workloads efficiently.
+
+## 4. DBFS (Databricks File System)
+- DBFS is an **abstraction over storage**.
+- On AWS, the underlying storage for DBFS is **Amazon S3** (not EBS).
+  - While EC2 instances use EBS for their root or attached storage, Databricks relies on S3 for scalable, persistent storage.
+- **DBFS Features**:
+  - Provides a filesystem-like interface to interact with S3-backed storage.
+  - Allows clusters to access shared data easily.
+  - Supports reading, writing, and managing files programmatically or through the UI.
+
+1. what is delta table & why do we need delta table in dataricks also features?
+2. Transaction logs concept & how does it help in giving ACID properties
+3. coz its not oltp ie no db so normal sql wont work so no acid properties that why delta table as we are fetching from data lake?
+4. So where is the use of data warehouse in the lakehouse thing?
+5. what is the difference between delta table and delta lake?
+6. dbfs:/mnt? explain databricks file system hirechry and hive,default db
+7. views and types of it and it being like a ss
+8. Delta lake Time travel, compacting small files and indexing , vacuum
+9. CTAS VS create table, table constraints, cloning Delta Lake tables, shallow vs deep
+10. delta table vs external table in dbs
+11. Querying from files
+12. insert overwrite vs create and replace (CRAS) vs insert into vs vs merge into
+   - create and replace (CRAS) - create if not exists otherwise complete overwrite,
+   - insert overwrite - same as CRAS in output but it needs the table to already exist as it cant create, also it can override only the new records that match current table schema (safer as it doesnt modify table schema while overriding
+   - insert into - append (prone to duplication of records)
+   - merge into - update and insert (safer than insert into)
+13. CTAS VS CRAS - for cras limitations are no option to set options which is problematic while importing csv files solution using temp view 
+14. spark sql vs sql & python vs spark py
+15. delta table vs hive table
+16. delta table vs spark sql table
+17. delta table vs external table
+18. delta table vs managed table
+19. delta table vs unmanaged table
+20. delta table vs hive external table
+21. delta table vs hive managed table
+22. struct data type in dbs
+23. explode, collect-set, flatten, filter ,transform, UDF
+
