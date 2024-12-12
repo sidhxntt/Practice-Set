@@ -304,10 +304,13 @@ Transaction logs are essential for:
 Delta Tables represent a significant advancement in data lake technology, providing reliability, performance, and flexibility that traditional file formats cannot match. They are particularly powerful in Databricks' unified analytics platform, enabling more sophisticated and reliable data engineering and analytics workflows.
 
 > Delta Tables essentially add a "database-like" layer of reliability and transactional capabilities on top of data lake storage, bridging the gap between traditional databases and big data analytics platforms. So all this coz its not oltp ie no db so normal sql wont work so no acid properties that why delta table as we are fetching from the data lake not the db and we need db like features such as ACID property
+
 ---
+
 # Delta Table vs Delta Lake
 
 ## Delta Lake
+
 - An **open-source storage framework**
 - Runs on top of existing data lakes
 - Provides ACID transactions, scalability, and reliability
@@ -315,6 +318,7 @@ Delta Tables represent a significant advancement in data lake technology, provid
 - Extends data lake capabilities with warehouse-like features
 
 ## Delta Table
+
 - A **specific table format** within Delta Lake
 - Stored as a collection of Parquet files
 - Contains transaction logs
@@ -323,12 +327,12 @@ Delta Tables represent a significant advancement in data lake technology, provid
 
 ## Key Differences
 
-| Aspect | Delta Lake | Delta Table |
-|--------|------------|-------------|
-| Scope | Storage Framework | Table Format |
-| Functionality | Architectural Approach | Specific Data Representation |
-| Coverage | Entire Data Lake | Individual Table |
-| Purpose | Add reliability to data lakes | Manage table-level transactions |
+| Aspect        | Delta Lake                    | Delta Table                     |
+| ------------- | ----------------------------- | ------------------------------- |
+| Scope         | Storage Framework             | Table Format                    |
+| Functionality | Architectural Approach        | Specific Data Representation    |
+| Coverage      | Entire Data Lake              | Individual Table                |
+| Purpose       | Add reliability to data lakes | Manage table-level transactions |
 
 ## Practical Example
 
@@ -341,14 +345,16 @@ deltaTable = DeltaTable.forPath(spark, "/path/to/delta/table")
 ```
 
 ### Analogy
+
 - Delta Lake is like the **entire highway system**
 - Delta Table is like **individual cars** traveling on that highway
 
-Delta Lake provides the infrastructure, while Delta Tables are the specific data structures that benefit from its capabilities.
----
+## Delta Lake provides the infrastructure, while Delta Tables are the specific data structures that benefit from its capabilities.
+
 # Databricks File System (DBFS) Hierarchy and Hive Metastore
 
 ## DBFS (/dbfs) Overview
+
 - **Definition**: Distributed file system abstraction in Databricks
 - Mounted on top of cloud storage (S3, Azure Blob, Google Cloud Storage)
 - Provides a unified file system interface across different cloud environments
@@ -356,11 +362,14 @@ Delta Lake provides the infrastructure, while Delta Tables are the specific data
 ## DBFS Hierarchy Structure
 
 ### Root Level: `/dbfs`
+
 - Root of the Databricks File System
 - Represents the mounted cloud storage
 
 ### Key Directories
+
 1. **`/dbfs/mnt/`**
+
    - Primary mounting point for external storage
    - Allows integration with cloud storage systems
    - Example structures:
@@ -373,6 +382,7 @@ Delta Lake provides the infrastructure, while Delta Tables are the specific data
      ```
 
 2. **`/dbfs/user/`**
+
    - Personal workspace for individual users
    - Typically: `/dbfs/user/<username>/`
    - Stores personal notebooks, scripts, temporary files
@@ -385,16 +395,19 @@ Delta Lake provides the infrastructure, while Delta Tables are the specific data
 ## Hive Metastore
 
 ### Purpose
+
 - Centralized metadata repository
 - Manages schema and table information
 - Provides database and table abstraction
 
 ### Default Database
+
 - Name: `default`
 - Created automatically in every Databricks workspace
 - Stores tables without explicit database specification
 
 ### Hive Metastore Hierarchy
+
 ```
 Hive Metastore
 │
@@ -413,6 +426,7 @@ Hive Metastore
 ## Example Operations
 
 ### Mounting External Storage
+
 ```python
 # Mounting Azure Blob Storage
 dbutils.fs.mount(
@@ -423,6 +437,7 @@ dbutils.fs.mount(
 ```
 
 ### Working with Default Database
+
 ```python
 # Create table in default database
 spark.sql("""
@@ -438,6 +453,7 @@ spark.sql("SHOW TABLES IN default")
 ```
 
 ### Database and Table Management
+
 ```python
 # Create custom database
 spark.sql("CREATE DATABASE sales_db")
@@ -453,6 +469,7 @@ spark.sql("""
 ```
 
 ## Best Practices
+
 - Use `/dbfs/mnt/` for external storage mounting
 - Organize data by environment (raw, processed, etc.)
 - Use custom databases for logical data separation
@@ -460,15 +477,123 @@ spark.sql("""
 - Regularly clean up `/dbfs/tmp/` directory
 
 ## Key Differences
+
 - **DBFS**: File system abstraction
 - **Hive Metastore**: Metadata management system
 - **Default Database**: System-provided database for simple table storage
 
-The combination of DBFS and Hive Metastore provides a robust, flexible data management architecture in Databricks, enabling seamless data storage, access, and metadata tracking.
+## The combination of DBFS and Hive Metastore provides a robust, flexible data management architecture in Databricks, enabling seamless data storage, access, and metadata tracking.
+
+### Types of Tables
+
+# Table Types in Databricks and Hive Ecosystem
+
+## 1. Delta Tables
+
+- **Definition**: A next-generation table format designed for big data workloads
+- **Key Characteristics**:
+  - Native to Databricks
+  - Provides ACID (Atomicity, Consistency, Isolation, Durability) transactions
+  - Supports time travel and versioning
+  - Enables efficient upserts and deletes
+  - Stores data in Parquet format with a transaction log
+- **Advantages**:
+  - Excellent performance for complex data operations
+  - Built-in data reliability and consistency
+  - Schema evolution support
+  - Optimized for cloud storage
+
+## 2. External Tables
+
+- **Definition**: Tables where data is stored outside of the warehouse's default storage location
+- **Key Characteristics**:
+  - Data is stored in an external location (e.g., S3, HDFS)
+  - Metadata is managed by the metastore
+  - Table definition can be dropped without affecting underlying data
+- **Use Cases**:
+  - Sharing data across different systems
+  - Preserving data when table metadata is deleted
+  - Working with existing datasets in external storage
+
+## 3. Hive Tables
+
+### 3.1 Hive Managed Tables
+
+- **Definition**: Tables where both data and metadata are managed by Hive
+- **Key Characteristics**:
+  - Data is stored in Hive's default warehouse directory
+  - Dropping the table deletes both metadata and underlying data
+  - Fully controlled by Hive metastore
+- **Advantages**:
+  - Simple management
+  - Integrated with Hive ecosystem
+
+### 3.2 Hive External Tables
+
+- **Definition**: Tables where data is stored externally, but metadata is managed by Hive
+- **Key Characteristics**:
+  - Data stored in a user-specified location
+  - Dropping the table only removes metadata
+  - Original data remains intact
+- **Use Cases**:
+  - Data sharing across multiple systems
+  - Preserving raw data
+  - Working with data from external sources
+
+## 4. Spark SQL Tables
+
+- **Definition**: Tables created and managed within Spark SQL environment
+- **Key Characteristics**:
+  - Can be temporary or permanent
+  - Supports multiple file formats
+  - Can be created using DataFrame operations
+- **Types**:
+  - Managed Tables: Spark manages both data and metadata
+  - External Tables: User specifies data location
+
+## 5. Managed Tables vs Unmanaged Tables
+
+### Managed Tables
+
+- **Definition**: Tables where storage and metadata are fully managed by the system
+- **Characteristics**:
+  - Data is stored in the default warehouse location
+  - Dropping table removes both data and metadata
+  - Simplified management
+  - Best for temporary or intermediate data
+
+### Unmanaged Tables (External Tables)
+
+- **Definition**: Tables where data location is controlled by the user
+- **Characteristics**:
+  - Data stored in a user-specified location
+  - Metadata managed by the system
+  - Dropping table only removes metadata
+  - Ideal for preserving original data
+
+## Comparison Table
+
+| Feature               | Delta Table | Hive Managed   | Hive External | Spark SQL Table |
+| --------------------- | ----------- | -------------- | ------------- | --------------- |
+| ACID Transactions     | ✓           | ✗              | ✗             | Limited         |
+| Data Persistence      | High        | Low            | High          | Moderate        |
+| Schema Evolution      | ✓           | ✗              | ✗             | Limited         |
+| Time Travel           | ✓           | ✗              | ✗             | ✗               |
+| Data Location Control | Flexible    | System-managed | User-defined  | Flexible        |
+
+## Recommendation
+
+- **Use Delta Tables** for most modern big data workloads in Databricks
+- **Use External Tables** when data needs to be shared or preserved
+- **Use Managed Tables** for temporary or intermediate processing
+- **Consider your specific use case** when choosing table type
+
 ---
+
 # Views in Databricks: Types and Characteristics
 
 ## What is a View?
+
 - A **logical** representation of a query
 - Does not store data physically
 - Provides a virtual table based on the result of a SELECT statement
@@ -477,6 +602,7 @@ The combination of DBFS and Hive Metastore provides a robust, flexible data mana
 ## Types of Views
 
 ### 1. Temporary Views
+
 - **Scope**: Exists only within a single Spark session
 - Disappears when the session ends
 - Useful for ad-hoc analysis
@@ -490,6 +616,7 @@ spark.sql("SELECT * FROM temp_employee_view WHERE department = 'Sales'")
 ```
 
 ### 2. Global Temporary Views
+
 - **Scope**: Accessible across multiple Spark sessions
 - Stored in the global temp database
 - Persists until the Spark application is terminated
@@ -503,6 +630,7 @@ spark.sql("SELECT * FROM global_temp.global_employee_view")
 ```
 
 ### 3. Persistent Views (Stored Views)
+
 - **Scope**: Permanently stored in the Hive metastore
 - Survives across Spark sessions
 - Can be used like permanent tables
@@ -518,38 +646,44 @@ WHERE department = 'HR'
 ```
 
 ## Is a View a Screenshot?
+
 ### No, Not Exactly
+
 - **Not a Static Snapshot**
   - Always reflects the current state of underlying tables
   - Dynamically generates results when queried
   - Data changes in source tables are immediately reflected
 
 ### View vs. Materialized View
-| Aspect | Regular View | Materialized View |
-|--------|--------------|-------------------|
-| Data Storage | No physical storage | Physically stored results |
-| Performance | Recomputes each query | Precomputed, faster query |
-| Data Freshness | Always current | Needs periodic refresh |
+
+| Aspect         | Regular View          | Materialized View         |
+| -------------- | --------------------- | ------------------------- |
+| Data Storage   | No physical storage   | Physically stored results |
+| Performance    | Recomputes each query | Precomputed, faster query |
+| Data Freshness | Always current        | Needs periodic refresh    |
 
 ## View Characteristics
+
 - Read-only by default
 - Can combine multiple tables
 - Supports complex transformations
 - Provides abstraction and security
 - Reduces query complexity
 
-Views are dynamic, query-based representations that provide flexibility in data access and query design, unlike a static screenshot of data.
----
+## Views are dynamic, query-based representations that provide flexibility in data access and query design, unlike a static screenshot of data.
+
 # Delta Lake Advanced Concepts: Time Travel, Compaction, Vacuum, and Indexing
 
 ## Time Travel in Delta Lake
 
 ### Concept
+
 - Ability to access previous versions of a Delta table
 - Maintains historical snapshots of data
 - Enables point-in-time querying and recovery
 
 ### Key Characteristics
+
 ```python
 # Accessing previous versions of a table
 # By version number
@@ -560,6 +694,7 @@ df = spark.read.format("delta").option("timestampAsOf", "2024-01-01 10:00:00").l
 ```
 
 ### Version History
+
 - Each write operation creates a new table version
 - Transaction log tracks all modifications
 - Configurable history retention
@@ -567,11 +702,13 @@ df = spark.read.format("delta").option("timestampAsOf", "2024-01-01 10:00:00").l
 ## File Compaction (Optimize)
 
 ### Small File Problem
+
 - Multiple small files reduce query performance
 - Increases overhead in file management
 - Impacts storage efficiency
 
 ### Compaction Process
+
 ```python
 # Compact and optimize Delta table
 from delta.tables import DeltaTable
@@ -586,6 +723,7 @@ deltaTable.optimize().executeZOrderBy("id", "date")
 ```
 
 ### Optimization Strategies
+
 - Combines small files into larger ones
 - Improves read performance
 - Reduces storage overhead
@@ -594,11 +732,13 @@ deltaTable.optimize().executeZOrderBy("id", "date")
 ## Vacuum Operation
 
 ### Purpose
+
 - Removes old files no longer referenced in the table
 - Prevents accumulation of unnecessary files
 - Manages storage space
 
 ### Implementation
+
 ```python
 # Vacuum operation
 deltaTable.vacuum()  # Default 7 days retention
@@ -608,6 +748,7 @@ deltaTable.vacuum(168)  # 7 days
 ```
 
 ### Key Considerations
+
 - Prevents time travel beyond retention period
 - Configurable retention window
 - Helps manage storage costs
@@ -615,6 +756,7 @@ deltaTable.vacuum(168)  # 7 days
 ## Indexing in Delta Lake
 
 ### Z-Ordering (Multi-Dimensional Clustering)
+
 - Co-locates related data
 - Improves query performance
 - Reduces data scanning
@@ -625,6 +767,7 @@ deltaTable.optimize().executeZOrderBy("country", "state")
 ```
 
 ### Clustering Benefits
+
 - Reduces I/O
 - Speeds up range and equality queries
 - Works best with high-cardinality columns
@@ -653,29 +796,31 @@ old_version = spark.read.format("delta") \
     .load("/path/to/table")
 ```
 
-
-
 ## Performance Impact
 
-| Operation | Performance | Storage | Use Case |
-|-----------|-------------|---------|----------|
-| Time Travel | Moderate | High | Historical Analysis |
-| Compaction | High | Medium | Query Performance |
-| Vacuum | Low | High | Storage Management |
-| Z-Ordering | High | Low | Query Optimization |
+| Operation   | Performance | Storage | Use Case            |
+| ----------- | ----------- | ------- | ------------------- |
+| Time Travel | Moderate    | High    | Historical Analysis |
+| Compaction  | High        | Medium  | Query Performance   |
+| Vacuum      | Low         | High    | Storage Management  |
+| Z-Ordering  | High        | Low     | Query Optimization  |
+
 ---
+
 # Delta Lake Table Creation and Management Techniques
 
 ## Create Table As Select (CTAS) vs Traditional Create Table
 
 ### CTAS (Create Table As Select)
+
 ```sql
 -- CTAS Example
-CREATE TABLE employees_backup 
+CREATE TABLE employees_backup
 AS SELECT * FROM employees
 ```
 
 ### Traditional Create Table
+
 ```sql
 -- Traditional Method
 CREATE TABLE employees_new (
@@ -687,16 +832,17 @@ CREATE TABLE employees_new (
 
 ## Comparison of CTAS and Traditional Create Table
 
-| Aspect | CTAS | Traditional Create Table |
-|--------|------|--------------------------|
-| Data Population | Immediate data copy | Schema defined, no data |
-| Schema Inference | Automatic from source | Manual schema definition |
-| Performance | Faster for large datasets | More control over schema |
-| Flexibility | Limited customization | More configuration options |
+| Aspect           | CTAS                      | Traditional Create Table   |
+| ---------------- | ------------------------- | -------------------------- |
+| Data Population  | Immediate data copy       | Schema defined, no data    |
+| Schema Inference | Automatic from source     | Manual schema definition   |
+| Performance      | Faster for large datasets | More control over schema   |
+| Flexibility      | Limited customization     | More configuration options |
 
 ## Table Constraints in Delta Lake
 
 ### Define Constraints
+
 ```sql
 -- NOT NULL Constraint
 CREATE TABLE employees (
@@ -706,11 +852,12 @@ CREATE TABLE employees (
 ) USING DELTA
 
 -- Adding Constraints to Existing Table
-ALTER TABLE employees 
+ALTER TABLE employees
 ADD CONSTRAINT positive_salary CHECK (salary > 0)
 ```
 
 ### Constraint Types
+
 1. **NOT NULL**
 2. **CHECK** constraints
 3. **UNIQUE** constraints
@@ -719,19 +866,21 @@ ADD CONSTRAINT positive_salary CHECK (salary > 0)
 ## Table Cloning in Delta Lake
 
 ### Shallow Clone
+
 ```python
 # Shallow Clone
 spark.sql("""
-CREATE TABLE employees_clone 
+CREATE TABLE employees_clone
 CLONE employees
 """)
 ```
 
 ### Deep Clone
+
 ```python
 # Deep Clone
 spark.sql("""
-CREATE TABLE employees_full_clone 
+CREATE TABLE employees_full_clone
 CLONE employees DEEP
 """)
 ```
@@ -739,6 +888,7 @@ CLONE employees DEEP
 ## Shallow vs Deep Clone: Detailed Comparison
 
 ### Shallow Clone
+
 - **Characteristics**
   - Creates metadata link to original table
   - No data copied
@@ -747,6 +897,7 @@ CLONE employees DEEP
   - Changes in original affect clone
 
 ### Deep Clone
+
 - **Characteristics**
   - Complete independent copy of data
   - Full data files copied
@@ -771,14 +922,14 @@ CREATE TABLE sales (
 
 # Add Constraints
 spark.sql("""
-ALTER TABLE sales 
+ALTER TABLE sales
 ADD CONSTRAINT positive_amount CHECK (amount > 0)
 """)
 
 # CTAS with Filtering
 spark.sql("""
-CREATE TABLE high_value_sales 
-AS SELECT * FROM sales 
+CREATE TABLE high_value_sales
+AS SELECT * FROM sales
 WHERE amount > 1000
 """)
 
@@ -793,31 +944,804 @@ spark.sql("CREATE TABLE sales_deep_clone CLONE sales DEEP")
 ## Best Practices
 
 ### Table Creation
+
 - Use CTAS for quick data copying
 - Define constraints early
 - Leverage schema evolution
 - Use appropriate cloning strategy
 
+---
+
+# CTAS vs CRAS in Spark/Databricks
+
+## CTAS (Create Table As Select)
+
+- **Definition**: Creates a new table by selecting data from an existing table or query
+- **Syntax**:
+  ```sql
+  CREATE TABLE new_table AS
+  SELECT * FROM source_table;
+  ```
+- **Characteristics**:
+  - Creates a new table based on a SELECT query
+  - Copies data and schema from the source
+  - Cannot be used if the table already exists
+  - Creates a managed table by default
+
+## CRAS (Create or Replace Table As Select)
+
+- **Definition**: Creates a new table or replaces an existing table with data from a SELECT query
+- **Syntax**:
+  ```sql
+  CREATE OR REPLACE TABLE new_table AS
+  SELECT * FROM source_table;
+  ```
+- **Characteristics**:
+  - Can create a new table or replace an existing one
+  - Provides more flexibility than CTAS
+  - Removes need to drop and recreate table
+
+## Limitations of CRAS for CSV Imports
+
+### Primary Limitations:
+
+1. **No Direct Option Setting**
+   - Cannot specify CSV-specific options
+   - Challenging for complex CSV imports
+   - Limited control over:
+     - Delimiter
+     - Header handling
+     - Null value representation
+     - Date/timestamp formats
+
+### Solution: Using Temporary View
+
+```python
+# Python/PySpark Solution
+from pyspark.sql import SparkSession
+
+# Create SparkSession
+spark = SparkSession.builder.appName("CSV Import Solution").getOrCreate()
+
+# Read CSV with specific options
+df = spark.read.format("csv") \
+    .option("header", "true") \
+    .option("delimiter", ",") \
+    .option("inferSchema", "true") \
+    .option("nullValue", "NA") \
+    .load("/path/to/your/file.csv")
+
+# Create Temporary View
+df.createOrReplaceTempView("temp_csv_table")
+
+# CRAS using the Temporary View
+spark.sql("""
+CREATE OR REPLACE TABLE final_table AS
+SELECT * FROM temp_csv_table
+""")
+```
+
+### Alternative SQL Approach:
+
+```sql
+-- Create Temporary View with Options
+CREATE OR REPLACE TEMPORARY VIEW temp_csv_table
+USING csv
+OPTIONS (
+    path "/path/to/your/file.csv",
+    header "true",
+    delimiter ",",
+    inferSchema "true",
+    nullValue "NA"
+)
+
+-- CRAS from Temporary View
+CREATE OR REPLACE TABLE final_table AS
+SELECT * FROM temp_csv_table
+```
+
+## Key Advantages of Temp View Approach
+
+1. **Full Control over Import Options**
+2. **Flexible CSV Parsing**
+3. **Ability to Transform Data During Import**
+4. **Works with CRAS**
+5. **Handles Complex CSV Scenarios**
+
+## Practical Considerations
+
+- Temporary views exist only for the duration of the Spark session
+- Ideal for one-time imports or complex data transformations
+- Provides maximum flexibility in data ingestion
+
+### When to Use
+
+- Complex CSV files with non-standard formats
+- Need for precise data type inference
+- Handling null values, special delimiters
+- Transforming data during import
+
+### Performance Note
+
+- Creating a temporary view adds a small overhead
+- For very large files, consider direct DataFrame reading and writing
+
+## Example with Advanced Options
+
+```python
+df = spark.read.format("csv") \
+    .option("header", "true") \
+    .option("delimiter", "|") \
+    .option("dateFormat", "yyyy-MM-dd") \
+    .option("timestampFormat", "yyyy-MM-dd HH:mm:ss") \
+    .option("mode", "FAILFAST") \
+    .option("encoding", "UTF-8") \
+    .load("/path/to/complex/file.csv")
+
+df.createOrReplaceTempView("processed_csv")
+
+spark.sql("""
+CREATE OR REPLACE TABLE final_processed_table AS
+SELECT
+    col1,
+    CAST(date_column AS DATE) AS formatted_date,
+    CAST(numeric_column AS DECIMAL(10,2)) AS converted_numeric
+FROM processed_csv
+""")
+```
+
+---
+
+# Querying Files Directly in Databricks
+
+## 1. File Formats Supported
+
+- Parquet
+- CSV
+- JSON
+- ORC
+- Avro
+- Text
+- Delta
+- XML (with additional libraries)
+
+## 2. Basic File Querying Methods
+
+### A. SQL Syntax
+
+```sql
+-- Direct File Query
+SELECT * FROM parquet.`/path/to/file/directory`
+
+-- CSV with Options
+SELECT * FROM csv.`/path/to/csv/`
+OPTIONS (
+    header "true",
+    inferSchema "true"
+)
+```
+
+### B. PySpark DataFrame Approach
+
+```python
+# Read File
+df = spark.read.format("parquet").load("/path/to/parquet/files")
+
+# Create Temporary View
+df.createOrReplaceTempView("my_file_table")
+
+# Query Temporary View
+spark.sql("SELECT * FROM my_file_table")
+```
+
+## 3. Advanced File Querying Techniques
+
+### A. Multiple File Formats in Single Query
+
+```sql
+SELECT
+    filename,  -- Captures source filename
+    *
+FROM parquet.`/path/to/parquet/directory`
+```
+
+### B. Wildcard File Selection
+
+```sql
+-- Query specific file patterns
+SELECT * FROM parquet.`/path/to/files/year=2024/month=*/`
+```
+
+## 4. File Metadata and Filtering
+
+### A. Accessing File Metadata
+
+```sql
+SELECT
+    input_file_name(),  -- Full file path
+    input_file_block_start(),  -- Block start position
+    *
+FROM parquet.`/path/to/files`
+```
+
+### B. Partition Pruning
+
+```sql
+-- Efficient querying of partitioned data
+SELECT * FROM parquet.`/path/to/partitioned/data/`
+WHERE year = 2024 AND month = 'January'
+```
+
+## 5. Complex File Querying Scenarios
+
+### A. Schema Inference and Override
+
+```python
+# Explicit Schema Definition
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+
+custom_schema = StructType([
+    StructField("name", StringType(), True),
+    StructField("age", IntegerType(), True)
+])
+
+df = spark.read.format("csv") \
+    .schema(custom_schema) \
+    .option("header", "true") \
+    .load("/path/to/csv/")
+```
+
+### B. Handling Different Delimiters
+
+```sql
+SELECT * FROM csv.`/path/to/pipe/delimited/files`
+OPTIONS (
+    sep "|",
+    header "true"
+)
+```
+
+## 6. Performance Considerations
+
+### Best Practices
+
+- Use columnar formats (Parquet, Delta)
+- Implement partition pruning
+- Leverage file metadata filtering
+- Avoid reading entire large directories
+
+### Example Optimized Query
+
+```sql
+SELECT
+    department,
+    AVG(salary) as avg_salary
+FROM parquet.`/path/to/employee/data/`
+WHERE
+    year = 2024 AND  -- Partition filter
+    salary > 50000   -- Push-down predicate
+GROUP BY department
+```
+
+## 7. Error Handling and Modes
+
+### Reading Modes
+
+```python
+# Different parsing modes
+df = spark.read.format("csv")
+    .option("mode", "PERMISSIVE")  # Default, continues reading
+    .option("mode", "DROPMALFORMED")  # Drops bad records
+    .option("mode", "FAILFAST")  # Stops on first error
+    .load("/path/to/files")
+```
+
+## 8. Cloud Storage Integration
+
+```python
+# Direct S3 Querying
+df = spark.read.parquet("s3a://bucket/path/")
+
+# Azure Blob/ADLS
+df = spark.read.parquet("abfs://container@account.dfs.core.windows.net/path")
+
+# GCS
+df = spark.read.parquet("gs://bucket/path")
+```
+
+## Pro Tips
+
+- Always use columnar formats for analytical workloads
+- Implement partition strategies
+- Use file-level metadata for advanced filtering
+- Leverage Databricks' optimized file reading capabilities
+
+## Common Gotchas
+
+- Large directories can cause performance issues
+- Inconsistent schemas across files
+- Handling of null/missing values
+- Performance overhead with complex transformations
+
+---
+
+# Writing into Tables
+
+## Comprehensive Comparison of Data Insertion Methods
+
+### 1. CREATE OR REPLACE TABLE (CRAS)
+
+```sql
+-- Completely replaces the entire table
+CREATE OR REPLACE TABLE target_table AS
+SELECT * FROM source_table
+```
+
+**Characteristics:**
+
+- Creates the table if it doesn't exist
+- Completely overwrites the table if it exists
+- Modifies table schema
+- Drops and recreates the entire table
+- Loses existing table properties and constraints
+
+**Use Cases:**
+
+- Initial data loading
+- Completely refreshing a table
+- When schema changes are acceptable
+
+### 2. INSERT OVERWRITE
+
+```sql
+-- Overwrites existing data matching the current table schema
+INSERT OVERWRITE TABLE target_table
+SELECT * FROM source_table
+```
+
+**Characteristics:**
+
+- Requires table to already exist
+- Replaces only data matching current table schema
+- Preserves table schema and properties
+- More conservative approach
+- Safer for maintaining table structure
+
+**Use Cases:**
+
+- Updating existing tables
+- Maintaining consistent table schema
+- Partial data replacement
+
+### 3. INSERT INTO
+
+```sql
+-- Appends new records to the existing table
+INSERT INTO TABLE target_table
+SELECT * FROM source_table
+```
+
+**Characteristics:**
+
+- Adds new records to the existing table
+- Does not remove existing data
+- High risk of data duplication
+- No built-in deduplication
+- Increases table size with each operation
+
+**Risks:**
+
+- Potential duplicate records
+- No natural way to handle updates
+- Requires manual deduplication strategies
+
+### 4. MERGE INTO
+
+```sql
+-- Comprehensive upsert operation
+MERGE INTO target_table t
+USING source_table s
+ON t.id = s.id
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+```
+
+**Characteristics:**
+
+- Most sophisticated data synchronization method
+- Handles updates, inserts, and deletes in single operation
+- Provides fine-grained control
+- Supports complex matching conditions
+- Atomically handles multiple data change scenarios
+
+**Advantages:**
+
+- Prevents duplicate records
+- Supports conditional updates
+- Handles various data change scenarios
+- Most flexible and safe approach
+
+## Comparative Analysis
+
+| Aspect          | CRAS | Insert Overwrite | Insert Into | Merge Into |
+| --------------- | ---- | ---------------- | ----------- | ---------- |
+| Create Table    | ✓    | ✗                | ✗           | ✗          |
+| Preserve Schema | ✗    | ✓                | ✓           | ✓          |
+| Append Data     | ✗    | ✗                | ✓           | ✓          |
+| Update Existing | ✗    | Partial          | ✗           | ✓          |
+| Deduplication   | ✗    | ✗                | ✗           | ✓          |
+| Performance     | High | Moderate         | Low         | Moderate   |
+
+## Practical Example Scenarios
+
+### Scenario 1: Daily Data Load
+
+```sql
+-- Merge approach for daily updates
+MERGE INTO sales_table t
+USING daily_sales s
+ON t.sale_id = s.sale_id
+WHEN MATCHED THEN
+    UPDATE SET
+        t.amount = s.amount,
+        t.timestamp = s.timestamp
+WHEN NOT MATCHED THEN
+    INSERT *
+```
+
+### Scenario 2: Incremental Data Load
+
+```python
+# PySpark approach for incremental loading
+def incremental_load(source_df, target_table):
+    source_df.createOrReplaceTempView("source_data")
+
+    spark.sql(f"""
+    MERGE INTO {target_table} t
+    USING source_data s
+    ON t.unique_key = s.unique_key
+    WHEN MATCHED THEN UPDATE SET *
+    WHEN NOT MATCHED THEN INSERT *
+    """)
+```
+
+## Best Practices
+
+1. **Use MERGE for Complex Scenarios**
+
+   - Prefer MERGE for most data synchronization tasks
+   - Provides most robust error handling
+
+2. **CRAS for Initial/Complete Refreshes**
+
+   - Ideal for periodic complete table refreshes
+   - Use when schema changes are expected
+
+3. **Insert Overwrite for Consistent Schemas**
+
+   - When you want to replace data without changing structure
+   - Safer than complete table replacement
+
+4. **Avoid Insert Into for Critical Data**
+   - Prone to duplication
+   - Requires additional deduplication logic
+
+## Performance Considerations
+
+- MERGE is computationally more expensive
+- Insert Overwrite is typically faster than MERGE
+- CRAS has lowest overhead for complete replacements
+
+## Recommendation Matrix
+
+- **Small, Changing Datasets**: MERGE
+- **Static, Periodic Refreshes**: CRAS
+- **Append-Only Logs**: Insert Into
+- **Consistent Schema Updates**: Insert Overwrite
+
+## Gotchas and Warnings
+
+- Always test data manipulation strategies
+- Consider data volume and update frequency
+- Implement proper error handling
+- Monitor performance impacts
+- Use appropriate primary/unique keys in MERGE operations
+---
+# Struct, Array Functions, and UDFs in Databricks
+
+## 1. Struct Data Type
+- **Definition**: A complex data type that combines multiple fields into a single column
+- **Characteristics**:
+  - Allows nested data structures
+  - Similar to JSON-like objects
+  - Can contain different data types
+  - Provides structured storage for related information
+
+## 2. Advanced Array Functions
+
+### a) Explode Function
+- **Purpose**: Transforms an array column into multiple rows
+- **Key Uses**:
+  - Decompose array columns into individual rows
+  - Unnest nested arrays
+  - Expand collections for detailed analysis
+
+### b) Collect_Set Function
+- **Purpose**: Aggregates unique values from a column
+- **Characteristics**:
+  - Returns distinct values
+  - Removes duplicates
+  - Useful for creating unique value lists
+  - Works in grouping operations
+
+### c) Collect_List Function
+- **Purpose**: Aggregates all values from a column into an array
+- **Characteristics**:
+  - Preserves all values, including duplicates
+  - Maintains original order
+  - Useful for creating comprehensive lists
+
+### d) Flatten Function
+- **Purpose**: Converts nested arrays into a single-level array
+- **Use Cases**:
+  - Simplify complex array structures
+  - Remove nested array levels
+  - Prepare data for further processing
+
+### e) Filter Function
+- **Purpose**: Selects array elements based on a condition
+- **Characteristics**:
+  - Applies a predicate to each array element
+  - Retains only elements meeting the condition
+  - Works with complex nested structures
+
+### f) Transform Function
+- **Purpose**: Applies a transformation to each element of an array
+- **Key Features**:
+  - Modify array elements
+  - Change data types
+  - Apply complex transformations
+  - Create new derived arrays
+
+## 3. User Defined Functions (UDF)
+
+### Types of UDFs
+1. **Scalar UDF**
+   - Transforms a single row
+   - Returns a single value
+   - Lowest performance option
+
+2. **Vectorized Pandas UDF**
+   - Operates on pandas Series
+   - Significantly better performance
+   - Supports complex calculations
+   - Leverages pandas optimization
+
+### UDF Characteristics
+- Extend Spark SQL functionality
+- Allow custom logic not available in built-in functions
+- Can be written in Python
+- Performance overhead compared to native functions
+
+## Comparative Analysis
+
+### When to Use Each Function
+
+| Function | Best Use Case | Considerations |
+|----------|--------------|----------------|
+| Struct | Nested, related data | Avoid deep nesting |
+| Explode | Unnesting arrays | Performance on large datasets |
+| Collect_Set | Unique values | Aggregation scenarios |
+| Collect_List | Preserving all values | Memory consumption |
+| Flatten | Simplifying arrays | Complex nested structures |
+| Filter | Conditional selection | Computation complexity |
+| Transform | Element-wise modification | Performance optimization |
+| UDF | Custom, complex logic | Use sparingly |
+
+## Performance Recommendations
+- Prefer built-in functions over UDFs
+- Use Pandas UDFs for complex calculations
+- Minimize data movement
+- Leverage predicate pushdown
+- Profile and optimize transformations
+
+## Common Challenges
+- Performance overhead
+- Memory consumption
+- Serialization complexities
+- Type conversion issues
+- Nested structure management
+
+## Best Practices
+- Keep struct depth minimal
+- Use appropriate data types
+- Leverage built-in array functions
+- Write efficient UDFs
+- Consider broadcast for small datasets
+
+## Anti-Patterns
+- Excessive nesting
+- Overusing UDFs
+- Complex transformations on large datasets
+- Ignoring performance implications
+- Unnecessary data shuffling
+
+## Use Case Scenarios
+- Data cleaning and transformation
+- Log analysis
+- Complex event processing
+- Machine learning feature engineering
+- Time-series data manipulation
+---
+# Spark SQL vs Traditional SQL & Python Approaches in Databricks
+
+## 1. Spark SQL
+### Definition
+- Distributed SQL query engine
+- Part of Apache Spark ecosystem
+- Allows SQL-like queries on structured data
+- Integrates with DataFrame and Dataset APIs
+
+### Characteristics
+- Supports ANSI SQL standard
+- Works with multiple data sources
+- Provides optimized query execution
+- Allows complex transformations
+- Supports window functions, joins, aggregations
+
+## 2. Traditional SQL
+### Definition
+- Relational database query language
+- Used in databases like MySQL, PostgreSQL
+- Limited to single-node database operations
+
+### Key Differences from Spark SQL
+- No distributed processing
+- Limited scalability
+- Faster for smaller datasets
+- Direct database interaction
+- Less flexible for complex transformations
+
+## 3. Python vs PySpark Approaches
+
+### Python (Pandas)
+#### Characteristics
+- Single-machine processing
+- Good for smaller datasets
+- Rich data manipulation libraries
+- Not distributed
+- Memory limitations
+- Slower for large datasets
+
+### PySpark
+#### Characteristics
+- Distributed computing
+- Handles massive datasets
+- Lazy evaluation
+- Scalable processing
+- Complex transformations
+- Memory-efficient
+
+## 4. Comparative Analysis
+
+### Processing Approach
+| Aspect | Traditional SQL | Spark SQL | Pandas | PySpark |
+|--------|-----------------|-----------|--------|---------|
+| Distributed | ✗ | ✓ | ✗ | ✓ |
+| Scalability | Low | High | Low | High |
+| Complex Transformations | Limited | Advanced | Moderate | Advanced |
+| Memory Handling | Limited | Efficient | Limited | Efficient |
+
+## 5. Use Case Scenarios
+
+### When to Use Spark SQL
+- Big data processing
+- Complex analytical queries
+- Multi-source data integration
+- Large-scale data transformations
+- Machine learning pipelines
+
+### When to Use Traditional SQL
+- Small, structured datasets
+- Transactional systems
+- Real-time database operations
+- Simple CRUD operations
+
+### When to Use Pandas
+- Data exploration
+- Small to medium datasets
+- Quick prototyping
+- Statistical analysis
+- Local machine processing
+
+### When to Use PySpark
+- Big data processing
+- Distributed computing
+- Machine learning at scale
+- Complex data transformations
+- Cloud and cluster environments
+
+## 6. Performance Considerations
+
+### Spark SQL Advantages
+- Catalyst optimizer
+- Tungsten execution engine
+- Predicate pushdown
+- Column pruning
+- Adaptive query execution
+
+### Performance Optimization Techniques
+- Partition pruning
+- Broadcast joins
+- Cache frequently used datasets
+- Use appropriate file formats
+- Minimize data shuffling
+
+## 7. Code Syntax Comparison
+
+### SQL Query
+```sql
+-- Spark SQL Syntax
+SELECT 
+    department, 
+    AVG(salary) as avg_salary
+FROM employees
+WHERE salary > 50000
+GROUP BY department
+```
+
+### PySpark DataFrame
+```python
+# PySpark Equivalent
+df.filter(col("salary") > 50000)
+  .groupBy("department")
+  .agg(avg("salary").alias("avg_salary"))
+```
+
+### Pandas Approach
+```python
+# Pandas Equivalent
+employees[employees['salary'] > 50000]
+    .groupby('department')['salary']
+    .mean()
+```
+
+## 8. Integration Capabilities
+
+### Spark SQL Benefits
+- Multiple data source support
+- Seamless integration with:
+  - Parquet
+  - ORC
+  - JSON
+  - CSV
+  - Delta Lake
+- Cloud storage compatibility
+
+## 9. Limitations and Challenges
+
+### Spark SQL Challenges
+- Learning curve
+- Complex setup
+- Performance overhead for small datasets
+- Serialization complexities
+- Resource management
+
+## 10. Recommendation Matrix
+
+| Scenario | Recommended Approach |
+|----------|----------------------|
+| Small Dataset (<1GB) | Pandas |
+| Medium Dataset (1-10GB) | Spark SQL |
+| Large Dataset (>10GB) | PySpark |
+| Real-time Transactions | Traditional SQL |
+| Complex Transformations | Spark SQL/PySpark |
+
+## Conclusion
+- Choose based on:
+  - Dataset size
+  - Complexity of transformations
+  - Available computational resources
+  - Specific use case requirements
 
 
-
-9. delta table vs external table in dbs
-10. Querying from files
-11. insert overwrite vs create and replace (CRAS) vs insert into vs vs merge into
-
-- create and replace (CRAS) - create if not exists otherwise complete overwrite,
-- insert overwrite - same as CRAS in output but it needs the table to already exist as it cant create, also it can override only the new records that match current table schema (safer as it doesnt modify table schema while overriding
-- insert into - append (prone to duplication of records)
-- merge into - update and insert (safer than insert into)
-
-13. CTAS VS CRAS - for cras limitations are no option to set options which is problematic while importing csv files solution using temp view
-14. spark sql vs sql & python vs spark py
-15. delta table vs hive table
-16. delta table vs spark sql table
-17. delta table vs external table
-18. delta table vs managed table
-19. delta table vs unmanaged table
-20. delta table vs hive external table
-21. delta table vs hive managed table
-22. struct data type in dbs
-23. explode, collect-set, flatten, filter ,transform, UDF
