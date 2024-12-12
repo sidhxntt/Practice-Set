@@ -1744,4 +1744,14 @@ employees[employees['salary'] > 50000]
   - Available computational resources
   - Specific use case requirements
 
-
+---
+1. batch processing vs stream processing
+2. data stream & structured streaming
+3. readstream vs writestream in spark
+4. handle infiite data as a table apply streamDF.readStream to convert it into streaming df on whic we can apply any transaformation as if its normal table, then we have to write it out using streamDF.writeStream to store.
+5. triggeronce vs availablenow option in streamDF.writeStream
+6. increamental data ingestion using autoloader and COPY INTO
+7. Delta live table & workflow & jobs (tasks) in databricks
+8. CDC WITH DLT vs CRAS or incremental data ingestion VS COPY INTO vs APPLY CHANGES INTO
+9. DBSQL , SQL warehouse
+10. data governance model & Unity catalogue
