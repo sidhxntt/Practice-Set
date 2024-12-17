@@ -266,7 +266,9 @@ Delta Table is an open-source storage layer that brings reliability to data lake
 | Merge Operations         | No          | Yes          |
 | Performance Optimization | Basic       | Advanced     |
 
-I'll explain the concept of transaction logs and how they help provide ACID (Atomicity, Consistency, Isolation, Durability) properties in a comprehensive markdown format.
+> **basically when we query from normal db using sql result is shown in table so same in data lake would would be delta table in databricks?**
+
+> Yes, querying a Delta table in Databricks is conceptually similar to querying a normal database table using SQL. When you use SQL to query data in a Delta Lake, the result is presented in a tabular format, just like with traditional relational databases. 
 
 # Transaction Logs in DataBricks
 
@@ -2213,6 +2215,8 @@ WHERE EXPECT(value > 0, "Value must be positive");
 | **Execution Modes**   | Not directly tied to execution workflows (depends on Spark jobs).          | Pipelines can run in continuous or triggered mode, managed by Databricks. |
 | **Lineage Tracking**  | Not tracked explicitly.                                                   | Automatically tracks lineage between input and output tables. |
 
+> **As streaming data is seen as an unbounded table that is nothing but delta live table?**
+> Yes, in Databricks, streaming data can be conceptually viewed as an unbounded table, and Delta Live Tables (DLTs) provide a framework for processing this data.
 ---
 
 ## Workflows vs. Jobs (Tasks)
