@@ -67,7 +67,7 @@ The Databricks Lakehouse Platform is a cutting-edge data architecture that unifi
 
 ### What is a Lakehouse?
 
-**Lakehouse = Data Lake + Data Warehouse**
+**Lakehouse = Data Lake(Scalable & Flexible) + Data Warehouse(Reliable & Performant)**
 
 1. **Data Lake Characteristics (Bronze Layer):**
 
@@ -98,7 +98,7 @@ The Databricks Lakehouse Platform is a cutting-edge data architecture that unifi
 
 The Bronze-Silver-Gold layering is essentially the foundation of the Lakehouse architecture, making it a system that blends data lake flexibility with data warehouse performance for seamless analytics.
 
-**THEREBY – EXTRACT (BRONZE LAYER) [DATA LAKE] + TRANSFORM (SILVER LAYER) + LOAD (GOLD LAYER) [DATA WAREHOUSE]**
+**THEREBY – EXTRACT (BRONZE LAYER) [DATA LAKE] + TRANSFORM (SILVER LAYER)[LAKEHOUSE] + LOAD (GOLD LAYER) [DATA WAREHOUSE]**
 
 ---
 
@@ -154,15 +154,57 @@ The Bronze-Silver-Gold layering is essentially the foundation of the Lakehouse a
 
 # DATABRICKS ARCHITECTURE
 
-Databricks leverages AWS resources and its own abstractions to provide a seamless data platform. Here's how it works:
+## Data Plane vs Control Plane in Databricks
 
-## 1. Databricks Workspace
+### Control Plane
+- **Definition**: The management and orchestration layer of the Databricks platform
+- **Key Responsibilities**:
+  - Cluster management and configuration
+  - Job scheduling and monitoring
+  - User authentication and access control
+  - Workspace organization
+  - Resource provisioning
+- **Location**: Typically managed by Databricks in their cloud infrastructure
+- **Characteristics**:
+  - Handles administrative and operational tasks
+  - Provides centralized management of computational resources
+  - Ensures security and governance
+
+### Data Plane
+- **Definition**: The computational layer where actual data processing occurs
+- **Key Responsibilities**:
+  - Executing data processing jobs
+  - Running Spark clusters
+  - Processing and transforming data
+  - Running notebooks and workflows
+- **Location**: Deployed in the customer's cloud environment (AWS, Azure, or Google Cloud)
+- **Characteristics**:
+  - Contains the actual compute resources
+  - Directly interacts with data storage systems
+  - Handles high-performance data processing and analytics
+
+### Key Differences
+
+#### Control Plane
+- **Manages**: Infrastructure and configuration
+- **Does not**: Directly process data
+- **Accessible**: Through Databricks web interface or APIs
+- **Persistent**: Always running and monitoring resources
+
+#### Data Plane
+- **Manages**: Actual data processing and computation
+- **Creates**: Ephemeral compute clusters
+- **Scales**: Based on workload requirements
+- **Terminates**: When processing is complete (depending on configuration)
+
+
+## 1. Databricks Workspace 
 
 - The **Databricks Workspace** is the primary user interface (UI) where you can:
   - Manage assets such as clusters, notebooks, workflows, jobs, libraries, etc.
   - Collaborate on data engineering, data science, and analytics workloads.
 
-## 2. EC2 Instances
+## 2. EC2 Instances 
 
 - Databricks uses **Amazon EC2 instances** to form clusters.
 - These clusters are the underlying compute resources that execute workloads.
@@ -217,6 +259,7 @@ Delta Table is an open-source storage layer that brings reliability to data lake
 - Enables accessing previous versions of data
 - Can query historical data at specific timestamps or version numbers
 - Supports data lineage and rollback capabilities
+- use VERSION AS OF , TIMESTAMP AS OF & ROLLBACK
 
 ### 4. Performance Optimization
 
@@ -589,7 +632,8 @@ spark.sql("""
 - **Use External Tables** when data needs to be shared or preserved
 - **Use Managed Tables** for temporary or intermediate processing
 - **Consider your specific use case** when choosing table type
-
+> Deleting a managed table completely removes both metadata and underlying data.
+>  Deleting an external table only removes the table reference/metadata
 ---
 
 # Views in Databricks: Types and Characteristics
