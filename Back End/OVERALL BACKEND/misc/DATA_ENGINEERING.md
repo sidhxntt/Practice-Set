@@ -2712,3 +2712,66 @@ Unity Catalog serves as the backbone of Databricks' governance model by:
 
 By implementing Unity Catalog, the company ensures secure, compliant, and efficient data management across its analytics and reporting workflows.
 ---
+
+# SUMMARY
+
+Here's the content in Markdown format, preserving the original text:
+
+# Trigger Modes in Development vs. Production
+## 1. Trigger Mode in Development
+- It processes **all the available data in a single batch** and then stops.
+- **Resources are not terminated**, allowing for **rapid testing and debugging**.
+
+## 2. Trigger Mode in Production
+- It processes **all the available data in a single batch** and then stops.
+- **Resources may be terminated**, depending on how your production pipeline is configured (e.g., autoscaling or cluster shutdown settings). This behavior depends on specific Databricks configurations.
+
+## 3. Continuous Mode in Development
+- It processes data **periodically** (in micro-batches or as continuous processing) **until stopped manually**.
+- **Resources are not terminated**, again to facilitate **rapid testing**.
+
+## 4. Continuous Mode in Production
+- It processes data **periodically** and **runs continuously** until stopped manually (or upon meeting termination criteria, such as pipeline completion).
+- **Resources typically remain active**, as the continuous processing mode is designed for real-time systems. Resource termination depends on your production configurations.
+
+# Trigger Configurations: Behavior and Meaning
+## 1. trigger(processingTime="...")
+- **Meaning:** Processes data in **micro-batches** at the user-specified interval.
+- **Example:**
+
+  ```
+  trigger(processingTime="2 minutes")
+  ```
+
+  This means the system will execute a micro-batch every **2 minutes**, processing all available data up to that point.
+
+## 2. trigger(once=True)
+- **Meaning:** Processes **all available data in a single batch** and then stops.
+- **Example:**
+
+  ```
+  trigger(once=True)
+  ```
+
+  This is ideal for pipelines where you want to process the current dataset completely and then terminate execution.
+
+## 3. trigger(once="2 minutes") *(Incorrect Concept)*
+- **Correction:** trigger(once="2 minutes") is **not valid**. The once mode processes data immediately in a single batch and doesn't allow scheduling a delay.
+- For scheduling, external orchestration tools (e.g., Apache Airflow or Databricks Jobs) should be used.
+
+## 4. trigger(availableNow=True)
+- **Meaning:** Processes **all available data up to the current point** (like a bounded batch) and then stops.
+- **Difference from trigger(once=True):**
+  - It can handle **incremental updates** and process new data when available without re-reading previously processed data.
+- **Example:**
+
+  ```
+  trigger(availableNow=True)
+  ```
+
+  This is useful for periodic, **bounded** batch-style processing (e.g., near real-time pipelines).
+
+# Key Corrections:
+- trigger(once="2 minutes") is **invalid**. Scheduling delays for trigger(once) isn't supported.
+- In **production**, resource termination depends on your Databricks environment's configuration, such as cluster auto-termination settings.
+- trigger(availableNow=True) processes **bounded data** that is **currently available**, rather than waiting for continuous streams.
