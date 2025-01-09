@@ -26,7 +26,7 @@ const email_worker = new Worker(
     {
         // Worker configuration options
         connection: {
-            host: "192.168.29.234",
+            host: "192.168.1.40",
             port: 6379,
         },
         // concurrency: 5, // Number of concurrent jobs processed
@@ -44,7 +44,7 @@ const email_worker = new Worker(
         //         }
         //     }
         // },
-        // autorun: true, // Automatically start processing jobs (default is true)
+        autorun: true, // Automatically start processing jobs (default is true)
         // lockRenewTime: 15000, // How long to keep the lock active (15 seconds)
         // runRetryDelay: 2000, // Delay before retrying a failed job (2 seconds)
         // drainDelay: 5, // Delay in ms before next job is processed once all jobs are completed

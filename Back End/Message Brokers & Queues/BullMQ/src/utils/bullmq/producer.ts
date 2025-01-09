@@ -3,7 +3,7 @@ import { Queue } from 'bullmq';
 // Creating a new queue and providing additional options
 export const email_queue = new Queue('email_queue', { 
   connection: {
-    host: "192.168.29.234",
+    host: "192.168.1.40", 
     port: 6379,
     // username: "default",   // If Redis requires authentication
     // password: "password",  // Provide password if needed
