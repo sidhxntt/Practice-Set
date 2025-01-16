@@ -1,0 +1,20 @@
+Here’s a concise comparison between **Map**, **Set**, and **Object** in JavaScript:
+
+| **Feature**               | **Map**                                                                                  | **Set**                                   | **Object**                                                                                       |
+|---------------------------|------------------------------------------------------------------------------------------|-------------------------------------------|--------------------------------------------------------------------------------------------------|
+| **Purpose**               | Key-value pairs storage.                                                                | Stores unique values (no duplicates).     | Key-value pairs storage, usually for structured data.                                            |
+| **Key Type**              | Keys can be of any type (objects, functions, primitives).                                | N/A (values only).                        | Keys are always strings or symbols (non-string keys are converted to strings).                  |
+| **Value Type**            | Any type (primitives, objects, functions).                                              | N/A (values only).                        | Values can be of any type.                                                                      |
+| **Key Uniqueness**        | Unique keys (no duplicates).                                                            | N/A (unique values only).                 | Duplicate keys overwrite previous values.                                                       |
+| **Iteration**             | Can iterate using `map.keys()`, `map.values()`, `map.entries()` or `for...of`.          | Can iterate using `set.values()` or `for...of`. | Iteration over properties requires `for...in` or `Object.keys()`, `Object.values()`, or `Object.entries()`. |
+| **Performance**           | Faster for frequent addition, deletion, or lookup operations on large datasets.          | Optimized for checking unique values.     | Slightly slower for key-value lookups compared to `Map` when keys are numerous.                 |
+| **Default Methods**       | Built-in methods like `get`, `set`, `delete`, `has`.                                    | Built-in methods like `add`, `delete`, `has`. | No direct methods for property manipulation (manual operations or `Object` utilities needed).   |
+| **Serialization**         | Not serializable with `JSON.stringify()`.                                               | Not serializable with `JSON.stringify()`. | Serializable with `JSON.stringify()`.                                                           |
+| **Size Property**         | Use `map.size` for the size of the `Map`.                                               | Use `set.size` for the size of the `Set`. | No direct property; use `Object.keys(obj).length`.                                              |
+| **Use Case Examples**     | - Lookup table.                                                                          | - Ensuring unique values in a collection. | - Lightweight structured data.                                                                  |
+|                           | - Caching data.                                                                         | - Removing duplicates from arrays.        | - Representing entities (e.g., a user object).                                                  |
+
+### Key Takeaways:
+1. **Use `Map`** when you need a collection of key-value pairs with any data type as keys and frequent addition or deletion operations.
+2. **Use `Set`** when you need to store unique values and ensure no duplicates.
+3. **Use `Object`** when representing structured data (like a JSON object) or when the keys are naturally strings.

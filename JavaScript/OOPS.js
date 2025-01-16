@@ -96,13 +96,116 @@ class User2{
     constructor(name, age, gender){
         this.name = name;
         this.age = age;
-        this.gender = gender
+        this.gender = gender || null
     }
     hello() {
         console.log(`Hello ${this.name} your age: ${this.age} & gender: ${this.gender}`);
       };
 }
 const user1 = new User2('Siddhant',22)
+console.log(user1)
 const user2 = new User2('Priyanka',21, 'female')
 user1.hello()
 user2.hello()
+
+console.log(`-----------------------------------------------------------`)
+
+// ENCAPSULATION
+const salary =30_000
+const age = 21
+const name = 'sid'
+
+function toString(salary,age,name){
+console.log(`Hello ${name}, you are ${age} olds having ${salary} in your account`)
+}
+toString(salary,age,name)
+/*
+This was was writng code is procedural ie its decoupled resulting more args for the function but 
+we can see its related as func is using these variables. So to solve this we encapsulate related fields in objects reducing no parameters
+for methods in obj. So now OOPs way:
+*/
+
+const User= {
+   salary:30_000,
+   age: 21,
+   name :'sid',
+   toString(){
+    console.log(`Hello ${this.name}, you are ${this.age} olds having ${this.salary} in your account`)
+   }
+}
+User.toString()
+
+// Use dot notation when the property name is a valid identifier and static.
+//  Use bracket notation when the property name is dynamic, computed, or invalid as an identifier.
+const car1= { brand: "Toyota", model: "Camry" };
+console.log(car1.brand); // "Toyota"
+console.log(car1.model); // "Camry"
+
+const car = { brand: "Toyota", model: "Camry" };
+const key = "model";
+console.log(car[key]); // "Camry"
+
+/*
+ABSTRACTION -> Hiding some of the properties & methods from the outside making simple ui for the objects & reducing impact of change ie imagine if u 
+change some of those abstracted props/methods in future and as it is not linked to the outside code it will have no impact on the rest of the app.
+*/
+class BankAccount {
+  #balance; // Private property using #
+
+  constructor(initialBalance) {
+    this.#balance = initialBalance;
+
+    // Define a public `balance` property with getter and setter
+    Object.defineProperty(this, 'balance', {
+      get: () => this.#balance, // Getter: returns the private balance
+      set: (amount) => {
+        if (amount >= 0) {
+          this.#balance += amount; // Setter: updates the private balance
+        } else {
+          console.log('Amount must be non-negative');
+        }
+      },
+    });
+  }
+}
+const account = new BankAccount(1000);
+
+console.log(account.balance); // Accessible via getter: 1000
+account.balance = 5000              // Accessible via setter
+console.log(account.balance) // 6000
+account.balance = -5000   // inavlid
+// console.log(account.#balance) //error 
+
+// INHERITENCE
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+  run(speed) {
+    this.speed = speed;
+    console.log(`${this.name} runs with speed ${this.speed}.`);
+  }
+  stop() {
+    this.speed = 0;
+    console.log(`${this.name} stands still.`);
+  }
+}
+
+let animal = new Animal("My animal");
+animal.run(2)
+
+class Rabbit extends Animal {
+  hide() {
+    console.log(`${this.name} hides!`);
+  }
+  stop() { // overridng the parent(animal) method stop 
+    super.stop(); // call parent stop 
+    this.hide(); // and then hide
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit");
+
+rabbit.run(5); 
+rabbit.stop();
