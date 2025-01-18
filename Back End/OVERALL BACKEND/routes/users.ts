@@ -10,7 +10,7 @@ import patch_user from "../utils/patch_user";
 const router = express.Router();
 
 // Get all users
-router.get("/", decryptJWT, async(req: Request, res: Response, next: NextFunction)=>{
+router.get("/", async(req: Request, res: Response, next: NextFunction)=>{
  getAll(req, res, next, prisma.user)
 }) 
 
