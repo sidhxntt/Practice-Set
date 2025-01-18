@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import AllRoutes from "./routes";
+import AllRoutes from "./routes/Main_Routes";
 import "dotenv/config";
 import error_handling from "./controllers/error";
 import database from "./db";
@@ -18,13 +18,12 @@ class Server {
         this.initializeRoutes();
     }
 
+    private initializeRoutes(): void {
+        AllRoutes(this.app);
+    }
     private initializeMiddlewares(): void {
         this.app.use(express.json());
         this.app.use(error_handling);
-    }
-
-    private initializeRoutes(): void {
-        AllRoutes(this.app);
     }
 
     public async start(): Promise<void> {

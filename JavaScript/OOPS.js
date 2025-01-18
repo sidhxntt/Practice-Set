@@ -209,3 +209,24 @@ let rabbit = new Rabbit("White Rabbit");
 
 rabbit.run(5); 
 rabbit.stop();
+
+
+// Extending Inbuilt Objects -> (Date, Error, Array, Map, Set,Regexp,Promise)
+class CustomError extends Error {
+  constructor(message) {
+    super(message); // Call the parent class constructor
+    this.name = "CustomError"; // Set a custom name
+  }
+
+  customMethod() {
+    return `Custom method output for: ${this.message}`;
+  }
+}
+
+try {
+  throw new CustomError("Something went wrong");
+} catch (error) {
+  console.log(error.name); // "CustomError"
+  console.log(error.message); // "Something went wrong"
+  console.log(error.customMethod()); // "Custom method output for: Something went wrong"
+}
