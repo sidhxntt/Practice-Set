@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import rc from "./redis_client";
+import redis_connection from "./redis_client";
 
 async function getOne(req: Request, res: Response, next: NextFunction, model: any, id: string) {
+  const rc = await redis_connection()
+
   try {
     const parsedUserID = parseInt(id, 10);
 

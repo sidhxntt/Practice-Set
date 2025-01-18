@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import rc from "./redis_client";
+import redis_connection from "./redis_client";
 
 async function getAll(req: Request, res: Response, next: NextFunction, model: any) {
+  const rc = await redis_connection()
   try {
     const page = parseInt(req.query.page as string || "1", 10);
     const limit = parseInt(req.query.limit as string || "10", 10);
