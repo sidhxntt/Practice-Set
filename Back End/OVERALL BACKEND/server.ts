@@ -1,19 +1,19 @@
 import express, { Application } from "express";
-import allRoutes from "./routes";
+import AllRoutes from "./routes";
 import "dotenv/config";
 import error_handling from "./controllers/error";
 import database from "./db";
-import redis from "./utils/redis_client";
+import redis_connection from "./utils/redis_client";
 
 class Server {
     private readonly app: Application;
-    private readonly port: string | undefined;
-    private readonly serverUrl: string | undefined;
+    private readonly port: string | number;
+    private readonly serverUrl: string;
 
     constructor() {
         this.app = express();
-        this.port = process.env.PORT_NUMBER;
-        this.serverUrl = process.env.SERVER;
+        this.port = process.env.PORT_NUMBER || 3000;
+        this.serverUrl = process.env.SERVER || 'http://localhost';
         this.initializeMiddlewares();
         this.initializeRoutes();
     }
@@ -24,14 +24,14 @@ class Server {
     }
 
     private initializeRoutes(): void {
-        allRoutes(this.app);
+        AllRoutes(this.app);
     }
-
 
     public async start(): Promise<void> {
         try {
             await database.connect();
-            redis;
+            await redis_connection();
+            
             this.app.listen(this.port, () => {
                 console.log(`Server is running at: ${this.serverUrl} 🐳`);
             });
@@ -50,5 +50,3 @@ class Server {
 const server = new Server();
 server.start();
 
-// Export for testing purposes
-export default server;

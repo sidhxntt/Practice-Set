@@ -1,40 +1,22 @@
 import Redis from "ioredis";
-import dotenv from "dotenv";
-
-// Load environment variables from .env file
+import dotenv from 'dotenv';
 dotenv.config();
 
-class RedisConnection {
-  private readonly redis: Redis;
+const redis_connection = async(): Promise<Redis> => {
+  const redis = new Redis({
+    host: process.env.REDIS_HOST,
+    port: parseInt(process.env.REDIS_PORT || "6379"),
+  });
 
-  constructor() {
-    this.redis = new Redis({
-      host: process.env.REDIS_HOST || "localhost", 
-      port: parseInt(process.env.REDIS_PORT || "6379"), 
-    });
+  redis.on('connect', () => {
+    console.log('Successfully connected to Redis!');
+  });
 
-    // Binding the connect and error events when initializing
-    this.connect();
-    this.handleError();
-  }
+  redis.on('error', (err) => {
+    console.error('Redis connection error:', err);
+  });
 
-  private connect() {
-    this.redis.on("connect", () => {
-      console.log("Successfully connected to Redis! 🚀");
-    });
-  }
+  return redis; 
+};
 
-  private handleError() {
-    this.redis.on("error", (err) => {
-      console.error("Redis connection error:", err);
-    });
-  }
-
-  // Method to close the Redis connection
-  public close() {
-    this.redis.quit();
-  }
-}
-const redis = new RedisConnection()
-console.log(redis)
-export default redis;
+export default redis_connection;
