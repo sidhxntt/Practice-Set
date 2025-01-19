@@ -3,7 +3,7 @@ import AllRoutes from "./routes/Main_Routes";
 import "dotenv/config";
 import error_handling from "./controllers/error";
 import database from "./db";
-import redis_connection from "./utils/redis_client";
+import {redis_connection} from "./utils/redis_client";
 
 class Server {
     private readonly app: Application;
@@ -18,14 +18,15 @@ class Server {
         this.initializeRoutes();
     }
 
+    private initializeMiddlewares(): void {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(error_handling);
+    }
     private initializeRoutes(): void {
         AllRoutes(this.app);
     }
-    private initializeMiddlewares(): void {
-        this.app.use(express.json());
-        this.app.use(error_handling);
-    }
-
+ 
     public async start(): Promise<void> {
         try {
             await database.connect();
@@ -45,7 +46,6 @@ class Server {
     }
 }
 
-// Create and start server instance
 const server = new Server();
 server.start();
 

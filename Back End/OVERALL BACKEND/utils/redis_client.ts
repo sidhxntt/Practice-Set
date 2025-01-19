@@ -1,22 +1,27 @@
 import Redis from "ioredis";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
+
 dotenv.config();
 
-const redis_connection = async(): Promise<Redis> => {
-  const redis = new Redis({
-    host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT || "6379"),
-  });
+let redisInstance: Redis | null = null;
 
-  redis.on('connect', () => {
-    console.log('Successfully connected to Redis!');
-  });
+const redis_connection = async (): Promise<Redis> => {
+  if (!redisInstance) {
+    redisInstance = new Redis({
+      host: process.env.REDIS_HOST,
+      port: parseInt(process.env.REDIS_PORT || "6379"),
+    });
 
-  redis.on('error', (err) => {
-    console.error('Redis connection error:', err);
-  });
+    redisInstance.on("connect", () => {
+      console.log("Successfully connected to Redis!");
+    });
 
-  return redis; 
+    redisInstance.on("error", (err) => {
+      console.error("Redis connection error:", err);
+    });
+  }
+
+  return redisInstance;
 };
 
-export default redis_connection;
+export { redis_connection };

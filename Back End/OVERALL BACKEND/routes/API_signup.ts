@@ -5,6 +5,9 @@ import bcrypt from "bcrypt";
 const router = express.Router();
 const prisma = new PrismaClient();
 
+const app = express();
+app.use(express.json());
+
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     res

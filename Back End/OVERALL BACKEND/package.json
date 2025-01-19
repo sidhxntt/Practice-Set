@@ -4,7 +4,7 @@
   "main": "server.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec ts-node server.ts",
+    "dev": "prisma generate && nodemon --exec ts-node server.ts",
     "lint": "eslint src/**/*.ts --fix",
     "seed": "ts-node prisma/seeding/*.ts"
   },

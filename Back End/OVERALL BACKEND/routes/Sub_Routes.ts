@@ -1,9 +1,6 @@
-// routes/SubRoutes.ts
 import { Router, Request, Response, NextFunction } from "express";
-import decryptJWT from "../controllers/decryption";
 
-type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
-type RouteHandler = Promise<Response<any, Record<string, any>> | undefined>
+type HttpMethod = 'get' | 'post' | 'patch' | 'delete';
 
 export class SubRoutes {
     private router: Router;
@@ -12,19 +9,18 @@ export class SubRoutes {
         this.router = Router();
     }
 
-    public endpoint<T>(
-        model: T,
+    public endpoint(
         method: HttpMethod,
         path: string,
         handler: any,
-        middleware: Array<any> = [decryptJWT]
+        middleware: Array<any>
     ): void {
         this.router[method](
             path,
             ...middleware,
             async (req: Request, res: Response, next: NextFunction) => {
                 try {
-                    await handler(req, res, next, model);
+                    await handler(req, res);
                 } catch (error) {
                     next(error);
                 }

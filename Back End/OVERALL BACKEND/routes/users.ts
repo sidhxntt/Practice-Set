@@ -1,32 +1,30 @@
-// routes/userRoutes.ts
 import { Router } from "express";
 import prisma from "../prisma/prisma";
-import getOne from "../utils/getOne";
 import { SubRoutes } from "./Sub_Routes";
-import getAll from "../utils/getAll";
-import post_user from "../utils/post_user";
-import patch_user from "../utils/patch_user";
-import delete_user from "../utils/delete_user";
+import decryptJWT from "../controllers/decryption";
+import Data from "../utils/Data";
 
 const createUserRoutes = (): Router => {
     const userRoutes = new SubRoutes();
+    const user = new Data(prisma.user)
 
     // Get all users
-    userRoutes.endpoint(prisma.user, 'get', '/', getAll);
+    userRoutes.endpoint('get', '/', user.getAll.bind(user), [decryptJWT]);
 
     // Get single user
-    userRoutes.endpoint(prisma.user, 'get', '/:id', getOne);
+    userRoutes.endpoint('get', '/:id', user.getOne.bind(user), [decryptJWT]);
 
     // Create user
-    userRoutes.endpoint(prisma.user, 'post', '/', post_user);
+    userRoutes.endpoint('post', '/', user.Create.bind(user), [decryptJWT]);
 
     // Update user
-    userRoutes.endpoint(prisma.user, 'patch', '/:id', patch_user);
+    userRoutes.endpoint('patch', '/:id', user.Update.bind(user), [decryptJWT]);
 
     // Delete user
-    userRoutes.endpoint(prisma.user, 'delete', '/:id', delete_user);
+    userRoutes.endpoint('delete', '/:id', user.Delete.bind(user), [decryptJWT]);
 
     return userRoutes.getRouter();
 };
 
-export default createUserRoutes;
+const users = createUserRoutes()
+export default users;
