@@ -1,5 +1,5 @@
 // routes/index.ts
-import { Application, Router } from "express";
+import { Application} from "express";
 import users from "./users"
 import Api_signup from "./API_signup";
 import Api_login from "./API_login";

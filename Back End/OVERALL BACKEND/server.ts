@@ -2,8 +2,7 @@ import express, { Application } from "express";
 import AllRoutes from "./routes/Main_Routes";
 import "dotenv/config";
 import error_handling from "./controllers/error";
-import database from "./db";
-import {redis_connection} from "./utils/redis_client";
+import Client from "./utils/Client";
 
 class Server {
     private readonly app: Application;
@@ -28,10 +27,10 @@ class Server {
     }
  
     public async start(): Promise<void> {
+        const client = new Client()
         try {
-            await database.connect();
-            await redis_connection();
-            
+            await client.connectDB();
+            await client.Redis();
             this.app.listen(this.port, () => {
                 console.log(`Server is running at: ${this.serverUrl} 🐳`);
             });

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { redis_connection } from "./redis_client";
-import Redis from "ioredis";
+import Client from "./Client";
 
+const client = new Client()
 interface UserInput {
   name: string;
   username: string;
@@ -24,21 +24,12 @@ interface ResponseBody<T> {
 }
 
 export default class Data {
-  private redis!: Redis;
   private readonly primary_model!: any;
   private readonly secondary_model?: any;
 
   constructor(model: any) {
     this.primary_model = model;
     this.secondary_model = model;
-  }
-
-  // Initialize Redis connection
-  private async getRedisClient() {
-    if (!this.redis) {
-      this.redis = await redis_connection();
-    }
-    return this.redis;
   }
 
   // Generate a cache key
@@ -91,7 +82,7 @@ export default class Data {
   public async getAll(req: Request, res: Response) {
     const { page, limit, offset } = this.generatePagination(req);
 
-    const redis = await this.getRedisClient();
+    const redis = await client.Redis();
     const cacheKey = this.generateCacheKey(page, limit);
 
     const cachedData = await redis.get(cacheKey);
@@ -132,7 +123,7 @@ export default class Data {
       return this.sendResponse(res, 400, "Invalid user ID", undefined, "Invalid ID");
     }
 
-    const redis = await this.getRedisClient();
+    const redis = await client.Redis();
     const cacheKey = this.generateCacheKey(id);
     const cachedData = await redis.get(cacheKey);
 

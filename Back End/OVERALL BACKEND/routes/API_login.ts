@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import createToken from "../controllers/JWT";
+import JWT from "../controllers/JWT";
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -31,6 +31,7 @@ router.post(
     next: NextFunction
   ) => {
     try {
+      const auth = new JWT
       const { username, password } = req.body;
 
       const existing_user = await prisma.api_users.findUnique({
@@ -49,7 +50,7 @@ router.post(
       if (!passwordMatch) {
         return res.status(400).json({ message: "Incorrect Password" });
       }
-      const token = await createToken(existing_user.id);
+      const token = await auth.createToken.bind(existing_user.id);
       return res.status(200).json({
         message: "Login successful",
         Acess_Token: token,

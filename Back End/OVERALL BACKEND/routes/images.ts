@@ -1,20 +1,21 @@
 import { Router } from "express";
-import prisma from "../prisma/prisma";
 import { SubRoutes } from "./Sub_Routes";
-import decryptJWT from "../controllers/decryption";
 import Data from "../utils/Data";
+import JWT from "../controllers/JWT";
+import Client from "../utils/Client";
+
 
 const createUserRoutes = (): Router => {
-    const userRoutes = new SubRoutes();
+      const client = new Client();
+      const prisma = client.Prisma();
+      const auth = new JWT();
+    const imagesRoutes = new SubRoutes();
     const images = new Data(prisma.image)
 
-    // Get all users
-    userRoutes.endpoint('get', '/', images.getAll.bind(images), [decryptJWT]);
+    imagesRoutes.endpoint('get', '/', images.getAll.bind(images), [auth.decryptJWT]);
+    imagesRoutes.endpoint('get', '/:id', images.getOne.bind(images), [auth.decryptJWT]);
 
-    // Get single user
-    userRoutes.endpoint('get', '/:id', images.getOne.bind(images), [decryptJWT]);
-
-    return userRoutes.getRouter();
+    return imagesRoutes.getRouter();
 };
 
 const users = createUserRoutes()
