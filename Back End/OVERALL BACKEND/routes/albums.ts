@@ -3,6 +3,7 @@ import { SubRoutes } from "./Sub_Routes";
 import Data from "../utils/Data";
 import JWT from "../controllers/JWT";
 import client from "../utils/Client";
+import limiter from "../controllers/rate_limitter";
 
 
 const createUserRoutes = (): Router => {
@@ -11,8 +12,8 @@ const createUserRoutes = (): Router => {
     const albumRoutes = new SubRoutes();
     const albums = new Data(prisma.album)
 
-    albumRoutes.endpoint('get', '/', albums.getAll.bind(albums), [auth.decryptJWT]);
-    albumRoutes.endpoint('get', '/:id', albums.getOne.bind(albums), [auth.decryptJWT]);
+    albumRoutes.endpoint('get', '/', albums.getAll.bind(albums), [auth.decryptJWT, limiter]);
+    albumRoutes.endpoint('get', '/:id', albums.getOne.bind(albums), [auth.decryptJWT, limiter]);
     
     return albumRoutes.getRouter();
 };

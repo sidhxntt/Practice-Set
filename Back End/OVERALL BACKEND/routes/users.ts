@@ -3,7 +3,7 @@ import { SubRoutes } from "./Sub_Routes";
 import Data from "../utils/Data";
 import JWT from "../controllers/JWT";
 import client from "../utils/Client";
-
+import limiter from "../controllers/rate_limitter";
 
 const createUserRoutes = (): Router => {
   const prisma = client.Prisma()
@@ -11,11 +11,11 @@ const createUserRoutes = (): Router => {
   const userRoutes = new SubRoutes();
   const user = new Data(prisma.user);
 
-  userRoutes.endpoint("get", "/", user.getAll.bind(user), [auth.decryptJWT]);
-  userRoutes.endpoint("get", "/:id", user.getOne.bind(user), [auth.decryptJWT]);
-  userRoutes.endpoint("post", "/", user.Create.bind(user), [auth.decryptJWT]);
-  userRoutes.endpoint("patch", "/:id", user.Update.bind(user), [auth.decryptJWT]);
-  userRoutes.endpoint("delete", "/:id", user.Delete.bind(user), [auth.decryptJWT]);
+  userRoutes.endpoint("get", "/", user.getAll.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("get", "/:id", user.getOne.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("post", "/", user.Create.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("patch", "/:id", user.Update.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("delete", "/:id", user.Delete.bind(user), [auth.decryptJWT, limiter]);
 
   return userRoutes.getRouter();
 };

@@ -4,7 +4,6 @@ import "dotenv/config";
 import error_handling from "./controllers/error";
 import client from "./utils/Client";
 
-
 class Server {
     private readonly app: Application;
     private readonly port: string | number;

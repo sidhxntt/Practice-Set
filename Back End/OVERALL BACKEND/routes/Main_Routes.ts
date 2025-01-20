@@ -1,7 +1,6 @@
-// routes/index.ts
-import { Application} from "express";
-import users from "./users"
-import Api_user from "./API_user"
+import { Application } from "express";
+import users from "./users";
+import Api_user from "./API_user";
 import addresses from "./addresses";
 import posts from "./posts";
 import todos from "./todos";
@@ -11,6 +10,7 @@ import images from "./images";
 
 class MainRoutes {
   private app: Application;
+  private readonly path: string = "/api/v3"; 
 
   constructor(app: Application) {
     this.app = app;
@@ -18,14 +18,22 @@ class MainRoutes {
   }
 
   private initializeRoutes(): void {
+    // Home route
     this.app.use("/", home);
-    this.app.use("/api", Api_user);
-    this.app.use("/api/users", users);
-    this.app.use("/api/posts", posts);
-    this.app.use("/api/todos", todos);
-    this.app.use("/api/albums", albums);
-    this.app.use("/api/addresses", addresses);
-    this.app.use("/api/images", images);
+
+    // API routes
+    this.app.use(`${this.path}`, Api_user);
+    this.app.use(`${this.path}/users`, users);
+    this.app.use(`${this.path}/posts`, posts);
+    this.app.use(`${this.path}/todos`, todos);
+    this.app.use(`${this.path}/albums`, albums);
+    this.app.use(`${this.path}/addresses`, addresses);
+    this.app.use(`${this.path}/images`, images);
+
+    // Catch-all for undefined routes
+    this.app.use("*", (req, res) => {
+      res.status(404).json({ error: "Route not found" });
+    });
   }
 }
 
