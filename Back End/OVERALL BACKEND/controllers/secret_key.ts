@@ -7,3 +7,4 @@ console.log('Generated Secret Key:', secretKey);
 // Hash the secret key using SHA-256
 const hashedSecretKey = CryptoJS.SHA256(secretKey).toString(CryptoJS.enc.Hex);
 console.log('Hashed Secret Key:', hashedSecretKey);
+

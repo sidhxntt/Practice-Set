@@ -1,21 +1,22 @@
-import express, { Request, Response, NextFunction } from "express";
-import decryptJWT from "../controllers/decryption";
-import prisma from "../prisma/prisma"
-import getAll from "../utils/getAll";
-import getone from "../utils/getone";
-
-const router = express.Router();
-
-// Get all users
-router.get("/", decryptJWT, async(req: Request, res: Response, next: NextFunction)=>{
- getAll(req, res, next, prisma.album)
-}) 
-
-// get one user
-router.get("/:userID", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-  const userID: string = req.params.userID;
-  getone(req, res, next, prisma.album, userID)
-});
+import { Router } from "express";
+import { SubRoutes } from "./Sub_Routes";
+import Data from "../utils/Data";
+import JWT from "../controllers/JWT";
+import client from "../utils/Client";
+import limiter from "../controllers/rate_limitter";
 
 
-export default router
+const createUserRoutes = (): Router => {
+    const prisma = client.Prisma();
+    const auth = new JWT();
+    const albumRoutes = new SubRoutes();
+    const albums = new Data(prisma.album)
+
+    albumRoutes.endpoint('get', '/', albums.getAll.bind(albums), [auth.decryptJWT, limiter]);
+    albumRoutes.endpoint('get', '/:id', albums.getOne.bind(albums), [auth.decryptJWT, limiter]);
+    
+    return albumRoutes.getRouter();
+};
+
+const users = createUserRoutes()
+export default users;

@@ -1,21 +1,22 @@
-import express, { Request, Response, NextFunction } from "express";
-import decryptJWT from "../controllers/decryption";
-import prisma from "../prisma/prisma"
-import getAll from "../utils/getAll";
-import getone from "../utils/getone";
+import { Router } from "express";
+import { SubRoutes } from "./Sub_Routes";
+import Data from "../utils/Data";
+import JWT from "../controllers/JWT";
+import client from "../utils/Client";
+import limiter from "../controllers/rate_limitter";
 
-const router = express.Router();
+const createUserRoutes = (): Router => {
 
-// Get all users
-router.get("/", decryptJWT, async(req: Request, res: Response, next: NextFunction)=>{
- getAll(req, res, next, prisma.address)
-}) 
+    const prisma = client.Prisma();
+    const auth = new JWT();
+    const addressRoutes = new SubRoutes();
+    const address = new Data(prisma.address)
 
-// get one user
-router.get("/:userID", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-  const userID: string = req.params.userID;
-  getone(req, res, next, prisma.address, userID)
-});
+    addressRoutes.endpoint('get', '/', address.getAll.bind(address), [auth.decryptJWT, limiter]);
+    addressRoutes.endpoint('get', '/:id', address.getOne.bind(address), [auth.decryptJWT, limiter]);
 
+    return addressRoutes.getRouter();
+};
 
-export default router
+const users = createUserRoutes()
+export default users;

@@ -1,0 +1,1 @@
+JS is a syncronous, blocking ,single threaded languge 

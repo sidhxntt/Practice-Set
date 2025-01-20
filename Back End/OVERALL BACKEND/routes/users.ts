@@ -1,41 +1,24 @@
-import express, { Request, Response, NextFunction } from "express";
-import decryptJWT from "../controllers/decryption";
-import prisma from "../prisma/prisma"
-import getAll from "../utils/getAll";
-import getone from "../utils/getone";
-import post_user from "../utils/post_user";
-import delete_user from "../utils/delete_user";
-import patch_user from "../utils/patch_user";
+import { Router } from "express";
+import { SubRoutes } from "./Sub_Routes";
+import Data from "../utils/Data";
+import JWT from "../controllers/JWT";
+import client from "../utils/Client";
+import limiter from "../controllers/rate_limitter";
 
-const router = express.Router();
+const createUserRoutes = (): Router => {
+  const prisma = client.Prisma()
+  const auth = new JWT()
+  const userRoutes = new SubRoutes();
+  const user = new Data(prisma.user);
 
-// Get all users
-router.get("/", async(req: Request, res: Response, next: NextFunction)=>{
- getAll(req, res, next, prisma.user)
-}) 
+  userRoutes.endpoint("get", "/", user.getAll.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("get", "/:id", user.getOne.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("post", "/", user.Create.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("patch", "/:id", user.Update.bind(user), [auth.decryptJWT, limiter]);
+  userRoutes.endpoint("delete", "/:id", user.Delete.bind(user), [auth.decryptJWT, limiter]);
 
-// post user
-router.post("/", decryptJWT, async(req: Request, res:Response, next: NextFunction)=>{
-  post_user(req, res, next, prisma.user)
-})
+  return userRoutes.getRouter();
+};
 
-// get one user
-router.get("/:userID", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-  const userID: string = req.params.userID;
-  await getone(req, res, next, prisma.user, userID);
-});
-
-
-// delete one user
-router.delete("/:userID", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-  const userID: string = req.params.userID;
-  delete_user(req, res, next, prisma.user, prisma.address, userID)
-});
-
-// update one user
-router.patch("/:userID", decryptJWT, async (req: Request, res: Response, next: NextFunction) => {
-  const userID: string = req.params.userID;
-  patch_user(req, res, next, prisma.user, userID)
-});
-
-export default router
+const users = createUserRoutes();
+export default users;
