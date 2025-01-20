@@ -1,0 +1,8 @@
+- add sms
+- prometheus & grafana
+- github action
+- cors & Snyk or OWASP Dependency-Check
+- Swagger or Redoc to auto-generate API documentation
+- Add Helmet to secure HTTP headers.
+- Use an API gateway like Kong or NGINX
+- Consider adding database replication or sharding if you expect to scale the database horizontally.
