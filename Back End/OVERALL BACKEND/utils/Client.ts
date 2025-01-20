@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export default class Client {
+ class Client {
     private readonly prisma: PrismaClient;
     private readonly redis: Redis;
 
@@ -46,3 +46,5 @@ export default class Client {
       }
 }
 
+const client = new Client()
+export default client

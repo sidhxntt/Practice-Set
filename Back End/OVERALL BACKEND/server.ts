@@ -2,7 +2,8 @@ import express, { Application } from "express";
 import AllRoutes from "./routes/Main_Routes";
 import "dotenv/config";
 import error_handling from "./controllers/error";
-import Client from "./utils/Client";
+import client from "./utils/Client";
+
 
 class Server {
     private readonly app: Application;
@@ -27,7 +28,6 @@ class Server {
     }
  
     public async start(): Promise<void> {
-        const client = new Client()
         try {
             await client.connectDB();
             await client.Redis();

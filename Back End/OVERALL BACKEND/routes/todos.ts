@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { SubRoutes } from "./Sub_Routes";
 import Data from "../utils/Data";
-import Client from "../utils/Client";
 import JWT from "../controllers/JWT";
+import client from "../utils/Client";
+
 
 const createUserRoutes = (): Router => {
-  const client = new Client();
+  
   const prisma = client.Prisma();
   const auth = new JWT();
   const todosRoutes = new SubRoutes();
@@ -17,5 +18,5 @@ const createUserRoutes = (): Router => {
   return todosRoutes.getRouter();
 };
 
-const users = createUserRoutes();
-export default users;
+const todos = createUserRoutes();
+export default todos;

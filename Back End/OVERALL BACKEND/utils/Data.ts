@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import Client from "./Client";
+import client from "./Client";
 
-const client = new Client()
 interface UserInput {
   name: string;
   username: string;

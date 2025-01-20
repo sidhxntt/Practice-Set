@@ -1,8 +1,7 @@
 // routes/index.ts
 import { Application} from "express";
 import users from "./users"
-import Api_signup from "./API_signup";
-import Api_login from "./API_login";
+import Api_user from "./API_user"
 import addresses from "./addresses";
 import posts from "./posts";
 import todos from "./todos";
@@ -20,8 +19,7 @@ class MainRoutes {
 
   private initializeRoutes(): void {
     this.app.use("/", home);
-    this.app.use("/api/signup", Api_signup);
-    this.app.use("/api/login", Api_login);
+    this.app.use("/api", Api_user);
     this.app.use("/api/users", users);
     this.app.use("/api/posts", posts);
     this.app.use("/api/todos", todos);
