@@ -4,5 +4,5 @@
 - cors & Snyk or OWASP Dependency-Check
 - Swagger or Redoc to auto-generate API documentation
 - Add Helmet to secure HTTP headers.
-- Use an API gateway like Kong or NGINX
+- Use an API gateway like Kong or NGINX - (reverse proxy)
 - Consider adding database replication or sharding if you expect to scale the database horizontally.

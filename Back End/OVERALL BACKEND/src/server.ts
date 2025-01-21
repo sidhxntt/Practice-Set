@@ -9,19 +9,22 @@ import { smsWorker } from "./utils/workers/sms";
 import helmet from "helmet";
 import dotenv from "dotenv";
 dotenv.config();
+
 export default class SERVER {
-  protected  app: Application;
-  protected  port: string | number;
-  protected httpServer: any; // Store the HTTP server instance
+  private  app: Application;
+  private  port: string | number;
+  private httpServer: any; // Store the HTTP server instance
+  private serverUrl: string;
 
   constructor() {
     this.app = express();
     this.port = process.env.MAIN_SERVER_PORT || 8000;
+    this.serverUrl = process.env.MAIN_SERVER_URL || 'http://localhost:8000';
     this.initializeMiddlewares();
     this.initializeRoutes();
   }
 
-  protected initializeMiddlewares(): void {
+  private initializeMiddlewares(): void {
     this.app.use(
       cors({
         origin: process.env.CLIENT,
@@ -39,14 +42,14 @@ export default class SERVER {
     AllRoutes(this.app);
   }
 
-  public async start(server_url: string): Promise<void> {
+  public async start(): Promise<void> {
     try {
       await client.connectDB();
       client.Redis();
 
       // Store the server instance
       this.httpServer = this.app.listen(this.port, () => {
-        console.log(`Server is running at: ${server_url} 🐳`);
+        console.log(`Server is running at: ${this.serverUrl} 🐳`);
       });
 
       // Apply graceful shutdown after server starts
@@ -80,4 +83,4 @@ export default class SERVER {
 }
 
 const server = new SERVER();
-server.start(process.env.MAIN_SERVER_URL || "http://localhost:8000");  
+server.start();  
