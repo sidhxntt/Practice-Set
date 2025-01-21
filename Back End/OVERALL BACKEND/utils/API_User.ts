@@ -2,39 +2,18 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import JWT from "../controllers/JWT";
 import { PrismaClient } from "@prisma/client";
-import client from "./Client";
+import { emailqueue, smsQueue } from "./Client";
 import dotenv from "dotenv";
+import Data from "./Data";
 
 dotenv.config();
-const emailQueue = client.Queue();
-interface ResponseBody<T> {
-  status: string;
-  message: string;
-  data?: T;
-  error?: string;
-}
 
-export default class User {
+export default class User extends Data {
   private readonly prisma: PrismaClient;
 
   constructor(prisma: PrismaClient) {
+    super(prisma.api_users);
     this.prisma = prisma;
-  }
-
-  private sendResponse<T>(
-    res: Response,
-    statusCode: number,
-    message: string,
-    data?: T,
-    error?: string
-  ): Response {
-    const response: ResponseBody<T> = {
-      status: statusCode >= 400 ? "error" : "success",
-      message,
-      data,
-      error,
-    };
-    return res.status(statusCode).json(response);
   }
 
   private isValidEmail(email: string): boolean {
@@ -96,11 +75,16 @@ export default class User {
       },
     });
 
-    emailQueue.add("send-email", {
+    emailqueue.Queue().add("send-email", {
       email: process.env.EMAIL,
       message: "New User added to API",
     });
 
+    smsQueue.Queue().add("send-sms", {
+      to: process.env.PHONE_NUMBER,
+      message: "New User added to API",
+    });
+  
     return this.sendResponse(res, 201, "User created successfully", {
       id: newUser.id,
       email: newUser.email,

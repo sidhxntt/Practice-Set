@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import client from "./Client";
+import { client } from "./Client";
 
 interface UserInput {
   name: string;
@@ -60,7 +60,7 @@ export default class Data {
   }
 
   // Standardized Response
-  private sendResponse<T>(
+  protected sendResponse<T>(
     res: Response,
     statusCode: number,
     message: string,
@@ -89,7 +89,12 @@ export default class Data {
     if (cachedData) {
       try {
         const parsedData = JSON.parse(cachedData);
-        return this.sendResponse(res, 200, "Data fetched successfully", parsedData);
+        return this.sendResponse(
+          res,
+          200,
+          "Data fetched successfully",
+          parsedData
+        );
       } catch (error) {
         console.error("Error parsing cached data:", error);
       }
@@ -112,14 +117,25 @@ export default class Data {
       data: users,
     };
     await redis.setex(cacheKey, 3600, JSON.stringify(responseData));
-    return this.sendResponse(res, 200, "Data fetched successfully", responseData);
+    return this.sendResponse(
+      res,
+      200,
+      "Data fetched successfully",
+      responseData
+    );
   }
 
   // Fetch One data
   public async getOne(req: Request, res: Response) {
     const id = this.TypeChangeOf_ID(req);
     if (isNaN(id)) {
-      return this.sendResponse(res, 400, "Invalid user ID", undefined, "Invalid ID");
+      return this.sendResponse(
+        res,
+        400,
+        "Invalid user ID",
+        undefined,
+        "Invalid ID"
+      );
     }
 
     const redis = await client.Redis();
@@ -129,7 +145,12 @@ export default class Data {
     if (cachedData) {
       try {
         const parsedData = JSON.parse(cachedData);
-        return this.sendResponse(res, 200, "Data fetched successfully", parsedData);
+        return this.sendResponse(
+          res,
+          200,
+          "Data fetched successfully",
+          parsedData
+        );
       } catch (error) {
         console.error("Error parsing cached data:", error);
       }
@@ -142,7 +163,13 @@ export default class Data {
     });
 
     if (!user) {
-      return this.sendResponse(res, 404, "User not found", undefined, "User not found");
+      return this.sendResponse(
+        res,
+        404,
+        "User not found",
+        undefined,
+        "User not found"
+      );
     }
     await redis.setex(cacheKey, 3600, JSON.stringify(user));
     return this.sendResponse(res, 200, "User fetched successfully", user);
@@ -150,9 +177,16 @@ export default class Data {
 
   // Create Data
   public async Create(req: Request, res: Response) {
-    const { name, username, email, address, phone, website } = req.body as UserInput;
+    const { name, username, email, address, phone, website } =
+      req.body as UserInput;
     if (!name || !username || !email || !address) {
-      return this.sendResponse(res, 400, "Missing required fields", undefined, "Missing fields");
+      return this.sendResponse(
+        res,
+        400,
+        "Missing required fields",
+        undefined,
+        "Missing fields"
+      );
     }
 
     const existingUser = await this.primary_model.findFirst({
@@ -162,7 +196,13 @@ export default class Data {
     });
 
     if (existingUser) {
-      return this.sendResponse(res, 400, "User already exists", undefined, "User exists");
+      return this.sendResponse(
+        res,
+        400,
+        "User already exists",
+        undefined,
+        "User exists"
+      );
     }
 
     const User = await this.primary_model.create({
@@ -183,19 +223,31 @@ export default class Data {
       },
     });
 
-    return this.sendResponse(res, 201, "User & related address created successfully", {
-      user: User,
-      user_address: address,
-    });
+    return this.sendResponse(
+      res,
+      201,
+      "User & related address created successfully",
+      {
+        user: User,
+        user_address: address,
+      }
+    );
   }
 
   // Update Data
   public async Update(req: Request, res: Response) {
     const id = this.TypeChangeOf_ID(req);
-    const { name, username, email, address, phone, website } = req.body as UserInput;
+    const { name, username, email, address, phone, website } =
+      req.body as UserInput;
 
     if (isNaN(id)) {
-      return this.sendResponse(res, 400, "Invalid user ID", undefined, "Invalid ID");
+      return this.sendResponse(
+        res,
+        400,
+        "Invalid user ID",
+        undefined,
+        "Invalid ID"
+      );
     }
 
     const user = await this.primary_model.update({
@@ -228,7 +280,13 @@ export default class Data {
     });
 
     if (!user) {
-      return this.sendResponse(res, 404, "User not found", undefined, "User not found");
+      return this.sendResponse(
+        res,
+        404,
+        "User not found",
+        undefined,
+        "User not found"
+      );
     }
 
     return this.sendResponse(res, 200, "User updated successfully", {
@@ -242,7 +300,13 @@ export default class Data {
     const id = this.TypeChangeOf_ID(req);
 
     if (isNaN(id)) {
-      return this.sendResponse(res, 400, "Invalid user ID", undefined, "Invalid ID");
+      return this.sendResponse(
+        res,
+        400,
+        "Invalid user ID",
+        undefined,
+        "Invalid ID"
+      );
     }
 
     const user = await this.primary_model.findUnique({
@@ -251,7 +315,13 @@ export default class Data {
       },
     });
     if (!user) {
-      return this.sendResponse(res, 404, "User not found", undefined, "User not found");
+      return this.sendResponse(
+        res,
+        404,
+        "User not found",
+        undefined,
+        "User not found"
+      );
     }
 
     await this.secondary_model.deleteMany({
@@ -262,6 +332,10 @@ export default class Data {
       where: { id },
     });
 
-    return this.sendResponse(res, 200, "User & related address deleted successfully");
+    return this.sendResponse(
+      res,
+      200,
+      "User & related address deleted successfully"
+    );
   }
 }

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { SubRoutes } from "./Sub_Routes";
 import Data from "../utils/Data";
 import JWT from "../controllers/JWT";
-import client from "../utils/Client";
+import {client} from "../utils/Client";
 import limiter from "../controllers/rate_limitter";
 
 
