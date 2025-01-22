@@ -1,4 +1,4 @@
-import client from "../../utils/Client";
+import {client} from "../../src/utils/Client";
 const prisma = client.Prisma()
 
 async function main() {

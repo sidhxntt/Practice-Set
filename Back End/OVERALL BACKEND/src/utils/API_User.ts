@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import JWT from "../controllers/JWT";
+import JWT from "../controllers/Authentication";
 import { PrismaClient } from "@prisma/client";
-import { emailqueue, smsQueue } from "./Client";
 import dotenv from "dotenv";
 import Data from "./Data";
+import { emailQueue, smsQueue } from "./Client";
 
 dotenv.config();
 
@@ -30,7 +30,7 @@ export default class User extends Data {
   };
 
   public signup = async (req: Request, res: Response): Promise<Response> => {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     if (!email || !password) {
       return this.sendResponse(
@@ -72,10 +72,11 @@ export default class User extends Data {
       data: {
         email,
         password: hashedPassword,
+        role: role || "user",
       },
     });
 
-    emailqueue.Queue().add("send-email", {
+    emailQueue.Queue().add("send-email", {
       email: process.env.EMAIL,
       message: "New User added to API",
     });
@@ -141,7 +142,7 @@ export default class User extends Data {
     }
 
     const jwt = new JWT();
-    const token = await jwt.createToken(existingUser.id);
+    const token = await jwt.createToken(existingUser.id, existingUser.role);
 
     return this.sendResponse(res, 200, "Login successful", {
       access_token: token,
@@ -149,4 +150,5 @@ export default class User extends Data {
         "Please copy this Access_Token and paste it in your http auth bearer token.",
     });
   };
+
 }

@@ -1,4 +1,4 @@
-import { Application } from "express";
+import { Application, Response, NextFunction } from "express";
 import users from "./users";
 import Api_user from "./API_user";
 import addresses from "./addresses";
@@ -7,10 +7,12 @@ import todos from "./todos";
 import albums from "./albums";
 import home from "./home";
 import images from "./images";
+import { Client } from "../utils/Client";
+import promClient from "prom-client";
 
 class MainRoutes {
   private app: Application;
-  private readonly path: string = "/api/v3"; 
+  private readonly path: string = "/api/v3";
 
   constructor(app: Application) {
     this.app = app;
@@ -30,8 +32,19 @@ class MainRoutes {
     this.app.use(`${this.path}/addresses`, addresses);
     this.app.use(`${this.path}/images`, images);
 
+    // Metrics route
+    this.app.get("/metrics", async (_, res: Response, next: NextFunction) => {
+      try {
+        const metrics = await Client.getMetrics();
+        res.set("Content-Type", promClient.register.contentType);
+        res.send(metrics);
+      } catch (error) {
+        next(error);
+      }
+    });
+
     // Catch-all for undefined routes
-    this.app.use("*", (req, res) => {
+    this.app.use("*", (_, res: Response) => {
       res.status(404).json({ error: "Route not found" });
     });
   }

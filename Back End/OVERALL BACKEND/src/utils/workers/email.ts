@@ -1,5 +1,5 @@
 import { Worker, Job } from "bullmq";
-import { emailqueue } from "../Client";
+import { emailQueue } from "../Client";
 
 interface EmailJobData {
   email: string;
@@ -33,7 +33,7 @@ export default class MyEmailWorker {
     const { email, message } = job.data;
     
     // Process the email sending
-    await emailqueue.Email().sendMail({
+    await emailQueue.Email().sendMail({
       from: process.env.SMTP_FROM,
       to: email,
       subject: "Your Email Subject",

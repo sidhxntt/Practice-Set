@@ -10,4 +10,4 @@ RUN npm run build
 
 EXPOSE 8000
 
-CMD ["npm", "run", "start:pm2" ]
+CMD ["npm", "run", "prod:docker:start:pm2" ]

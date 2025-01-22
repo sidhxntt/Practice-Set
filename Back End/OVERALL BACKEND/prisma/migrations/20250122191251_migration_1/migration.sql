@@ -67,6 +67,7 @@ CREATE TABLE "Api_users" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL DEFAULT 'user',
 
     CONSTRAINT "Api_users_pkey" PRIMARY KEY ("id")
 );
