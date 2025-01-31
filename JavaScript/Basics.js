@@ -29,7 +29,6 @@ The binary + is the only operator that supports strings in such a way. Other ari
 String+ Number = String
 The plus + exists in two forms: the binary form that we used above and the unary form.
 The unary plus or, in other words, the plus operator + applied to a single value, doesn’t do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
-The unary plus or, in other words, the plus operator + applied to a single value, doesn’t do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
 It actually does the same thing as Number(...), but is shorter. 
 */
 console.log("6"/"3")// 2 ie converts automatically in number
