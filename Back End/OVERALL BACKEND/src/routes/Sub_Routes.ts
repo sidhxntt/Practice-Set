@@ -13,11 +13,11 @@ export class SubRoutes {
         method: HttpMethod,
         path: string,
         handler: any,
-        middleware: Array<any>
+        middlewares: Array<any>
     ): void {
         this.router[method](
             path,
-            ...middleware,
+            ...middlewares,
             async (req: Request, res: Response, next: NextFunction) => {
                 try {
                     await handler(req, res);

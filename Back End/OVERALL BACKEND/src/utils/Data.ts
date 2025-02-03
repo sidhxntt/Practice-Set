@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { client } from "./Client";
+import { client, Client } from "./Client";
 
 interface UserInput {
   name: string;
@@ -81,7 +81,7 @@ export default class Data {
   public async getAll(req: Request, res: Response) {
     const { page, limit, offset } = this.generatePagination(req);
 
-    const redis = await client.Redis();
+    const redis = client.Redis();
     const cacheKey = this.generateCacheKey(page, limit);
 
     const cachedData = await redis.get(cacheKey);
@@ -117,6 +117,8 @@ export default class Data {
       data: users,
     };
     await redis.setex(cacheKey, 3600, JSON.stringify(responseData));
+
+    Client.Logger().info("All Data fetched successfully");
     return this.sendResponse(
       res,
       200,
@@ -138,7 +140,7 @@ export default class Data {
       );
     }
 
-    const redis = await client.Redis();
+    const redis = client.Redis();
     const cacheKey = this.generateCacheKey(id);
     const cachedData = await redis.get(cacheKey);
 
@@ -172,6 +174,7 @@ export default class Data {
       );
     }
     await redis.setex(cacheKey, 3600, JSON.stringify(user));
+    Client.Logger().info("Single Data fetched successfully");
     return this.sendResponse(res, 200, "User fetched successfully", user);
   }
 
@@ -222,7 +225,7 @@ export default class Data {
         },
       },
     });
-
+    Client.Logger().info("Data created successfully");
     return this.sendResponse(
       res,
       201,
@@ -288,7 +291,7 @@ export default class Data {
         "User not found"
       );
     }
-
+    Client.Logger().info("Data updated successfully");
     return this.sendResponse(res, 200, "User updated successfully", {
       user: user,
       user_address: address,
@@ -332,6 +335,7 @@ export default class Data {
       where: { id },
     });
 
+    Client.Logger().info("Data deleted successfully");
     return this.sendResponse(
       res,
       200,

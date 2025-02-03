@@ -4,7 +4,7 @@ import JWT from "../controllers/Authentication";
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import Data from "./Data";
-import { emailQueue, smsQueue } from "./Client";
+import { emailQueue, smsQueue, Client } from "./Client";
 
 dotenv.config();
 
@@ -22,6 +22,7 @@ export default class User extends Data {
   }
 
   public signupPage = (req: Request, res: Response): Response => {
+    Client.logger!.info("Signup page accessed");
     return this.sendResponse(
       res,
       200,
@@ -76,16 +77,20 @@ export default class User extends Data {
       },
     });
 
-    emailQueue.Queue().add("send-email", {
+    const emailJob= await emailQueue.Queue().add("send-email", {
       email: process.env.EMAIL,
       message: "New User added to API",
     });
+    Client.logger!.info(`Added job to email queue. Email Job ID: ${emailJob.id}}`);
 
-    smsQueue.Queue().add("send-sms", {
+    const smsJob = await smsQueue.Queue().add("send-sms", {
       to: process.env.PHONE_NUMBER,
       message: "New User added to API",
     });
-  
+    Client.logger!.info(`Added job to email queue. SMS Job ID: ${smsJob.id}}`);
+
+
+    Client.logger!.info("New Api user created");
     return this.sendResponse(res, 201, "User created successfully", {
       id: newUser.id,
       email: newUser.email,
@@ -95,6 +100,7 @@ export default class User extends Data {
   };
 
   public loginPage = (req: Request, res: Response): Response => {
+    Client.logger!.info("Login Page Accessed");
     return this.sendResponse(
       res,
       200,
@@ -144,6 +150,7 @@ export default class User extends Data {
     const jwt = new JWT();
     const token = await jwt.createToken(existingUser.id, existingUser.role);
 
+    Client.logger!.info("Api user logged in");
     return this.sendResponse(res, 200, "Login successful", {
       access_token: token,
       message:

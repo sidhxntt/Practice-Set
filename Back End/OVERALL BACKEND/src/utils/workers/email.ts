@@ -1,5 +1,5 @@
 import { Worker, Job } from "bullmq";
-import { emailQueue } from "../Client";
+import { emailQueue, Client } from "../Client";
 
 interface EmailJobData {
   email: string;
@@ -20,11 +20,11 @@ export default class MyEmailWorker {
 
     // Event listeners for job completion or failure
     this.worker.on("completed", (job) => {
-      console.log(`Email job ${job.id} completed successfully`);
+      Client.logger!.info(`Email job ${job.id} completed successfully`);
     });
 
     this.worker.on("failed", (job, error) => {
-      console.error(`Email job ${job?.id} failed:`, error);
+      Client.logger!.error(`Email job ${job?.id} failed:`, error);
     });
   }
 
@@ -41,12 +41,12 @@ export default class MyEmailWorker {
       html: `<p>${message}</p>`,
     });
 
-    console.log(`Email job ${job.id} sent successfully to ${email}`);
+    Client.logger!.info(`Email job ${job.id} sent successfully to ${email}`);
   }
 
   public async close(): Promise<void> {
     await this.worker.close(); 
-    console.log("Email worker closed successfully.");
+    Client.logger!.info("Email worker closed successfully.");
   }
 }
 

@@ -1,5 +1,5 @@
 import { Worker, Job } from "bullmq";
-import { smsQueue } from "../Client";
+import { smsQueue, Client } from "../Client";
 
 interface SMSJobData {
   to: string;
@@ -20,11 +20,11 @@ export default class MySMSWorker {
 
     // Event listeners for job completion or failure
     this.worker.on("completed", (job) => {
-      console.log(`SMS job ${job.id} completed successfully`);
+      Client.logger!.info(`SMS job ${job.id} completed successfully`);
     });
 
     this.worker.on("failed", (job, error) => {
-      console.error(`SMS job ${job?.id} failed:`, error);
+      Client.logger!.error(`SMS job ${job?.id} failed:`, error);
     });
   }
 
@@ -32,12 +32,12 @@ export default class MySMSWorker {
     const { to, message } = job.data;
     // Process the SMS sending
     await smsQueue.sendSMS(to, message);
-    console.log(`SMS job ${job.id} sent successfully to ${to}`);
+    Client.logger!.info(`SMS job ${job.id} sent successfully to ${to}`);
   }
 
   public async close(): Promise<void> {
     await this.worker.close(); 
-    console.log("SMS worker closed successfully.");
+    Client.logger!.info("SMS worker closed successfully.");
   }
 }
 

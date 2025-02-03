@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import AllRoutes from "./routes/Main_Routes";
 import error_handling from "./controllers/error";
-import { client } from "./utils/Client";
+import { client, Client } from "./utils/Client";
 import cors from "cors";
 import GracefulShutdown from "http-graceful-shutdown";
 import { emailWorker } from "./utils/workers/email";
@@ -50,6 +50,7 @@ export default class SERVER {
       // Store the server instance
       this.httpServer = this.app.listen(this.port, () => {
         console.log(`Server is running at: ${this.serverUrl} 🐳`);
+        Client.logger!.info(`Server is running at: ${this.serverUrl} 🐳`);
       });
 
       // Apply graceful shutdown after server starts
@@ -67,16 +68,16 @@ export default class SERVER {
           await client.disconnectDB(); 
         },
         finally: () => {
-          console.log("Server gracefully shut down.");
+          Client.logger!.info("Server gracefully shut down.");
         },
       });
 
     } catch (error) {
       if (error instanceof Error) {
-        console.error("Server startup failed:", error.message);
+        Client.logger!.error("Server startup failed:", error.message);
         process.exit(1);
       }
-      console.error("An unknown error occurred during server startup");
+      Client.logger!.error("An unknown error occurred during server startup");
       process.exit(1);
     }
   }

@@ -5,6 +5,8 @@ import { Queue } from "bullmq";
 import nodemailer from "nodemailer";
 import twilio from "twilio";
 import promClient from "prom-client";
+import { createLogger, transports } from "winston";
+import LokiTransport from "winston-loki";
 
 dotenv.config();
 
@@ -12,11 +14,12 @@ class Client {
   private static prisma: PrismaClient | null = null;
   private static redis: Redis | null = null;
   private static metricsInitialized = false;
+  public static logger: ReturnType<typeof createLogger> | null = null;
+  private static promRegister = promClient.register;
 
   private readonly queue: Queue;
   private readonly transporter: nodemailer.Transporter;
   private readonly twilioClient: twilio.Twilio;
-  private static promRegister = promClient.register;
 
   constructor(queueName: string = "default-queue") {
     // Initialize or reuse Prisma Client
@@ -33,10 +36,11 @@ class Client {
 
       Client.redis.on("connect", () => {
         console.log("Successfully connected to Redis! 🚀");
+       Client.logger!.info("Successfully connected to Redis! 🚀");
       });
 
       Client.redis.on("error", (err) => {
-        console.error("Redis connection error:", err.stack || err);
+        Client.logger!.error("Redis connection error:", err.stack || err);
       });
     }
 
@@ -85,6 +89,21 @@ class Client {
       });
       Client.metricsInitialized = true;
     }
+
+    // Initialize Logger (once globally)
+    if (!Client.logger) {
+      Client.logger = createLogger({
+        transports: [
+          new LokiTransport({
+            host: "http://grafana-loki:3100",
+            json: true,
+            onConnectionError: (err) => console.error(err)
+          }),
+          new transports.Console(),
+        ],
+     
+      });
+    }
   }
 
   // Getters for shared resources
@@ -104,7 +123,11 @@ class Client {
     return this.transporter;
   }
 
-  public static getMetrics() {
+  public static Logger() {
+    return Client.logger!;
+  }
+
+  public static async getMetrics() {
     return Client.promRegister.metrics();
   }
 
@@ -116,36 +139,36 @@ class Client {
         to,
         from: process.env.TWILIO_PHONE_NUMBER!,
       });
-      console.log(`SMS sent successfully via Twilio to ${to}:`, response.sid);
-    } catch (error: Error | any) {
-      console.error(`Failed to send SMS via Twilio to ${to}:`, error.message || error);
+      Client.logger!.info(`SMS sent successfully to ${to}: ${response.sid}`);
+    } catch (error: any) {
+      Client.logger!.error(`Failed to send SMS to ${to}: ${error.message || error}`);
     }
   }
 
   public async connectDB(): Promise<void> {
     try {
       await Client.prisma!.$connect();
-      console.log("Successfully connected to database 🎯");
-    } catch (error: Error | any) {
-      console.error("Error connecting to database:", error.message || error);
+      Client.logger!.info("Successfully connected to database 🎯");
+    } catch (error: any) {
+      Client.logger!.error("Error connecting to database:", error.message || error);
     }
   }
 
   public async disconnectRedis(): Promise<void> {
     try {
       await Client.redis!.quit();
-      console.log("Successfully disconnected from Redis 🚪");
-    } catch (error : Error | any) {
-      console.error("Failed to disconnect from Redis:", error.message || error);
+      Client.logger!.info("Successfully disconnected from Redis 🚪");
+    } catch (error: any) {
+      Client.logger!.error("Failed to disconnect from Redis:", error.message || error);
     }
   }
 
   public async disconnectDB(): Promise<void> {
     try {
       await Client.prisma!.$disconnect();
-      console.log("Successfully disconnected from database 🎯");
-    } catch (error : Error | any) {
-      console.error("Failed to disconnect from database:", error.message || error);
+      Client.logger!.info("Successfully disconnected from database 🎯");
+    } catch (error: any) {
+      Client.logger!.error("Failed to disconnect from database:", error.message || error);
     }
   }
 }
