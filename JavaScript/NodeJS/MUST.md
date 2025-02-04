@@ -431,7 +431,7 @@ Script finished
 
 ---
 
-### **3. Asynchronous Programming (Event Loop Manages I/O)**
+### **3. Asynchronous Programming (Event Loop Manages I/O) [Single-Threaded & Non Blocking]**
 - The **event loop schedules I/O operations** without blocking execution.
 - Uses **async/await** to handle non-blocking input.
 
