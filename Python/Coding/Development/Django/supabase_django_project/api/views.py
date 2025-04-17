@@ -4,7 +4,7 @@ from .models import Address, Album, Image, Post, Todos
 from .serializers import AddressSerializer, AlbumSerializer, ImageSerializer, PostSerializer, TodosSerializer
 
 class AddressViewSet(viewsets.ModelViewSet):
-    queryset = Address.objects.all()
+    queryset = Address.objects.all() # prisma.album.findMany()
     serializer_class = AddressSerializer
 
 class AlbumViewSet(viewsets.ModelViewSet):

@@ -1,3 +1,4 @@
+# settings.py in Django is just like server.ts (or config.ts) in an Express app.
 # core/settings.py
 import os
 from pathlib import Path
@@ -16,6 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
+# List of host/domain names this Django site can serve (allowed_host basically means teling django who is actually hosting the backend_server)
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Application definition
@@ -25,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',   
     # Third party apps
     'rest_framework',
     'corsheaders',
@@ -34,10 +36,11 @@ INSTALLED_APPS = [
     'authentication',
 ]
 
+#  Order matters here - each middleware processes requests/responses in order
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', #cors
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -68,6 +71,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# multiple dbs supported unlike express + prisma
 DATABASES = {
     'default': {
         **dj_database_url.parse(os.getenv('DATABASE_URL', ''), conn_max_age=600),
@@ -104,11 +108,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10 
 }
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all origins in development
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all origins in development (basically means teling django who is the frontend)
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # React frontend
     'http://127.0.0.1:3000',
@@ -133,5 +137,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Custom user model
+# Custom user model [Specifies a custom User model (instead of Django's default)]
 AUTH_USER_MODEL = 'authentication.User'

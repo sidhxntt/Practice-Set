@@ -13,3 +13,5 @@ router.register('addresses', views.AddressViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+
+# Now withing super-main (api app) these are the main routes exactly similar to our express node backend
