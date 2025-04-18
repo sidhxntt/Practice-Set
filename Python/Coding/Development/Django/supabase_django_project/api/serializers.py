@@ -1,4 +1,5 @@
 # api/serializers.py
+# (So serialization fetches the data from db from the specific model and convert into json object.)
 from rest_framework import serializers
 from .models import Address, Album, Image, Post, Todos
 

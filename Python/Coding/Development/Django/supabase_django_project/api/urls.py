@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register('albums', views.AlbumViewSet)
+router.register('albums', views.AlbumViewSet) # Viewset means all HTTP Method already there
 router.register('images', views.ImageViewSet)
 router.register('posts', views.PostViewSet)
 router.register('todos', views.TodoViewSet)

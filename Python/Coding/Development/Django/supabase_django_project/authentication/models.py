@@ -3,6 +3,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class UserManager(BaseUserManager):
+    """_summary_
+    This is where BaseUserManager comes in — it provides:
+        Password hashing (set_password)
+        Email normalization (normalize_email)
+        Validations
+        Superuser creation structure
+    """
+    # methods for User
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
@@ -25,6 +33,11 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
+    """
+    AbstractBaseUser: basic user model with password management
+    PermissionsMixin: gives you permissions & groups support (like is_superuser, has_perm())
+    """
+    # Model for User
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True, null=True, blank=True)
     phone = models.CharField(max_length=20, unique=True, null=True, blank=True)
