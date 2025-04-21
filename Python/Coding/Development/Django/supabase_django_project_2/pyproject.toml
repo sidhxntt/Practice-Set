@@ -1,0 +1,37 @@
+[project]
+name = "supabase-django-project_2"
+version = "0.1.0"
+description = "Django project with Supabase backend again"
+authors = [
+    {name = "Siddhant", email = "siddhantg2002@gmail.com"},
+]
+dependencies = [
+    "django>=4.2.0",
+    "djangorestframework>=3.14.0",
+    "psycopg2-binary>=2.9.6",
+    "python-dotenv>=1.0.0",
+    "dj-database-url>=2.0.0",
+    "django-cors-headers>=4.0.0",
+    "faker>=37.1.0",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.scripts]
+setup = "python -m django startproject core ." # Creates the project
+dev = "python manage.py runserver"  # Starts local server
+user = "python manage.py createsuperuser" # user that can access admin
+app = "python manage.py startapp" # different apps/(main_routes)
+shell = "python manage.py shell"
+seed = "python manage.py populate_db"
+
+[tool.pdm.scripts.migrate]
+composite = [
+    "python manage.py makemigrations", # Creates new DB migrations
+    "python manage.py migrate" # Applies DB migrations
+]
