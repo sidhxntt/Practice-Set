@@ -1,17 +1,16 @@
-# # api/urls.py
-# from django.urls import path, include  # Added the include import
-# from rest_framework.routers import DefaultRouter
-# from . import views
+# api/urls.py
+from django.urls import path, include  # Added the include import
+from rest_framework.routers import DefaultRouter
+from .views import AlbumViewSet, ImageViewSet, AddressViewSet, PostViewSet, TodoViewSet
 
-# router = DefaultRouter()
-# router.register('albums', views.AlbumViewSet) # Viewset means all HTTP Method already there
-# router.register('images', views.ImageViewSet)
-# router.register('posts', views.PostViewSet)
-# router.register('todos', views.TodoViewSet)
-# router.register('addresses', views.AddressViewSet)
+router = DefaultRouter()
+router.register('albums', AlbumViewSet) 
+router.register('images', ImageViewSet)
+router.register('posts', PostViewSet)
+router.register('todos', TodoViewSet)
+router.register('addresses', AddressViewSet)
 
-# urlpatterns = [
-#     path('', include(router.urls)),
-# ]
+urlpatterns = [
+    path('', include(router.urls)),
+]
 
-# # Now withing super-main (api app) these are the main routes exactly similar to our express node backend
