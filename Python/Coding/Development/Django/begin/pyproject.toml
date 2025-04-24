@@ -1,0 +1,28 @@
+[project]
+name = "Django"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Sid.", email = "siddhantg2002@gmail.com"},
+]
+dependencies = ["django==5.2"]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+setup = "python -m django startproject src ." # Creates the project
+dev = "python manage.py runserver"  # Starts local server
+user = "python manage.py createsuperuser" # user that can access admin
+app = "python manage.py startapp" # different apps/(main_routes)
+shell = "python manage.py shell"
+
+[tool.pdm.scripts.migrate]
+composite = [
+    "python manage.py makemigrations", # Creates new DB migrations
+    "python manage.py migrate" # Applies DB migrations
+]
+
