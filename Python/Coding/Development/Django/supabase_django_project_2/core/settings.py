@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
+from .utils.installed_apps import installed_apps
 
 load_dotenv()
 
@@ -10,20 +11,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
-# Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',   
-    # Third party apps
-    'rest_framework',
-    'corsheaders',
-    # Our apps
-    'api',
-]
+INSTALLED_APPS = installed_apps(
+    'api', 
+    drf='rest_framework',
+    cors='corsheaders',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
