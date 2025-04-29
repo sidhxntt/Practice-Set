@@ -4,6 +4,9 @@ from .models import Address, Album, Image, Post, Todo
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
+    """
+    fieldsets: Organizes form sections visually 
+    """
     list_display = ('id', 'street', 'city', 'zipcode', 'user')
     search_fields = ('street', 'city', 'zipcode')
     list_filter = ('city', 'country')

@@ -1,24 +1,29 @@
-def installed_apps(*your_apps, **third_party_apps):
-    """
-    Dynamically generates INSTALLED_APPS list for Django settings.
-    
-    Args:
-        *your_apps: Your project's apps
-        **third_party_apps: Third-party apps (values should be the actual package names)
-        
-    Returns:
-        List of apps in proper Django order
-    """
-    base_apps = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
+def installed_apps():
+
+    DJANGO_APPS = [
+        'django.contrib.admin', # Django Admin UI
+        'django.contrib.auth', # User authentication system (login, groups, permissions)
+        'django.contrib.contenttypes', # Support for generic relationships between models
+        'django.contrib.sessions', # Manages session data (e.g., for logged-in users)
+        'django.contrib.messages', # Flash messages between views (e.g., success alerts)
+        'django.contrib.staticfiles', # Handles serving static files (CSS, JS)
     ]
-    
-    # Use the VALUES of third_party_apps (the actual package names)
-    third_party = list(third_party_apps.values())
-    
-    return [*base_apps, *sorted(third_party), *your_apps]
+
+    THIRD_PARTY_APPS = [
+        'rest_framework', # Django REST Framework — API toolkit. Getting used in entire project only.
+        'rest_framework_simplejwt', # JWT based auth initialisation. need to update DRF-settings, urls.py and simple_jwt_settings.py
+        'corsheaders', # Enables CORS (Cross-Origin Resource Sharing) Getting used in middlewares.py
+        'django_filters', # Provides filtering support for DRF. Getting used in DRF_settings.py
+        'storages',  # Django-storages (e.g., S3, Azure) for managing media/static files remotely
+        'health_check',  # Exposes a /health/ endpoint to check app health
+        'health_check.db',  # Ensures database connectivity is OK. Getting used in in urls.py ->  path("health/", include("health_check.urls")) [CORE]
+        'health_check.cache',  # Verifies cache backend (like Redis) is reachable
+        # all health checks (app, DB, cache, storage, etc.) are unified under a single endpoint, typically /health/.
+    ]
+
+    LOCAL_APPS = [
+        'api',
+        # 'authentication',
+    ]
+
+    return DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

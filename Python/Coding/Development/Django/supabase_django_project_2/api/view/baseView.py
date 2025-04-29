@@ -5,7 +5,7 @@ class BaseModelViewSet(viewsets.ModelViewSet):
     """
     Base viewset with common configurations (middlewares).
     """
-    permission_classes = [ IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     
     def get_queryset(self):
         """

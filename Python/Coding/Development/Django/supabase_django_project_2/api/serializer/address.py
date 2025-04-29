@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from ..model.address import Address
 from .user import UserSerializer
 
-
 class AddressSerializer(serializers.ModelSerializer):
     """
     Serializer for Address model with full address formatting,
