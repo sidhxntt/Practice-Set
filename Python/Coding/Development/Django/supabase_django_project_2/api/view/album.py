@@ -6,7 +6,7 @@ from django.views.decorators.cache import cache_page
 
 class AlbumViewSet(BaseModelViewSet):
     serializer_class = AlbumSerializer
-    queryset = Album.objects.select_related('user').prefetch_related('image_set').all()
+    queryset = Album.objects.select_related('user')
     filterset_fields = ['category']
     search_fields = ['title']
     ordering_fields = ['created_at', 'title', 'category']

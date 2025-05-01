@@ -1,6 +1,10 @@
 import os
 
 def caching(env):
+    """
+    Configure caching settings based on environment.
+    Always returns SESSION_ENGINE and SESSION_CACHE_ALIAS regardless of environment.
+    """
     if env.get('prod') or env.get('stage'):
         return {
             'cache_config': {
@@ -28,5 +32,7 @@ def caching(env):
                     'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
                     'LOCATION': 'unique-snowflake',
                 }
-            }
+            },
+            'SESSION_ENGINE': 'django.contrib.sessions.backends.db',
+            'SESSION_CACHE_ALIAS': 'default',
         }

@@ -9,7 +9,7 @@ class TodoViewSet(BaseModelViewSet):
     queryset = Todo.objects.select_related('user').all()
     filterset_fields = ['completed']
     search_fields = ['title']
-    ordering_fields = ['created_at', 'title', 'completed']
+    ordering_fields = ['id','created_at', 'title', 'completed']
     ordering = ['-created_at']
 
     def perform_create(self, serializer):

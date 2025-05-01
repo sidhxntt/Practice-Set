@@ -1,0 +1,40 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+
+# Django
+*.log
+db.sqlite3
+*.pot
+*.py[co]
+
+# Environment
+.env
+*.env
+.env.*
+
+# macOS
+.DS_Store
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Node
+node_modules/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# Migrations
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/__pycache__/
+*/migrations/*.py, except __init__.py

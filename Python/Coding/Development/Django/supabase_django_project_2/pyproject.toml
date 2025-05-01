@@ -16,6 +16,12 @@ dependencies = [
     "django-filter>=25.1",
     "django-health-check>=3.18.3",
     "djangorestframework-simplejwt>=5.5.0",
+    "drf-spectacular>=0.28.0",
+    "django-prometheus>=2.3.1",
+    "django-storages>=1.14.6",
+    "boto3>=1.38.6",
+    "whitenoise>=6.9.0",
+    "sentry-sdk[django]>=2.27.0",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
@@ -27,7 +33,7 @@ build-backend = "pdm.backend"
 
 [tool.pdm.scripts]
 setup = "python -m django startproject core ." # Creates the project
-dev = "python manage.py runserver"  # Starts local server
+dev = "python manage.py runserver 4000"  # Starts local server
 user = "python manage.py createsuperuser" # user that can access admin
 app = "python manage.py startapp" # different apps/(main_routes)
 shell = "python manage.py shell"

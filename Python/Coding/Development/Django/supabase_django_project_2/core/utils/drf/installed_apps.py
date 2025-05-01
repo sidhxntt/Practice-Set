@@ -7,6 +7,8 @@ def installed_apps():
         'django.contrib.sessions', # Manages session data (e.g., for logged-in users)
         'django.contrib.messages', # Flash messages between views (e.g., success alerts)
         'django.contrib.staticfiles', # Handles serving static files (CSS, JS)
+        'django.contrib.sites',  # Required for proper domain handling
+        'django.contrib.sitemaps',  # SEO optimization
     ]
 
     THIRD_PARTY_APPS = [
@@ -18,6 +20,10 @@ def installed_apps():
         'health_check',  # Exposes a /health/ endpoint to check app health
         'health_check.db',  # Ensures database connectivity is OK. Getting used in in urls.py ->  path("health/", include("health_check.urls")) [CORE]
         'health_check.cache',  # Verifies cache backend (like Redis) is reachable
+        'health_check.storage',  # Verifies storages like S3 is reachable
+        'drf_spectacular', # API documentation, update DRF, urls
+        'django_prometheus', #  Prometheus Monitoring , update url, middeware
+        'whitenoise.runserver_nostatic'
         # all health checks (app, DB, cache, storage, etc.) are unified under a single endpoint, typically /health/.
     ]
 

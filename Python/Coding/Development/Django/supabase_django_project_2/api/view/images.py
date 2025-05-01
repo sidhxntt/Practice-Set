@@ -9,7 +9,7 @@ class ImageViewSet(BaseModelViewSet):
     queryset = Image.objects.select_related('album', 'user', 'album__user').all()
     filterset_fields = ['album']
     search_fields = ['title', 'album__title']
-    ordering_fields = ['created_at', 'title', 'album__title']
+    ordering_fields = ['id', 'created_at', 'title', 'album__title']
     ordering = ['-created_at']
 
     def get_queryset(self):

@@ -30,5 +30,6 @@ def DRF(env):
         'anon': '100/hour', # Anonymous users: Max 100 requests/hour.
         'user': '1000/hour', # Authenticated users: Max 1000 requests/hour.
     },
-    'EXCEPTION_HANDLER': 'core.utils.exception_handlers.custom_exception_handler', # Points to a custom function to format exceptions globally. Useful for returning structured JSON errors instead of default DRF error responses.
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', # API DOCS
+    'EXCEPTION_HANDLER': 'core.utils.logging.exception_handler.custom_exception_handler', # Points to a custom function to format exceptions globally. Useful for returning structured JSON errors instead of default DRF error responses.
 }
