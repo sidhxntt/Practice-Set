@@ -1,0 +1,279 @@
+# File: kibana/export.ndjson
+# This is a sample of Kibana dashboards and visualizations that you can import
+
+# Django Request Overview Dashboard
+{
+  "id": "django-requests-overview",
+  "type": "dashboard",
+  "attributes": {
+    "title": "Django Request Overview",
+    "description": "Overview of Django application requests and performance",
+    "hits": 0,
+    "panelsJSON": [
+      {
+        "id": "request-volume-over-time",
+        "type": "visualization",
+        "panelIndex": "1",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 8,
+          "i": "1"
+        }
+      },
+      {
+        "id": "response-status-distribution",
+        "type": "visualization",
+        "panelIndex": "2",
+        "gridData": {
+          "x": 0,
+          "y": 8,
+          "w": 12,
+          "h": 8,
+          "i": "2"
+        }
+      },
+      {
+        "id": "response-time-histogram",
+        "type": "visualization",
+        "panelIndex": "3",
+        "gridData": {
+          "x": 12,
+          "y": 8,
+          "w": 12,
+          "h": 8,
+          "i": "3"
+        }
+      },
+      {
+        "id": "top-endpoints",
+        "type": "visualization",
+        "panelIndex": "4",
+        "gridData": {
+          "x": 0,
+          "y": 16,
+          "w": 12,
+          "h": 10,
+          "i": "4"
+        }
+      },
+      {
+        "id": "error-rate-over-time",
+        "type": "visualization",
+        "panelIndex": "5",
+        "gridData": {
+          "x": 12,
+          "y": 16,
+          "w": 12,
+          "h": 10,
+          "i": "5"
+        }
+      },
+      {
+        "id": "request-logs-table",
+        "type": "search",
+        "panelIndex": "6",
+        "gridData": {
+          "x": 0,
+          "y": 26,
+          "w": 24,
+          "h": 10,
+          "i": "6"
+        }
+      }
+    ],
+    "timeRestore": false,
+    "timeTo": "now",
+    "timeFrom": "now-24h",
+    "refreshInterval": {
+      "display": "Off",
+      "pause": false,
+      "value": 0
+    }
+  }
+}
+
+# Django Exceptions Dashboard
+{
+  "id": "django-exceptions",
+  "type": "dashboard",
+  "attributes": {
+    "title": "Django Exceptions",
+    "description": "Exceptions and errors from Django application",
+    "hits": 0,
+    "panelsJSON": [
+      {
+        "id": "exceptions-over-time",
+        "type": "visualization",
+        "panelIndex": "1",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 8,
+          "i": "1"
+        }
+      },
+      {
+        "id": "exception-types",
+        "type": "visualization",
+        "panelIndex": "2",
+        "gridData": {
+          "x": 0,
+          "y": 8,
+          "w": 12,
+          "h": 8,
+          "i": "2"
+        }
+      },
+      {
+        "id": "endpoints-with-errors",
+        "type": "visualization",
+        "panelIndex": "3",
+        "gridData": {
+          "x": 12,
+          "y": 8,
+          "w": 12,
+          "h": 8,
+          "i": "3"
+        }
+      },
+      {
+        "id": "exception-logs-table",
+        "type": "search",
+        "panelIndex": "4",
+        "gridData": {
+          "x": 0,
+          "y": 16,
+          "w": 24,
+          "h": 12,
+          "i": "4"
+        }
+      }
+    ],
+    "timeRestore": false,
+    "timeTo": "now",
+    "timeFrom": "now-24h",
+    "refreshInterval": {
+      "display": "Off",
+      "pause": false,
+      "value": 0
+    }
+  }
+}
+
+# Sample Visualizations
+
+# Request Volume Over Time
+{
+  "id": "request-volume-over-time",
+  "type": "visualization",
+  "attributes": {
+    "title": "Request Volume Over Time",
+    "visState": "{\"type\":\"line\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"labels\":{\"show\":true,\"truncate\":100},\"position\":\"bottom\",\"scale\":{\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{},\"type\":\"category\"}],\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"legendPosition\":\"right\",\"seriesParams\":[{\"data\":{\"id\":\"1\",\"label\":\"Count\"},\"drawLinesBetweenPoints\":true,\"mode\":\"normal\",\"show\":\"true\",\"showCircles\":true,\"type\":\"line\",\"valueAxis\":\"ValueAxis-1\"}],\"times\":[],\"type\":\"line\",\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"labels\":{\"filter\":false,\"rotate\":0,\"show\":true,\"truncate\":100},\"name\":\"LeftAxis-1\",\"position\":\"left\",\"scale\":{\"mode\":\"normal\",\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{\"text\":\"Count\"},\"type\":\"value\"}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}}],\"listeners\":{}}",
+    "uiStateJSON": "{}",
+    "description": "",
+    "savedSearchId": "request-logs",
+    "version": 1
+  }
+}
+
+# Response Status Distribution
+{
+  "id": "response-status-distribution",
+  "type": "visualization",
+  "attributes": {
+    "title": "Response Status Distribution",
+    "visState": "{\"type\":\"pie\",\"params\":{\"addLegend\":true,\"addTooltip\":true,\"isDonut\":false,\"legendPosition\":\"right\",\"type\":\"pie\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"response.status_class\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+    "uiStateJSON": "{}",
+    "description": "",
+    "savedSearchId": "request-logs",
+    "version": 1
+  }
+}
+
+# Response Time Histogram
+{
+  "id": "response-time-histogram",
+  "type": "visualization",
+  "attributes": {
+    "title": "Response Time Histogram",
+    "visState": "{\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"labels\":{\"show\":true,\"truncate\":100},\"position\":\"bottom\",\"scale\":{\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{\"text\":\"Response Time (ms)\"},\"type\":\"category\"}],\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"legendPosition\":\"right\",\"seriesParams\":[{\"data\":{\"id\":\"1\",\"label\":\"Count\"},\"drawLinesBetweenPoints\":true,\"mode\":\"stacked\",\"show\":\"true\",\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"}],\"times\":[],\"type\":\"histogram\",\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"labels\":{\"filter\":false,\"rotate\":0,\"show\":true,\"truncate\":100},\"name\":\"LeftAxis-1\",\"position\":\"left\",\"scale\":{\"mode\":\"normal\",\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{\"text\":\"Count\"},\"type\":\"value\"}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"metrics.response_time\",\"interval\":50,\"extended_bounds\":{}}}],\"listeners\":{}}",
+    "uiStateJSON": "{}",
+    "description": "",
+    "savedSearchId": "request-logs",
+    "version": 1
+  }
+}
+
+# Top Endpoints
+{
+  "id": "top-endpoints",
+  "type": "visualization",
+  "attributes": {
+    "title": "Top Endpoints",
+    "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"request.path.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"metrics.response_time\"}}],\"listeners\":{}}",
+    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+    "description": "",
+    "savedSearchId": "request-logs",
+    "version": 1
+  }
+}
+
+# Saved Searches
+
+# Request Logs Search
+{
+  "id": "request-logs",
+  "type": "search",
+  "attributes": {
+    "title": "Request Logs",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "@timestamp",
+      "request.method",
+      "request.path",
+      "response.status",
+      "metrics.response_time",
+      "client.ip",
+      "request_id"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"django-*\",\"highlightAll\":true,\"version\":true,\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"django-*\",\"key\":\"logger\",\"value\":\"request_logger\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"logger\":{\"query\":\"request_logger\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+    }
+  }
+}
+
+# Exception Logs Search
+{
+  "id": "exception-logs",
+  "type": "search",
+  "attributes": {
+    "title": "Exception Logs",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "@timestamp",
+      "message",
+      "exception.type",
+      "exception.message",
+      "request.path",
+      "request_id"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"django-*\",\"highlightAll\":true,\"version\":true,\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"django-*\",\"key\":\"logger\",\"value\":\"api_exceptions\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"logger\":{\"query\":\"api_exceptions\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+    }
+  }
+}

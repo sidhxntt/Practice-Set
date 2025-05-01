@@ -6,7 +6,7 @@ import os
 SENTRY_DSN = os.getenv('SENTRY_DSN')
 
 def sentry (env):
-    if SENTRY_DSN and (env.get('prod') or env.get('stage')):
+    if SENTRY_DSN:
         try:
             sentry_sdk.init(
                 dsn=SENTRY_DSN,

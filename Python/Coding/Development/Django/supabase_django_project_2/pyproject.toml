@@ -22,6 +22,8 @@ dependencies = [
     "boto3>=1.38.6",
     "whitenoise>=6.9.0",
     "sentry-sdk[django]>=2.27.0",
+    "python-logstash>=0.4.8",
+    "elasticsearch>=9.0.1",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
@@ -32,15 +34,16 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pdm.scripts]
-setup = "python -m django startproject core ." # Creates the project
-dev = "python manage.py runserver 4000"  # Starts local server
-user = "python manage.py createsuperuser" # user that can access admin
-app = "python manage.py startapp" # different apps/(main_routes)
-shell = "python manage.py shell"
-seed = "python manage.py populate_db"
+setup = "python -m django startproject src/core ." # Creates the project
+dev = "python src/manage.py runserver 4000"  # Starts local server
+docker = "python src/manage.py runserver 0.0.0.0:4000"  # Starts local server
+user = "python src/manage.py createsuperuser" # user that can access admin
+app = "python src/manage.py startapp" # different apps/(main_routes)
+shell = "python src/manage.py shell"
+seed = "python src/manage.py populate_db"
 
 [tool.pdm.scripts.migrate]
 composite = [
-    "python manage.py makemigrations", # Creates new DB migrations
-    "python manage.py migrate" # Applies DB migrations
+    "python src/manage.py makemigrations", # Creates new DB migrations
+    "python src/manage.py migrate" # Applies DB migrations
 ]

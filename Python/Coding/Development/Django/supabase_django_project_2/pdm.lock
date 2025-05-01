@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:0123f849df5d4faf1651f5ec1898e10d5e7388453059ce4d95db94b3e6a9b760"
+content_hash = "sha256:ec10cffb12a3ea22801e3cd3cbdc424d328281d353b0a695c84ec947211eafb3"
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -231,6 +231,37 @@ files = [
 ]
 
 [[package]]
+name = "elastic-transport"
+version = "8.17.1"
+requires_python = ">=3.8"
+summary = "Transport classes and utilities shared among Python Elastic client libraries"
+groups = ["default"]
+dependencies = [
+    "certifi",
+    "urllib3<3,>=1.26.2",
+]
+files = [
+    {file = "elastic_transport-8.17.1-py3-none-any.whl", hash = "sha256:192718f498f1d10c5e9aa8b9cf32aed405e469a7f0e9d6a8923431dbb2c59fb8"},
+    {file = "elastic_transport-8.17.1.tar.gz", hash = "sha256:5edef32ac864dca8e2f0a613ef63491ee8d6b8cfb52881fa7313ba9290cac6d2"},
+]
+
+[[package]]
+name = "elasticsearch"
+version = "9.0.1"
+requires_python = ">=3.8"
+summary = "Python client for Elasticsearch"
+groups = ["default"]
+dependencies = [
+    "elastic-transport<9,>=8.15.1",
+    "python-dateutil",
+    "typing-extensions",
+]
+files = [
+    {file = "elasticsearch-9.0.1-py3-none-any.whl", hash = "sha256:9fd110f9bb77310343709d9cccbd523a431a6e528d8441b01a26b97eef3238a3"},
+    {file = "elasticsearch-9.0.1.tar.gz", hash = "sha256:76f9b519cfd15a860f615a94ba90dcb9543b721306bc5144ecc15f0b4d5d2781"},
+]
+
+[[package]]
 name = "faker"
 version = "37.1.0"
 requires_python = ">=3.9"
@@ -401,6 +432,15 @@ groups = ["default"]
 files = [
     {file = "python_dotenv-1.1.0-py3-none-any.whl", hash = "sha256:d7c01d9e2293916c18baf562d95698754b0dbbb5e74d457c45d4f6561fb9d55d"},
     {file = "python_dotenv-1.1.0.tar.gz", hash = "sha256:41f90bc6f5f177fb41f53e87666db362025010eb28f60a01c9143bfa33a2b2d5"},
+]
+
+[[package]]
+name = "python-logstash"
+version = "0.4.8"
+summary = "Python logging handler for Logstash."
+groups = ["default"]
+files = [
+    {file = "python-logstash-0.4.8.tar.gz", hash = "sha256:d04e1ce11ecc107e4a4f3b807fc57d96811e964a554081b3bbb44732f74ef5f9"},
 ]
 
 [[package]]

@@ -13,6 +13,7 @@ from core.utils.drf.security import security_settings
 import logging.config
 from datetime import timedelta
 from core.utils.logging.sentry import sentry
+from core.utils.logging.elk_config import configure_logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,6 +107,30 @@ USE_TZ = True
 
 # Only initialize Sentry if DSN is provided
 sentry(env)
+
+# Base directory for logs
+LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+# Application name and environment
+APP_NAME = 'django_backend'
+ENVIRONMENT = os.environ.get('DJANGO_ENV', 'development')
+
+# ELK configuration
+ELASTICSEARCH_HOST = os.environ.get('ELASTICSEARCH_HOST', 'localhost')
+ELASTICSEARCH_PORT = os.environ.get('ELASTICSEARCH_PORT', 9200)
+LOGSTASH_HOST = os.environ.get('LOGSTASH_HOST', 'localhost')
+LOGSTASH_PORT = os.environ.get('LOGSTASH_PORT', 5044)
+
+# Configure Django logging
+# LOGGING = configure_logging(
+#     app_name=APP_NAME,
+#     environment=ENVIRONMENT,
+#     log_dir=LOG_DIR,
+#     logstash_host=LOGSTASH_HOST,
+#     logstash_port=LOGSTASH_PORT
+# )
 
 # Static files
 STATIC_URL = 'static/'

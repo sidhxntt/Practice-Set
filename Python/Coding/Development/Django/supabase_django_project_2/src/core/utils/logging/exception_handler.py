@@ -11,7 +11,7 @@ import logging.handlers
 from django.conf import settings
 
 # Configure logging
-LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs')
+LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'error_logs')
 if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR)
 
@@ -21,7 +21,7 @@ logger.setLevel(logging.ERROR)
 
 # Configure file handler with rotation
 file_handler = logging.handlers.RotatingFileHandler(
-    os.path.join(LOG_DIR, 'logs.log'),
+    os.path.join(LOG_DIR, 'api_exceptions.log'),
     maxBytes=10*1024*1024,  # 10MB
     backupCount=10,
     encoding='utf-8'
