@@ -8,18 +8,17 @@ class Solution(object):
                 k += 1
         
         return k
+ 
     
     def removeDuplicates_optimise(self, nums):
         seen = {}
         k = 0
-        
         for num in nums:
             if num not in seen:
                 seen[num] = True
-                nums[k] = num  # overwrite at index k
-                k += 1
-                
-        return k
+                nums[k] = num
+                k +=1
+        return k  
 
 # Create instance of Solution
 sol = Solution()

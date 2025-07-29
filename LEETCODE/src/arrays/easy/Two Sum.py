@@ -13,7 +13,15 @@ class Solution(object):
             if complement in num_to_index:
                 return [num_to_index[complement], i]
             num_to_index[num] = i
-
+        
+    def twoSum_optimise2(self, nums, target):
+        num_to_index = {}
+        for i, num in enumerate(nums):
+            if num in num_to_index:
+                return [num_to_index[num], i]
+            complement = target - num
+            num_to_index[complement] = i
+            
 # Create instance of Solution
 sol = Solution()
 
@@ -24,3 +32,4 @@ target = 9
 # Call method and print result
 print(sol.twoSum_brute(arr, target))  # Output: [0, 1]
 print(sol.twoSum_optimise(arr, target))  # Output: [0, 1]
+print(sol.twoSum_optimise2(arr, target))  # Output: [0, 1]
