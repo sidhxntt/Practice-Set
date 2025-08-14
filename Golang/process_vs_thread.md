@@ -621,18 +621,8 @@ After await
 
 Want this turned into a visual PDF or slide deck? I can create that too!
 
-
-
-
-
-
-
-
-
 1. So my program has 3 funcs 2nd one takes 5 mins to run for eg so now in event loop as its single threaded func 1 will be processed then func2 will be moved to queue and func 3 will be processed but as this is single threaded it will wait for func2 for 5 mins and then func2 will be joined to that main thread & processed, hence we will use async to tell func2 needs to be queued and await so that main thread waits for the async func. whereas in if func2 was also sync main thread would have been stopped for 5 mins and then func 3 would have run. Therfore no real parallelism
 2. Whereas multithreading, as func2 will take 5 mins we will make a seperate thread for this func and main thread and this new thread will run at the same time.
 
-
-
 so in my words for asybc main thread:
-func1 runs after that func2 runs which takes 5 mins so we make it async by making sure func 2 returns promise at that very moment ie it execiute immediately by returning a promise, so the promise here acts like a placeholder for func2 which makes the main thread non blocking and immediately after func3 is executed. So now func2 gets executed in the task queue ie in background. and as soon it gets executed  without an error then the promise is resolved and it goes in the callback queue as a callback waiting to be executed. and after 5 mins callback is called in the main thread and func2 output is shown.
+func1 runs after that func2 runs which takes 5 mins so we make it async by making sure func 2 returns promise at that very moment ie it execiute immediately by returning a promise, so the promise here acts like a placeholder for func2 which makes the main thread non blocking and immediately after func3 is executed. So now func2 gets executed in the task queue ie in background. and as soon it gets executed without an error then the promise is resolved and it goes in the callback queue as a callback waiting to be executed. and after 5 mins callback is called in the main thread and func2 output is shown.
