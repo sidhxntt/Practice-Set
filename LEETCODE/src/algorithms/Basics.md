@@ -83,28 +83,6 @@ function addMatrix(arr1, arr2, n){
 **Space Complexity = O(n²)** (for arr3, output matrix).
 
 ---
-Got it—here’s the **frequency-count** for standard (triple-loop) **matrix multiplication** showing it’s **O(n³)**.
-
-## 🔹 Problem
-
-Compute $C = A \times B$ where $A, B, C$ are $n \times n$.
-
-```c
-function matMul(A, B, n){
-    for (int i = 0; i < n; i++) {                 // outer
-        for (int j = 0; j < n; j++) {             // middle
-            C[i][j] = 0;                          // init
-            for (int k = 0; k < n; k++) {         // inner
-                C[i][j] += A[i][k] * B[k][j];     // multiply + add
-            }
-        }
-    }
-}
-```
-
-Perfect 👍 let’s keep it in the **same style/format** as the previous (sum and addition) examples so it’s consistent and exam-ready.
-
----
 
 ## 🔹 Example 3: Matrix Multiplication
 
