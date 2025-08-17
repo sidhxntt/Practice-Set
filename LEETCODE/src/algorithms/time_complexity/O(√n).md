@@ -113,3 +113,118 @@ for(i = 1; p <= n; i++) {
 
 Even though `i` increases linearly, the **sum `p` grows quadratically**, so the loop only runs about √n times.
 
+---
+Great question 👍 Let’s extend your analysis to **the case with 2 variables in one loop** (e.g., `i=0, j=0`).
+
+---
+
+## ✅ Case: Two Initializations in the Same Loop
+
+### Example Code
+
+```c
+for(int i = 0, j = 0; i*i <= n && j*j <= n; i++, j++) {
+    // do something
+}
+```
+
+---
+
+### Step-by-Step Analysis
+
+1. **Initial values:**
+
+   * i = 0, j = 0
+
+2. **Condition:** loop continues while **both**:
+
+   * i² ≤ n
+   * j² ≤ n
+
+3. **Update rule:**
+
+   * `i++`
+   * `j++`
+
+4. **Iteration behavior:**
+
+   * Iteration 1 → i=0, j=0
+   * Iteration 2 → i=1, j=1
+   * Iteration 3 → i=2, j=2
+   * Iteration 4 → i=3, j=3
+   * …
+
+   So effectively, **i and j increase together**.
+
+5. **Stop condition:**
+
+   * Stops when either `i² > n` **or** `j² > n`.
+   * Since i and j grow equally, **both reach √n around the same time**.
+
+6. **Iterations count:**
+
+   * Loop runs about √n times.
+
+---
+
+### ✅ Time Complexity
+
+* **Number of iterations:** √n
+* **Time Complexity:** **O(√n)**
+
+---
+
+## ⚡ Another Variation: Different Growth Speeds
+
+If **one variable grows faster**, the complexity is dominated by the faster one.
+
+### Example 1
+
+```c
+for(int i = 0, j = 0; i*i <= n && j <= n; i++, j++) {
+}
+```
+
+* i → up to √n
+* j → up to n
+* Since both increment equally, loop stops when **i hits √n first**.
+  👉 **O(√n)**
+
+---
+
+### Example 2
+
+```c
+for(int i = 0, j = 0; i <= n && j*j <= n; i++, j++) {
+}
+```
+
+* i → up to n
+* j → up to √n
+* Both increment equally, so **j hits √n first**.
+  👉 **O(√n)**
+
+---
+
+### Example 3 (Independent Updates)
+
+```c
+for(int i = 0, j = 0; i <= n && j <= n; i++, j+=2) {
+}
+```
+
+* i grows as O(n)
+* j grows as O(n/2)
+* Loop stops when **i reaches n first**.
+  👉 **O(n)**
+
+---
+
+## 🔑 Key Rule
+
+* If **both variables increase at the same rate** → the **tightest stopping condition dominates** (often O(√n) if squared terms are involved).
+* If **they grow differently** → whichever variable hits its stop condition **first** dictates complexity.
+
+---
+
+👉 Do you want me to make a **summary table** (like you did earlier) for **common two-variable initialization cases** with their complexities?
