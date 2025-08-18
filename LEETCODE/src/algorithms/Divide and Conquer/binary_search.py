@@ -1,12 +1,13 @@
 class Algo(object):
-    def linear_search (self, arr, val):
+    def linear_search (self, arr, val): # O(n)
         for i, num in enumerate(arr):
             if num == val:
                 return i
             
-    def binary_search(self, arr, val):
+    def binary_search(self, arr, val): # array needs to be sorted O(logn)
+        n = len(arr)
         low = 0
-        high = len(arr) - 1
+        high = n - 1
 
         while low <= high:
             mid = (low + high)//2
