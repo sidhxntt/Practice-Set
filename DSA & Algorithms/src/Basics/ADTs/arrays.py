@@ -1,4 +1,5 @@
 from utils.displayer import logger, Displayer
+from itertools import permutations, combinations
 
 class Arrays(Displayer):
 
@@ -143,7 +144,34 @@ class Arrays(Displayer):
         result = list(set(arr1) - set(arr2))
         logger.info(f"Difference (arr1 - arr2): {result}")
         return result
+    
+    def Permutation_and_Combinations(self, arr):
+        # Check if it's a string
+        is_string = isinstance(arr, str)
 
+        # Full length permutations
+        if is_string:
+            perms = ["".join(p) for p in permutations(arr)]
+        else:
+            perms = [list(p) for p in permutations(arr)]
+
+        # All combinations (length 1 → n)
+        all_combs = []
+        for r in range(1, len(arr) + 1):
+            if is_string:
+                all_combs.extend("".join(c) for c in combinations(arr, r))
+            else:
+                all_combs.extend(list(c) for c in combinations(arr, r))
+
+        print(f"""
+            Total Number of permutations: {len(perms)}
+            Total permutations: {perms}
+            
+            Total Number of combinations: {len(all_combs)}
+            Total combinations: {all_combs}  
+        """)
+
+# Usage
 if __name__ == "__main__":
     a = Arrays()
 
@@ -151,6 +179,7 @@ if __name__ == "__main__":
     arr2 = arr1.copy()
     arr3 = [1, 2, 3, 4, 5]
     arr4 = [4, 5, 6, 7, 4]
+    arr5 = [1,2,3]
 
     operations = [
         ("Original array", a.display, arr1),
@@ -168,6 +197,8 @@ if __name__ == "__main__":
         ("Union of Arrays", a.union, arr3, arr4),
         ("Intersection of Arrays", a.intersection, arr3, arr4),
         ("Difference of Arrays", a.difference, arr3, arr4),
+        ("P&C ", a.Permutation_and_Combinations, arr5),
+
     ]
 
     Displayer.execute(operations)

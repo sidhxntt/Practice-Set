@@ -1,10 +1,9 @@
 from utils.displayer import logger, Displayer
 from arrays import Arrays
-
 class Strings(Arrays):
 
     def display(self, arr): 
-        logger.info(f"Current array: {arr}")    # display the array O(1)
+        logger.info(f"Current String: {arr}")    # display the array O(1)
 
     def Find_char(self, arr:str, val:str): 
         if val in arr:
@@ -29,6 +28,7 @@ class Strings(Arrays):
                     return False
         logger.info(f"Words are Anagram")  
         return True
+    
        
 if __name__ == "__main__":
     s = Strings()
@@ -39,7 +39,8 @@ if __name__ == "__main__":
     username = "sidhxntt"
     anagram1 = "listen"  
     anagram2 = "silent"  
-    anagram3 = "enlist"  
+    anagram3 = "enlist" 
+    pc = "ABC" 
 
     operations = [
         ("Original array", s.display, name),
@@ -47,6 +48,7 @@ if __name__ == "__main__":
         ("Palindrome Check", s.Palindrome_check, palindrome ),
         ("Duplicate Check", s.duplicate, username),
         ("Anagram Check", s.Anagram_Check, anagram1, anagram2, anagram3),
+        ("P&C ", s.Permutation_and_Combinations, pc),
       
     ]
 

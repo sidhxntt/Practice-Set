@@ -120,3 +120,21 @@ That’s why Python chooses heap for _everything_ (objects), and the **stack onl
 | **Function calls**      | Function args often copied onto stack (by value, unless pointers).                                  | Function args are **references** (pointers) to heap objects, stored on the stack.                                         |
 | **Performance**         | Stack access = very fast (contiguous memory). Heap = slower.                                        | Always uses heap for objects → slower than C.                                                                             |
 | **Consistency**         | Two different models: stack vars vs heap vars.                                                      | One uniform model: **everything is a heap object**.                                                                       |
+
+---
+
+| Term         | Definition                                                                   | Example                   |
+| ------------ | ---------------------------------------------------------------------------- | ------------------------- |
+| **Iterable** | An object you can loop over. It produces an iterator when you call `iter()`. or An object is iterable if it implements the __iter__() method | List, string, dict        |
+| **Iterator** | The object that actually does the iteration, returning items with `next()`.  | Result of `iter([1,2,3])` |
+
+```python
+nums = [10, 20, 30]    # iterable
+
+it = iter(nums)        # get an iterator
+print(next(it))  # 10
+print(next(it))  # 20
+print(next(it))  # 30
+# next(it) -> StopIteration error
+
+```
