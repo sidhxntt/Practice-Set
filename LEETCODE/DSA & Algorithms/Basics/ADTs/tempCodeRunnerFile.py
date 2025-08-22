@@ -1,1 +1,1 @@
-righ
+str4
