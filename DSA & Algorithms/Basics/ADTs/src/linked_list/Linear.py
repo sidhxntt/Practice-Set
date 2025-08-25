@@ -180,7 +180,6 @@ class Linear_Linkedlist:
         new_node.next = random_node
         print(f"New node with value {data} points to node with value {random_node.data}")
 
-
     def has_loop(self):
         slow = self.head
         fast = self.head
@@ -196,10 +195,9 @@ class Linear_Linkedlist:
         print("No loop in the linked list")
         return False
 
-
 if __name__ == "__main__":
     ll = Linear_Linkedlist()
-
+    
     ll.prepend(5)
     ll.append(30)
 
