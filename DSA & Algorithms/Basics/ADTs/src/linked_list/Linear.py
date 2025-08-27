@@ -181,6 +181,7 @@ class Linear_Linkedlist:
         print(f"New node with value {data} points to node with value {random_node.data}")
 
     def has_loop(self):
+        """Floyd's algorithm - Floyd’s Cycle Detection Algorithm - Tortoise and Hare algorithm"""
         slow = self.head
         fast = self.head
 
@@ -197,7 +198,7 @@ class Linear_Linkedlist:
 
 if __name__ == "__main__":
     ll = Linear_Linkedlist()
-    
+
     ll.prepend(5)
     ll.append(30)
 
