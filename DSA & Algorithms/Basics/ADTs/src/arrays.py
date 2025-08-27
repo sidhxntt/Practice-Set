@@ -7,8 +7,19 @@ class Arrays(Displayer):
         logger.info(f"Current array: {arr}")    # display the array O(1)
 
     @Displayer.auto_display("Append element")
-    def append_ele(self, arr, val):
-        arr.append(val)                 # appends the element at the end of the array O(1)
+    def append_ele(self, arr: list, val):
+        n = len(arr)
+        arr += [None]          # increase size by 1
+        arr[n] = val           # put element at last position
+        return arr
+
+    @Displayer.auto_display("Append element")
+    def prepen_ele(self, arr: list, val):
+        arr += [None]              # extend list by one
+        for i in range(len(arr)-1, 0, -1):  
+            arr[i] = arr[i-1]        # shift elements right
+        arr[0] = val
+        return arr            # prepends the element at the end of the array O(1)
 
     @Displayer.auto_display("Insert element")
     def insert_ele(self, arr, val, index):
