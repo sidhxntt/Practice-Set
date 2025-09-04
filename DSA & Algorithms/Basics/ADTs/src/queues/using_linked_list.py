@@ -1,72 +1,82 @@
-class Queue:
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-    def __init__(self, capacity: int):
-        self.queue = [None] * capacity   # fixed-size queue
-        self.capacity = capacity
-        self.front = -1
-        self.rear = -1
+
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
 
     # ---------------- Structural Functions ----------------
     def is_empty(self):
-        return self.front == -1 and self.rear == -1
-
-    def is_full(self):
-        return self.rear == self.capacity - 1
+        return self.front is None
 
     def display(self):
         if self.is_empty():
             print("Queue is empty")
             return []
-        elements = self.queue[self.front:self.rear+1]
+        current = self.front
+        elements = []
+        while current:
+            elements.append(current.data)
+            current = current.next
         print(f"Queue (front -> rear): {elements}")
         return elements
-        
+
     def enqueue(self, val):
-        if self.is_full():
-            print("Queue Overflow! Cannot enqueue")
-            return None
+        new_node = Node(val)
         if self.is_empty():
-            self.front = 0
-        self.rear += 1
-        self.queue[self.rear] = val
+            self.front = self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
         return self.display()
-    
+
     def dequeue(self):
         if self.is_empty():
             print("Queue Underflow! Cannot dequeue")
             return None
-        val = self.queue[self.front]
-        if self.front == self.rear:
-            # queue becomes empty
-            self.front = self.rear = -1
-        else:
-            self.front += 1
-        print(f"Dequeued Element: {val}")
+        val = self.front.data
+        self.front = self.front.next
+        if self.front is None:  # queue became empty
+            self.rear = None
+        print(f"Dequeued element: {val}")
         return val
-       
+
     def peek(self):
         if self.is_empty():
             print("Queue is empty")
             return None
-        return self.queue[self.front]
+        return self.front.data
+
+    def size(self):
+        count = 0
+        current = self.front
+        while current:
+            count += 1
+            current = current.next
+        print(f"Queue size: {count}")
+        return count
 
     # ---------------- Operational Functions ----------------
     def search(self, val):
         if self.is_empty():
             print("Queue is empty")
             return -1
-        elements = self.display()
-        for idx, item in enumerate(elements):
-            if item == val:
-                print(f"Found {val} at position {idx} from front")
-                return self.front + idx
+        pos = 0
+        current = self.front
+        while current:
+            if current.data == val:
+                print(f"Found {val} at position {pos} from front")
+                return pos
+            current = current.next
+            pos += 1
         print(f"{val} not found")
         return -1
 
     def summation(self):
-        if self.is_empty():
-            print("Summation of queue elements: 0")
-            return 0
         total = sum(self.display())
         print(f"Summation of queue elements: {total}")
         return total
@@ -88,7 +98,7 @@ class Queue:
         min_val = min(elements)
         print(f"Minimum element in queue: {min_val}")
         return min_val
-    
+
     def is_sorted(self):
         elements = self.display()
         if elements == sorted(elements):
@@ -114,9 +124,10 @@ class Queue:
         print("No duplicates found")
         return False
 
+
 # ---------------- Usage Example ----------------
 if __name__ == "__main__":
-    q = Queue(10)  # capacity 10
+    q = Queue()
 
     q.enqueue(10)
     q.enqueue(20)
