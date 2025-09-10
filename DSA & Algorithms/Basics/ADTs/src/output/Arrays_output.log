@@ -1,0 +1,31 @@
+[Append] Array after operation: [7]
+[Append] Array after operation: [7, 3]
+[Append] Array after operation: [7, 3, 3]
+[Append] Array after operation: [7, 3, 3, 5]
+[Prepend] Array after operation: [9, 7, 3, 3, 5]
+[Insert] Array after operation: [9, 7, 200, 3, 3, 5]
+Deleted Element: 9
+[Delete] Array after operation: [7, 200, 3, 3, 5]
+Duplicate found: 3 at index 3 (first seen at 2)
+Array after removing duplicates: [7, 200, 3, 5]
+[De-duplication] Array after operation: [7, 200, 3, 5]
+Array was not sorted. Now sorted.
+[REVERSED][Sorting] Array after operation: [200, 7, 5, 3]
+Found 5 at index 1
+---------------------------------
+size = 4
+sum = 215
+avg = 53.75
+min = 3
+max = 200
+permutations count = 24
+combinations count = 15
+---------------------------------
+array 1: [3, 5] & array 2: [7, 200]
+New array: [7, 200, 3, 5]
+array 1: [3, 5] & array 2: [7, 200]
+---------------------------------
+Intersection = []
+Union        = [200, 3, 5, 7]
+Difference   = [3, 5]
+---------------------------------
