@@ -1,215 +1,196 @@
 from utils.displayer import logger, Displayer
 from itertools import permutations, combinations
 
-class Arrays(Displayer):
+class Array(Displayer):
+    def __init__(self, capacity: int):
+        self.array = [0] * capacity  # fixed size array
+        self.capacity = capacity
+        self.size = 0  # number of elements actually stored
 
-    def display(self, arr): 
-        logger.info(f"Current array: {arr}")    # display the array O(1)
+    # ------------------ Mutating Methods ------------------
 
-    @Displayer.auto_display("Append element")
-    def append_ele(self, arr: list, val):
-        n = len(arr)
-        arr += [None]          # increase size by 1
-        arr[n] = val           # put element at last position
-        return arr
+    @Displayer.displayer("Append")
+    def append(self, val):
+        if self.size == self.capacity:
+            logger.info("Array is full")
+            return
+        self.array[self.size] = val
+        self.size += 1
 
-    @Displayer.auto_display("Append element")
-    def prepen_ele(self, arr: list, val):
-        arr += [None]              # extend list by one
-        for i in range(len(arr)-1, 0, -1):  
-            arr[i] = arr[i-1]        # shift elements right
-        arr[0] = val
-        return arr            # prepends the element at the end of the array O(1)
+    @Displayer.displayer("Prepend")
+    def prepend(self, val):
+        if self.size == self.capacity:
+            logger.info("Array is full")
+            return
+        for i in range(self.size, 0, -1):
+            self.array[i] = self.array[i - 1]
+        self.array[0] = val
+        self.size += 1
 
-    @Displayer.auto_display("Insert element")
-    def insert_ele(self, arr, val, index):
-        arr.insert(index, val)          # inserts the element at given index of the array O(n)
+    @Displayer.displayer("Insert")
+    def insert_at_position(self, val, pos):
+        if self.size == self.capacity:
+            logger.info("Array is full")
+            return
+        if pos < 0 or pos > self.size:
+            logger.info("Invalid position")
+            return
+        for i in range(self.size, pos, -1):
+            self.array[i] = self.array[i - 1]
+        self.array[pos] = val
+        self.size += 1
 
-    @Displayer.auto_display("Delete element by value")
-    def delete_ele(self, arr, val): 
-        if val in arr:
-            arr.remove(val)             # removes the element at the end of the array O(n)
+    @Displayer.displayer("Delete")
+    def delete(self, pos=None, start=False, end=False):
+        if self.size == 0:
+            logger.info("Array is empty")
+            return
+
+        if start:  # delete first element
+            deleted = self.array[0]
+            for i in range(1, self.size):
+                self.array[i - 1] = self.array[i]
+            self.array[self.size - 1] = 0
+            self.size -= 1
+            logger.info(f"Deleted Element: {deleted}")
+
+        elif end:  # delete last element
+            deleted = self.array[self.size - 1]
+            self.array[self.size - 1] = 0
+            self.size -= 1
+            logger.info(f"Deleted Element: {deleted}")
+
+        elif pos is not None:  # delete at position
+            if pos < 0 or pos >= self.size:
+                logger.info("Invalid position")
+                return
+            deleted = self.array[pos]
+            for i in range(pos + 1, self.size):
+                self.array[i - 1] = self.array[i]
+            self.array[self.size - 1] = 0
+            self.size -= 1
+            logger.info(f"Deleted Element: {deleted}")
         else:
-            logger.warning(f"Value {val} not found!")
+            logger.info("Specify start, end, or pos")
 
-    @Displayer.auto_display("Delete element by Index")
-    def delete_ele_from_index(self, arr, index):
-        # remove element at specified index
-        if 0 <= index < len(arr):
-            arr.pop(index)              #  remove element at specified index of the array O(1)
+    @Displayer.displayer("Sorting")
+    @Displayer.reverse_displayer("Sorting")
+    def sorting(self):
+        def is_sorted():
+            for i in range(1, self.size):
+                if self.array[i - 1] > self.array[i]:
+                    return False
+            return True
+
+        if not is_sorted():
+            self.array[:self.size] = sorted(self.array[:self.size])
+            logger.info("Array was not sorted. Now sorted.")
         else:
-            logger.warning(f"Index {index} out of bounds!")
+            logger.info("Array is already sorted.")
 
-    @Displayer.auto_display("Get element")
-    def get(self, arr, index):
-        if 0 <= index < len(arr): # returns element at index O(1)
-            return arr[index]
-        else:
-            logger.warning(f"Index {index} out of bounds!")
-            return None
+    # ------------------ Non-Mutating Methods ------------------
 
-    @Displayer.auto_display("Set element")
-    def set(self, arr, index, val):
-        if 0 <= index < len(arr): 
-            arr[index] = val # updates element at index O(1)
-        else:
-            logger.warning(f"Index {index} out of bounds!")
+    def search_element(self, val, linear=False, binary=False):
+        if linear:
+            for i, num in enumerate(self.array[:self.size]):
+                if num == val:
+                    logger.info(f"Found {val} at index {i}")
+                    return i
+            logger.info(f"{val} not found")
+            return -1
 
-    def avg(self, arr):
-        if arr:
-            return sum(arr) / len(arr) # computes average; O(1)
-        else:
-            logger.warning("Array is empty!")
-            return None
+        elif binary:
+            left, right = 0, self.size - 1
+            while left <= right:
+                mid = (left + right) // 2
+                if self.array[mid] == val:
+                    logger.info(f"Found {val} at index {mid}")
+                    return mid
+                elif self.array[mid] < val:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            logger.info(f"{val} not found")
+            return -1
 
-    def min(self, arr):
-        if arr:
-            return min(arr) # returns min O(1)
-        else: 
-            logger.warning("Array is empty!")
-            return None
+    def maths(self):
+        if self.size == 0:
+            logger.info("Array is empty")
+            return
 
-    def max(self, arr):
-        if arr:
-            return max(arr) # returns min O(1)
-        else:
-            logger.warning("Array is empty!")
-            return None
+        data = self.array[:self.size]
+        length = len(data)
+        summation = sum(data)
+        average = summation / length
+        minimum = min(data)
+        maximum = max(data)
 
-    def linear_search(self, arr, val):
-        for i, num in enumerate(arr):
-            if num == val:
-                logger.info(f"Found {val} at index {i}") # Search element in O(n)
-                return i
-        logger.info(f"{val} not found")
-        return -1
-    
-    def binary_search(self, arr: list[int], val: int): # Search element in O(logn) {faster as  O(n) >  O(logn) therefore the above takes more time than this}
-        arr.sort() # only works if sorted
-        n = len(arr)
-        left = 0
-        right = n - 1
+        perms_count = len(list(permutations(data)))
+        combs_count = sum(len(list(combinations(data, r))) for r in range(1, len(data) + 1))
 
-        while left <= right:
-            mid = (left + right)//2
-            if arr[mid] == val:
-                logger.info(f"Found {val} at index {mid}") 
-                return mid
-            elif arr[mid] < val:
-                left = mid +1
+        logger.info("---------------------------------")
+        logger.info(f"size = {length}")
+        logger.info(f"sum = {summation}")
+        logger.info(f"avg = {average}")
+        logger.info(f"min = {minimum}")
+        logger.info(f"max = {maximum}")
+        logger.info(f"permutations count = {perms_count}")
+        logger.info(f"combinations count = {combs_count}")
+        logger.info("---------------------------------")
+
+    def maths2(self, split_pos=None, merge_pos=False, perform_ops=False):
+        if split_pos is None:
+            logger.info("Please provide a split position (int)")
+            return
+
+        if split_pos < 0 or split_pos >= self.size:
+            logger.info("Invalid split position")
+            return
+
+        arr1 = self.array[:split_pos]
+        arr2 = self.array[split_pos:self.size]
+        logger.info(f"array 1: {arr1} & array 2: {arr2}")
+
+        def merged_at_pos(val, arr1, arr2, use_first=True):
+            if use_first:
+                arr3 = arr1[:val] + arr2
             else:
-                right = mid -1
-        logger.info(f"{val} not found")
-        return -1
-    
-    def is_sorted_or_not(self, arr):  # O(n)
-        for i in range(1, len(arr)):
-            if arr[i-1] > arr[i]:
-                logger.info("Array is NOT sorted")
-                return False
-        logger.info("Array IS sorted")
-        return True
-    
-    def duplicate(self, arr: list):  # O(n)
-        seen = {}
+                arr3 = arr2[:val] + arr1
+            logger.info(f"New array: {arr3}")
+            return arr3
 
-        for i, num in enumerate(arr):
-            if num in seen:
-                logger.info(f"Duplicate found: {num} at index {i} (first seen at {seen[num]})")
-                return True
-            else:
-                seen[num] = i
-        
-        logger.info("No Duplicates Found")
-        return False
+        def set_operations(arr1, arr2):
+            intersection = list(set(arr1) & set(arr2))
+            union = list(set(arr1) | set(arr2))
+            difference = list(set(arr1) - set(arr2))
+            logger.info("---------------------------------")
+            logger.info(f"Intersection = {intersection}")
+            logger.info(f"Union        = {union}")
+            logger.info(f"Difference   = {difference}")
+            logger.info("---------------------------------")
 
-    @Displayer.auto_display("Reverse array")
-    def reverse(self, arr: list[int]):  # O(n)
-        arr[::-1]
-    
-    def merge_arrays(self, arr1, arr2):  # O(n+m) here as m=n so O(n)
-        arr3 = arr1 + arr2
-        logger.info(f"Merged arrays: {arr3}")
-
-    def merge_arrays_at_middle(self, arr1, arr2):  # O(n + m)
-        mid = len(arr1) // 2
-        # take first half of arr1 + second half of arr2
-        merged = arr1[:mid] + arr2[mid:]
-        logger.info(f"Merged array: {merged}")
-        return merged
-
-    def union(self, arr1, arr2):
-        """Return the union of arr1 and arr2 (all unique elements)"""
-        result = list(set(arr1) | set(arr2))
-        logger.info(f"Union: {result}")
-        return result
-
-    def intersection(self, arr1, arr2):
-        """Return the intersection of arr1 and arr2 (common elements)"""
-        result = list(set(arr1) & set(arr2))
-        logger.info(f"Intersection: {result}")
-        return result
-
-    def difference(self, arr1, arr2):
-        """Return the difference arr1 - arr2 (elements in arr1 not in arr2)"""
-        result = list(set(arr1) - set(arr2))
-        logger.info(f"Difference (arr1 - arr2): {result}")
-        return result
-    
-    def Permutation_and_Combinations(self, arr):
-        # Check if it's a string
-        is_string = isinstance(arr, str)
-
-        # Full length permutations
-        if is_string:
-            perms = ["".join(p) for p in permutations(arr)]
+        if merge_pos:
+            merged_at_pos(2, arr1, arr2, use_first=False)
+        elif perform_ops:
+            set_operations(arr1, arr2)
         else:
-            perms = [list(p) for p in permutations(arr)]
+            merged_at_pos(2, arr1, arr2, use_first=False)
+            set_operations(arr1, arr2)
 
-        # All combinations (length 1 → n)
-        all_combs = []
-        for r in range(1, len(arr) + 1):
-            if is_string:
-                all_combs.extend("".join(c) for c in combinations(arr, r))
-            else:
-                all_combs.extend(list(c) for c in combinations(arr, r))
-
-        print(f"""
-            Total Number of permutations: {len(perms)}
-            Total permutations: {perms}
-            
-            Total Number of combinations: {len(all_combs)}
-            Total combinations: {all_combs}  
-        """)
-
-# Usage
+    # def duplicates(self)
+# ------------------ Example Usage ------------------
 if __name__ == "__main__":
-    a = Arrays()
+    a = Array(10)
+    a.append(7)
+    a.append(3)
+    a.append(5)
+    a.prepend(9)
+    a.insert_at_position(200, 2)
+    a.delete(start=True)   # removes 9
+    a.sorting()
 
-    arr1 = [4, 2, 5, 1, 7, 3, 9]
-    arr2 = arr1.copy()
-    arr3 = [1, 2, 3, 4, 5]
-    arr4 = [4, 5, 6, 7, 4]
-    arr5 = [1,2,3]
+    a.search_element(5, binary=True)
+    a.maths()
 
-    operations = [
-        ("Original array", a.display, arr1),
-        ("Add element 99", a.append_ele, arr1, 99),
-        ("Insert 23 at index 3", a.insert_ele, arr1, 23, 3),
-        ("Delete element 5", a.delete_ele, arr1, 5),
-        ("Delete element at index 2", a.delete_ele_from_index, arr1, 2),
-        ("Linear search 99", a.linear_search, arr1, 99),
-        ("Binary search 7", a.binary_search, arr1, 7),
-        ("Is sorted or not", a.is_sorted_or_not, arr2),
-        ("Reversed", a.reverse, arr2),
-        ("Duplicated", a.duplicate, arr4),
-        ("Merged Arrays", a.merge_arrays, arr3, arr4),
-        ("Merged Arrays at middle", a.merge_arrays_at_middle, arr3, arr4),
-        ("Union of Arrays", a.union, arr3, arr4),
-        ("Intersection of Arrays", a.intersection, arr3, arr4),
-        ("Difference of Arrays", a.difference, arr3, arr4),
-        ("P&C ", a.Permutation_and_Combinations, arr5),
-
-    ]
-
-    Displayer.execute(operations)
+    a.maths2(split_pos=2, merge_pos=True)
+    a.maths2(split_pos=2, perform_ops=True)
