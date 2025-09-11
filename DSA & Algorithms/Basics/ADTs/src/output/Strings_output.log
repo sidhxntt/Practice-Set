@@ -1,0 +1,31 @@
+Appended 'X' -> Siddhant GuptaX
+[Append Character] String after operation: Siddhant GuptaX
+Prepended 'Y' -> YSiddhant GuptaX
+[Prepend Character] String after operation: YSiddhant GuptaX
+Inserted 'Z' at 3 -> YSiZddhant GuptaX
+[Insert Character] String after operation: YSiZddhant GuptaX
+Deleted first char: Y -> SiZddhant GuptaX
+[Delete Character] String after operation: SiZddhant GuptaX
+Deleted last char: X -> SiZddhant Gupta
+[Delete Character] String after operation: SiZddhant Gupta
+Deleted char 'Z' at pos 2 -> Siddhant Gupta
+[Delete Character] String after operation: Siddhant Gupta
+Duplicate found: 'd' at index 3 (first seen at 2)
+Duplicate found: 't' at index 12 (first seen at 7)
+Duplicate found: 'a' at index 13 (first seen at 5)
+String after removing duplicates: Sidhant Gup
+[Remove Duplicates] String after operation: Sidhant Gup
+Value 'G' found at index 8!
+[Find Character] String after operation: Sidhant Gup
+String is Palindrome
+[Palindrome Check] String after operation: Level
+Duplicate found: 't' at index 7 (first seen at 6)
+[Remove Duplicates] String after operation: sidhxntt
+Words are Anagram
+[Anagram Check] String after operation: listen
+---------------------------------
+length = 3
+permutations count = 6
+combinations count = 7
+---------------------------------
+[Permutations & Combinations] String after operation: ABC

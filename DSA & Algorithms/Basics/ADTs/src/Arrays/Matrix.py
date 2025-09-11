@@ -4,24 +4,21 @@ class Matrix(Displayer):
 
     # Diagonal Matrix → 1D
     def diag_matrix_to_1D(self, matrix: list[list[int]]):
-        n = len(matrix)  # row wise
-        m = len(matrix[0])  # col wise
+        n, m = len(matrix), len(matrix[0])
         diag = [matrix[i][j] for i in range(n) for j in range(m) if i == j]
         logger.info(f"Converted Diagonal Matrix to 1D: {diag}")
         return diag
 
     # Lower Triangular Matrix → 1D
     def lower_triangular_matrix_to_1D(self, matrix: list[list[int]]):
-        n = len(matrix)
-        m = len(matrix[0])
+        n, m = len(matrix), len(matrix[0])
         lower = [matrix[i][j] for i in range(n) for j in range(m) if i >= j]
         logger.info(f"Converted Lower Triangular Matrix to 1D: {lower}")
         return lower
 
     # Upper Triangular Matrix → 1D
     def upper_triangular_matrix_to_1D(self, matrix: list[list[int]]):
-        n = len(matrix)
-        m = len(matrix[0])
+        n, m = len(matrix), len(matrix[0])
         upper = [matrix[i][j] for i in range(n) for j in range(m) if i <= j]
         logger.info(f"Converted Upper Triangular Matrix to 1D: {upper}")
         return upper
@@ -39,9 +36,8 @@ class Matrix(Displayer):
         return upper
 
     # Tri-Band Matrix → 1D
-    def Tri_band_matrix_to_1D(self, matrix: list[list[int]]):
-        n = len(matrix)
-        m = len(matrix[0])
+    def tri_band_matrix_to_1D(self, matrix: list[list[int]]):
+        n, m = len(matrix), len(matrix[0])
         band = [matrix[i][j] for i in range(n) for j in range(m) if abs(i - j) <= 1]
         logger.info(f"Converted Tri Band Matrix to 1D: {band}")
         return band
@@ -55,9 +51,7 @@ class Matrix(Displayer):
 
     # Sparse Matrix → COO
     def sparse_matrix_to_COO(self, matrix: list[list[int]]):
-        n = len(matrix)
-        m = len(matrix[0])
-
+        n, m = len(matrix), len(matrix[0])
         rows, cols, values = zip(*[
             (i, j, matrix[i][j])
             for i in range(n)
@@ -140,14 +134,14 @@ if __name__ == "__main__":
         [2, 3, 6, 6],
         [2, 3, 6, 7]
     ]
-    Tri_band_matrix = [
+    tri_band_matrix = [
         [4, 8, 0, 0, 0],
         [1, 5, 9, 0, 0],
         [0, 3, 6, 5, 0],
         [0, 0, 4, 7, 1],
         [0, 0, 0, 2, 9]
     ]
-    Toeplitz_matrix = [
+    toeplitz_matrix = [
         [1, 2, 3, 4],
         [5, 1, 2, 3],
         [6, 5, 1, 2],
@@ -163,21 +157,14 @@ if __name__ == "__main__":
     pol1 = [4, 3, 2, 5]
     pol2 = [1, 2, 3, 4]
 
-    matrix_operations = [
-        ("Diagonal Matrix to 1D", m.diag_matrix_to_1D, diag_matrix),
-        ("Lower Triangular Matrix to 1D", m.lower_triangular_matrix_to_1D, lower_triangular_matrix),
-        ("Upper Triangular Matrix to 1D", m.upper_triangular_matrix_to_1D, upper_triangular_matrix),
-        ("Symmetric Matrix to 1D", m.symmetric_matrix_to_1D, symmetric_matrix),
-        ("Tri Band Matrix to 1D", m.Tri_band_matrix_to_1D, Tri_band_matrix),
-        ("Toeplitz Matrix to 1D", m.toeplitz_matrix_to_1D, Toeplitz_matrix),
-        ("Sparse Matrix to COO (Coordinate List) Representation", m.sparse_matrix_to_COO, sparse_matrix),
-        ("Matrix Arithmetic", m.matrix_arithmetic, lower_triangular_matrix, upper_triangular_matrix),
-    ]
+    m.diag_matrix_to_1D(diag_matrix)
+    m.lower_triangular_matrix_to_1D(lower_triangular_matrix)
+    m.upper_triangular_matrix_to_1D(upper_triangular_matrix)
+    m.symmetric_matrix_to_1D(symmetric_matrix)
+    m.tri_band_matrix_to_1D(tri_band_matrix)
+    m.toeplitz_matrix_to_1D(toeplitz_matrix)
+    m.sparse_matrix_to_COO(sparse_matrix)
+    m.matrix_arithmetic(lower_triangular_matrix, upper_triangular_matrix)
 
-    poly_operations = [
-        ("Evaluate Polynomial at x=2", p.evaluate, pol1, 2),
-        ("Add Polynomials", p.add, pol1, pol2)
-    ]
-
-    Displayer.execute(matrix_operations)
-    Displayer.execute(poly_operations)
+    p.evaluate(pol1, 2)
+    p.add(pol1, pol2)

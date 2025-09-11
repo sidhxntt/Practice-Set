@@ -28,15 +28,31 @@ class Displayer(ABC):
         return logger
     
     @staticmethod
-    def displayer(operation_name , reversed =False):
-        """Decorator to automatically log the array after operation"""
+    def displayer(operation_name, reversed=False):
+        """Decorator to automatically log data structure after operation"""
         def decorator(func):
             def wrapper(self, *args, **kwargs):
                 result = func(self, *args, **kwargs)   # run original method
-                if reversed:
-                    self.logger.info(f"[REVERSED][{operation_name}] Array after operation: {self.array[:self.size][::-1]}")
-                    return result
-                self.logger.info(f"[{operation_name}] Array after operation: {self.array[:self.size]}")
+
+                # Handle Array objects
+                if hasattr(self, "array") and hasattr(self, "size"):
+                    data = self.array[:self.size]
+                    if reversed:
+                        self.logger.info(f"[REVERSED][{operation_name}] Array after operation: {data[::-1]}")
+                    else:
+                        self.logger.info(f"[{operation_name}] Array after operation: {data}")
+
+                # Handle Strings objects
+                elif hasattr(self, "string"):
+                    if reversed:
+                        self.logger.info(f"[REVERSED][{operation_name}] String after operation: {self.string[::-1]}")
+                    else:
+                        self.logger.info(f"[{operation_name}] String after operation: {self.string}")
+
+                # Fallback
+                else:
+                    self.logger.info(f"[{operation_name}] Operation completed")
+
                 return result
             return wrapper
         return decorator

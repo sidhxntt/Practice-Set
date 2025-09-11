@@ -1,4 +1,4 @@
-from utils.displayer import logger, Displayer
+from .utils.displayer import logger, Displayer
 from itertools import permutations, combinations
 
 class Array(Displayer):
