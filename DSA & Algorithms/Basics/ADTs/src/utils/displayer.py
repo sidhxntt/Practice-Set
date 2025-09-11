@@ -42,7 +42,23 @@ class Displayer(ABC):
                     else:
                         self.logger.info(f"[{operation_name}] Array after operation: {data}")
 
-                # Handle Strings objects
+                # Handle Stack objects
+                elif hasattr(self, "stack") and hasattr(self, "size"):
+                    data = self.stack[:self.size]
+                    if reversed:
+                        self.logger.info(f"[REVERSED][{operation_name}] Stack after operation: {data[::-1]}")
+                    else:
+                        self.logger.info(f"[{operation_name}] Stack after operation: {data}")
+
+                # Handle Queue objects
+                elif hasattr(self, "queue") and hasattr(self, "size"):
+                    data = self.stack[:self.size]
+                    if reversed:
+                        self.logger.info(f"[REVERSED][{operation_name}] Queue after operation: {data[::-1]}")
+                    else:
+                        self.logger.info(f"[{operation_name}] Queue after operation: {data}")
+
+                # Handle String objects
                 elif hasattr(self, "string"):
                     if reversed:
                         self.logger.info(f"[REVERSED][{operation_name}] String after operation: {self.string[::-1]}")

@@ -1,0 +1,14 @@
+[Queue Enqueue (using arrays)] Array after operation: [3]
+[Queue Enqueue (using arrays)] Array after operation: [3, 9]
+[Queue Enqueue (using arrays)] Array after operation: [3, 9, 1]
+[Queue Dequeue (using arrays)] Array after operation: [9, 1]
+---------------------------------
+size = 2
+sum = 10
+avg = 5.0
+min = 1
+max = 9
+permutations count = 2
+combinations count = 3
+---------------------------------
+Found 9 at index 0

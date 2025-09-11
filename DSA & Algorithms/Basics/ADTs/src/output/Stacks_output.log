@@ -1,0 +1,15 @@
+[Stack Push] Array after operation: [3]
+[Stack Push] Array after operation: [3, 9]
+Stack is full
+[Stack Push] Array after operation: [3, 9]
+[Stack Pop] Array after operation: [3]
+---------------------------------
+size = 1
+sum = 3
+avg = 3.0
+min = 3
+max = 3
+permutations count = 1
+combinations count = 1
+---------------------------------
+9 not found
