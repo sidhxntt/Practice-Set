@@ -1,0 +1,14 @@
+[Stack Push (using arrays)] Array after operation: [3]
+[Stack Push (using arrays)] Array after operation: [3, 9]
+[Stack Push (using arrays)] Array after operation: [3, 9, 1]
+[Stack Pop (using arrays)] Array after operation: [3, 9]
+---------------------------------
+size = 2
+sum = 12
+avg = 6.0
+min = 3
+max = 9
+permutations count = 2
+combinations count = 3
+---------------------------------
+Found 9 at index 1

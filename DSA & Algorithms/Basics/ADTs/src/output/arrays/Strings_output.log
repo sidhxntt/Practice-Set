@@ -20,7 +20,8 @@ Value 'G' found at index 8!
 String is Palindrome
 [Palindrome Check] String after operation: Level
 Duplicate found: 't' at index 7 (first seen at 6)
-[Remove Duplicates] String after operation: sidhxntt
+String after removing duplicates: sidhxnt
+[Remove Duplicates] String after operation: sidhxnt
 Words are Anagram
 [Anagram Check] String after operation: listen
 ---------------------------------

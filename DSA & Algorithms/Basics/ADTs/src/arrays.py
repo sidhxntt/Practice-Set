@@ -6,11 +6,11 @@ class Array(Displayer):
         self.array = [0] * capacity  # fixed size array
         self.capacity = capacity
         self.size = 0  # number of elements actually stored
-        self.logger = Displayer.get_logger('Arrays')
+        self.logger = Displayer.get_logger('Arrays', arrays=True)
         
     # ------------------ Mutating Methods ------------------
 
-    @Displayer.displayer("Append")
+    @Displayer.array_displayer("Append")
     def append(self, val):
         if self.size == self.capacity:
             self.logger.info("Array is full")
@@ -18,7 +18,7 @@ class Array(Displayer):
         self.array[self.size] = val
         self.size += 1
 
-    @Displayer.displayer("Prepend")
+    @Displayer.array_displayer("Prepend")
     def prepend(self, val):
         if self.size == self.capacity:
             self.logger.info("Array is full")
@@ -28,7 +28,7 @@ class Array(Displayer):
         self.array[0] = val
         self.size += 1
 
-    @Displayer.displayer("Insert")
+    @Displayer.array_displayer("Insert")
     def insert_at_position(self, val, pos):
         if self.size == self.capacity:
             self.logger.info("Array is full")
@@ -41,7 +41,7 @@ class Array(Displayer):
         self.array[pos] = val
         self.size += 1
 
-    @Displayer.displayer("Delete")
+    @Displayer.array_displayer("Delete")
     def delete(self, pos=None, start=False, end=False):
         if self.size == 0:
             self.logger.info("Array is empty")
@@ -74,7 +74,7 @@ class Array(Displayer):
         else:
             self.logger.info("Specify start, end, or pos")
 
-    @Displayer.displayer("Sorting", reversed=True)
+    @Displayer.array_displayer("Sorting", reversed=True)
     def sorting(self):
         def is_sorted():
             for i in range(1, self.size):
@@ -88,7 +88,7 @@ class Array(Displayer):
         else:
             self.logger.info("Array is already sorted.")
 
-    @Displayer.displayer("De-duplication")
+    @Displayer.array_displayer("De-duplication")
     def duplicates(self, remove=False): 
         def find_duplicates():
             seen = {}

@@ -6,10 +6,10 @@ class Queue1(Array):
         super().__init__(capacity)
         self.front = -1
         self.rear = -1
-        self.logger = Displayer.get_logger('Queues')
+        self.logger = Displayer.get_logger('Queues', arrays=True)
 
     # ------------------ Mutating Methods ------------------
-    @Displayer.displayer("Queue Enqueue (using arrays)")
+    @Displayer.array_displayer("Queue Enqueue (using arrays)")
     def enqueue(self, val):
         if self.size == self.capacity:
             self.logger.info("Queue is full")
@@ -19,7 +19,7 @@ class Queue1(Array):
         self.size +=1
         return
     
-    @Displayer.displayer("Queue Dequeue (using arrays)")
+    @Displayer.array_displayer("Queue Dequeue (using arrays)")
     def dequeue(self):
         if self.size == 0:
             self.logger.info("Stack is empty")

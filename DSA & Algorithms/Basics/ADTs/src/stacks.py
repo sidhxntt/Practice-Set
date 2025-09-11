@@ -6,10 +6,10 @@ class Stack1(Array):
     def __init__(self, capacity):
         super().__init__(capacity)
         self.top = -1
-        self.logger = Displayer.get_logger('Stacks')
+        self.logger = Displayer.get_logger('Stacks', arrays=True)
 
     # ------------------ Mutating Methods ------------------
-    @Displayer.displayer("Stack Push (using arrays)")
+    @Displayer.array_displayer("Stack Push (using arrays)")
     def push(self, val):
         if self.size == self.capacity:
             self.logger.info("Stack is full")
@@ -19,7 +19,7 @@ class Stack1(Array):
         self.size += 1
         return
 
-    @Displayer.displayer("Stack Pop (using arrays)")
+    @Displayer.array_displayer("Stack Pop (using arrays)")
     def pop(self):
         if self.size == 0:
             self.logger.info("Stack is empty")

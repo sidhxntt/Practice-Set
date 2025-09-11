@@ -1,0 +1,9 @@
+[Append Node] LinkedList → 6 -> None
+[Append Node] LinkedList → 6 -> 5 -> None
+[Append Node] LinkedList → 6 -> 5 -> 510 -> None
+[Prepend Node] LinkedList → 4 -> 6 -> 5 -> 510 -> None
+[Delete Node] LinkedList → 4 -> 6 -> 5 -> None
+[Insert Node] LinkedList → 4 -> 6 -> 5 -> 3 -> None
+LinkedList stats → {'count': 4, 'sum': 18, 'max': 6, 'min': 3}
+Permutation count (n=4, r=2): 12
+Combination count (n=4, r=2): 6
