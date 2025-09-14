@@ -1,9 +1,25 @@
 [Append Node] LinkedList → 6 -> None
 [Append Node] LinkedList → 6 -> 5 -> None
-[Append Node] LinkedList → 6 -> 5 -> 510 -> None
-[Prepend Node] LinkedList → 4 -> 6 -> 5 -> 510 -> None
-[Delete Node] LinkedList → 4 -> 6 -> 5 -> None
-[Insert Node] LinkedList → 4 -> 6 -> 5 -> 3 -> None
-LinkedList stats → {'count': 4, 'sum': 18, 'max': 6, 'min': 3}
-Permutation count (n=4, r=2): 12
-Combination count (n=4, r=2): 6
+[Append Node] LinkedList → 6 -> 5 -> 5 -> None
+[Append Node] LinkedList → 6 -> 5 -> 5 -> 510 -> None
+[Prepend Node] LinkedList → 4 -> 6 -> 5 -> 5 -> 510 -> None
+[Delete Node] LinkedList → 4 -> 6 -> 5 -> 5 -> None
+[Insert Node] LinkedList → 4 -> 6 -> 5 -> 3 -> 5 -> None
+LinkedList stats → {'count': 5, 'sum': 23, 'max': 6, 'min': 3}
+Permutation count (n=5, r=2): 20
+Combination count (n=5, r=2): 10
+Linked List not sorted
+Duplicate node for value 5 found at 5
+[De-Duplication] LinkedList → 4 -> 6 -> 5 -> 3 -> None
+Node found with data: 5 at position: 3
+Linked List in Array: [4, 6, 5, 3]
+array 1: [4, 6] & array 2: [5, 3]
+New array: [5, 3, 4, 6]
+array 1: [4, 6] & array 2: [5, 3]
+---------------------------------
+Intersection = []
+Union        = [3, 4, 5, 6]
+Difference   = [4, 6]
+---------------------------------
+New node with value 6 points to node with value 5
+Loop detected in the linked list

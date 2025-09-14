@@ -11,7 +11,17 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.logger = Displayer.get_logger('Linked_List', linked_list=True)
-     
+   
+    def display(self, operation_name="Display"):
+        nodes = []
+        current = self.head
+        while current is not None:  # loop until end
+            nodes.append(str(current.data))
+            current = current.next
+        nodes.append("None")
+
+        self.logger.info(f"[{operation_name}] LinkedList → {' -> '.join(nodes)}")
+
     # ------------------ Mutating Methods ------------------
     @Displayer.linked_list_displayer("Append Node")
     def append(self, val):
@@ -81,14 +91,15 @@ class LinkedList:
             temp = temp.next
 
         if temp is None:  # key not found
-            print("Node to be deleted not found")
+            self.logger.info("Node to be deleted not found")
             return
 
         # unlink the node
         prev.next = temp.next
         temp = None
+    
 
-    # ------------------ Mutating Methods ------------------
+    # ------------------Non Mutating Methods ------------------
   
     def math(self, count=False, summation=False, maximum=False, minimum=False, 
              permutations=False, combinations=False, r=None):
@@ -157,15 +168,148 @@ class LinkedList:
         self.logger.info(f"LinkedList stats → {stats}")
         return stats
 
-    # sorting
-    # duplicates
-    # loop detection & removal
-    # merging two linked lists
+    def sorting(self):
+        if not self.head:
+            self.logger.info("Linked List is Empty")
+            return
+
+        current = self.head
+        while current and current.next:
+            if current.data > current.next.data:
+                self.logger.info("Linked List not sorted")
+                return
+            current = current.next
+
+        self.logger.info("Linked List Sorted")
+        # if sort:
+        #     # to be done
+
+    def duplicates(self, dedupication = False):
+        current = self.head
+        position = 1
+        prev = None
+        seen = {}
+        if not self.head:
+            self.logger.info("Linked List is Empty")
+            return
+        while current:
+            if current.data in seen:
+                self.logger.info(f"Duplicate node for value {current.data} found at {position}")
+                if dedupication:
+                    prev.next = current.next
+                    self.display(operation_name="De-Duplication")
+                    return True
+            seen[current.data] = True 
+            prev = current
+            current = current.next
+            position +=1
+
+    def searching(self, val):
+        if not self.head:
+            self.logger.info("Linked List is Empty")
+            return
+        current = self.head
+        pos =1
+        while current:
+            if current.data == val:
+                self.logger.info(f"Node found with data: {val} at position: {pos}")
+                break
+            pos +=1
+            current = current.next
+
+    def loop_formation(self, data):
+        new_node = Node(data)
+
+        if not self.head:  # if list is empty
+            self.head = new_node
+            return
+
+        # Traverse to the last node
+        last = self.head
+        nodes = [last]  # collect nodes for random choice
+        while last.next:
+            last = last.next
+            nodes.append(last)
+
+        # Append the new node
+        last.next = new_node
+
+        # Pick a random node from the list (including head, but excluding new_node itself)
+        random_node = random.choice(nodes)
+        new_node.next = random_node
+        self.logger.info(f"New node with value {data} points to node with value {random_node.data}")
+
+    def change_to_array(self):
+        arr = []
+        current = self.head
+        while current:
+            arr.append(current.data)
+            current = current.next
+
+        if not arr:
+            self.logger.info("Linked List is Empty")
+        self.logger.info(f"Linked List in Array: {arr}")
+        return arr
     
+    def has_loop(self):
+        """Floyd's algorithm - Floyd’s Cycle Detection Algorithm - Tortoise and Hare algorithm"""
+        slow = self.head
+        fast = self.head
+
+        while fast and fast.next and slow and slow.next:
+            slow = slow.next          # move slow pointer by 1
+            fast = fast.next.next     # move fast pointer by 2
+
+            if slow == fast: # in a loop they will meet at sometime unlike linear
+                self.logger.info("Loop detected in the linked list")
+                return True
+
+        self.logger.info("No loop in the linked list")
+        return False
+
+    def maths2(self, arr:list, split_pos=None, merge_pos=False, perform_ops=False):
+        if split_pos is None:
+            self.logger.info("Please provide a split position (int)")
+            return
+
+        if split_pos < 0:
+            self.logger.info("Invalid split position")
+            return
+
+        arr1 = arr[:split_pos]
+        arr2 = arr[split_pos:]
+        self.logger.info(f"array 1: {arr1} & array 2: {arr2}")
+
+        def merged_at_pos(val, arr1, arr2, use_first=True):
+            if use_first:
+                arr3 = arr1[:val] + arr2
+            else:
+                arr3 = arr2[:val] + arr1
+            self.logger.info(f"New array: {arr3}")
+            return arr3
+
+        def set_operations(arr1, arr2):
+            intersection = list(set(arr1) & set(arr2))
+            union = list(set(arr1) | set(arr2))
+            difference = list(set(arr1) - set(arr2))
+            self.logger.info("---------------------------------")
+            self.logger.info(f"Intersection = {intersection}")
+            self.logger.info(f"Union        = {union}")
+            self.logger.info(f"Difference   = {difference}")
+            self.logger.info("---------------------------------")
+
+        if merge_pos:
+            merged_at_pos(2, arr1, arr2, use_first=False)
+        elif perform_ops:
+            set_operations(arr1, arr2)
+        else:
+            merged_at_pos(2, arr1, arr2, use_first=False)
+            set_operations(arr1, arr2)
 # ------------------ Example Usage ------------------
 if __name__ == "__main__":
     ll = LinkedList()
     ll.append(6)
+    ll.append(5)
     ll.append(5)
     ll.append(510)
     ll.prepend(4)
@@ -174,4 +318,17 @@ if __name__ == "__main__":
     ll.math()
     ll.math(permutations=True, r=2)  # 6  (3P2)
     ll.math(combinations=True, r=2)
+    ll.sorting()
+    ll.duplicates(dedupication=True)
+    ll.searching(5)
+
+    
+    arr = ll.change_to_array()
+    ll.maths2(arr, split_pos=2, merge_pos=True)
+    ll.maths2(arr, split_pos=2, perform_ops=True)
+
+
+    ll.loop_formation(6)
+    ll.has_loop()
+
   
