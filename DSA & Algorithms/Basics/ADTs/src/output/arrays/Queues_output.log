@@ -12,3 +12,7 @@ permutations count = 2
 combinations count = 3
 ---------------------------------
 Found 9 at index 0
+[Queue Enqueue (using linked list)] LinkedList → 3 -> None
+[Queue Enqueue (using linked list)] LinkedList → 3 -> 9 -> None
+[Queue Enqueue (using linked list)] LinkedList → 3 -> 9 -> 1 -> None
+[Queue Dequeue (using linked list)] LinkedList → 9 -> 1 -> None

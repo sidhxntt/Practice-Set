@@ -92,22 +92,16 @@ class Displayer(ABC):
                 if hasattr(self, "head"):
                     nodes = []
                     current = self.head
-                    while current is not None:  # loop until end
+                    while current is not None:  # traverse linked list
                         nodes.append(str(current.data))
                         current = current.next
                     nodes.append("None")
 
-                    self.logger.info(f"[{operation_name}] LinkedList → {' -> '.join(nodes)}")
-
                     if reversed:
-                        prev = None
-                        current = self.head
-                        while current:
-                            nxt = current.next       # store the next node
-                            current.next = prev      # reverse the pointer
-                            prev = current           # move prev forward
-                            current = nxt            # move current forward
-                        self.head = prev             # new head is the old tail
+                        display_nodes = nodes[:-1][::-1] + ["None"]  # reverse data only
+                        self.logger.info(f"[{operation_name}] LinkedList (Reversed) → {' -> '.join(display_nodes)}")
+                    else:
+                        self.logger.info(f"[{operation_name}] LinkedList → {' -> '.join(nodes)}")
 
                 else:
                     self.logger.info(f"[{operation_name}] Operation completed")
@@ -115,4 +109,3 @@ class Displayer(ABC):
                 return result
             return wrapper
         return decorator
-

@@ -1,7 +1,7 @@
-[Stack Push (using arrays)] Array after operation: [3]
-[Stack Push (using arrays)] Array after operation: [3, 9]
-[Stack Push (using arrays)] Array after operation: [3, 9, 1]
-[Stack Pop (using arrays)] Array after operation: [3, 9]
+[Stack Push (using arrays)] Array → [3]
+[Stack Push (using arrays)] Array → [3, 9]
+[Stack Push (using arrays)] Array → [3, 9, 1]
+[Stack Pop (using arrays)] Array → [3, 9]
 ---------------------------------
 size = 2
 sum = 12
@@ -12,3 +12,7 @@ permutations count = 2
 combinations count = 3
 ---------------------------------
 Found 9 at index 1
+[Stack Push (using linked list)] LinkedList → 3 -> None
+[Stack Push (using linked list)] LinkedList → 3 -> 9 -> None
+[Stack Push (using linked list)] LinkedList → 3 -> 9 -> 1 -> None
+[Stack Pop (using linked list)] Operation completed
