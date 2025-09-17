@@ -1,0 +1,1 @@
+# can be represent using both linked list (doubly ll) and array
