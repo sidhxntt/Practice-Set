@@ -1,0 +1,23 @@
+{
+  "name": "sql",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "license": "MIT",
+  "scripts": {
+    "seed": "ts-node prisma/seeding/data.ts",
+    "build": "tsc",
+    "sync-db": "npx prisma migrate dev --name migration_1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.5.1",
+    "@prisma/client": "^5.18.0",
+    "bcrypt": "^6.0.0",
+    "prisma": "^5.18.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
