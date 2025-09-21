@@ -1,7 +1,3 @@
-Absolutely! Let’s go **deep into Spark join optimizations**, including **broadcast join, sort-merge join, and shuffle-hash join**, with clear examples, mechanics, and analogies.
-
----
-
 # 🔹 1. Why Join Optimization is Important
 
 * Joins are **expensive** in Spark because they often require **shuffling data** across the network.

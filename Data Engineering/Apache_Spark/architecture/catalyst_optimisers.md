@@ -247,3 +247,7 @@ Action output (show())
 * **Catalyst** → Optimizes DAG (pushdown filters, minimize shuffles)
 * **Executors** → Run tasks in parallel
 * **Driver** → Combines results, returns to user
+
+
+filter pushdown
+pushdown projection
