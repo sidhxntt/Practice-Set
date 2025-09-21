@@ -1,2 +1,0 @@
-Memeory management
-partition vs bucketing
