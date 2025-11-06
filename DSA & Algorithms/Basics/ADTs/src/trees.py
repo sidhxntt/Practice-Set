@@ -1,4 +1,4 @@
-# can be represent using both linked list (doubly ll) and array
+# can be represent using both linked list (doubly ll) and array but mostly linked list is used
 # Node class for the binary tree
 class Node:
     def __init__(self, key):
@@ -13,10 +13,10 @@ class BinaryTree:
 
     # Inorder Traversal (Left → Root → Right)
     def inorder(self, node):
-        if node:
-            self.inorder(node.left)
-            print(node.key, end=" ")
-            self.inorder(node.right)
+        if not node:
+            return []
+        return self.inorder(node.left) + [node.key] + self.inorder(node.right)
+          
     # inorder(1)
     # ├── inorder(2)
     # │    ├── inorder(4)
@@ -39,17 +39,15 @@ class BinaryTree:
 
     # Preorder Traversal (Root → Left → Right)
     def preorder(self, node):
-        if node:
-            print(node.key, end=" ")
-            self.preorder(node.left)
-            self.preorder(node.right)
+        if not node:
+            return []
+        return [node.key] + self.inorder(node.left) + self.inorder(node.right)
 
     # Postorder Traversal (Left → Right → Root)
     def postorder(self, node):
-        if node:
-            self.postorder(node.left)
-            self.postorder(node.right)
-            print(node.key, end=" ")
+        if not node:
+            return []
+        return  self.inorder(node.left) + self.inorder(node.right) + [node.key]
 
     def count_nodes(self, node):
         if node is None:
@@ -76,14 +74,14 @@ if __name__ == "__main__":
     tree.root.left.right = Node(5)
 
     print("Inorder traversal: ", end="")
-    tree.inorder(tree.root)
+    print(tree.inorder(tree.root))
 
-    print("\nPreorder traversal: ", end="")
-    tree.preorder(tree.root)
-    
-    print("\nPostorder traversal: ", end="")
-    tree.postorder(tree.root)
+    print("Preorder traversal: ", end="")
+    print(tree.preorder(tree.root))
 
-    print("\nNumber of nodes:", tree.count_nodes(tree.root))
+    print("Postorder traversal: ", end="")
+    print(tree.postorder(tree.root))
+
+    print("Number of nodes:", tree.count_nodes(tree.root))
     print("Height of tree:", tree.height(tree.root))
 
