@@ -28,6 +28,10 @@ class BST(BinaryTree):
         return node
     
     def delete(self, node, key):
+        # when deleting a node, 3 cases arise:
+        # 1. Node to be deleted is a leaf node (no children) and if so, simply remove it
+        # 2. Node to be deleted has one child and if so, bypass the node
+        # 3. Node to be deleted has two children and if so, find inorder successor (smallest in the right subtree) or inorder predecessor (largest in the left subtree)
         if node is None:
             return node
         if key < node.key:
@@ -65,12 +69,10 @@ class BST(BinaryTree):
     
 # Example usage:
 if __name__ == "__main__":
-    bst = BST(10)
-    bst.insert(bst.root, 5)
-    bst.insert(bst.root, 15)
-    bst.insert(bst.root, 3)
-    bst.insert(bst.root, 7)
-    bst.insert(bst.root, 12)
+    bst = BST(10) # Root node
+    keys = [5, 15, 3, 7, 12, 18]
+    for key in keys:
+        bst.insert(bst.root, key)
     bst.insert(bst.root, 18)
 
     print("Inorder traversal of BST:", bst.inorder(bst.root))

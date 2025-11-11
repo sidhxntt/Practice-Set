@@ -1,10 +1,11 @@
-from trees import BinaryTree, Node
+from trees import Node
+from BST import BST
 
 # AVL Trees are a self-balancing form of Binary Search Trees (BSTs).
 # They maintain a balance factor for each node to ensure that the tree remains approximately balanced,
 # which guarantees O(log n) time complexity for search, insertion, and deletion operations.
 
-class AVLTree(BinaryTree):
+class AVLTree(BST):
     def __init__(self, root):
         super().__init__(root)
     
@@ -59,6 +60,32 @@ class AVLTree(BinaryTree):
         y.right = z
         z.left = T3
         return y
+    
+    def check_avl(self, node):
+        if node is None:
+            return True
+        balance_factor = self.get_balance_factor(node)
+        if abs(balance_factor) > 1:
+            return False
+        return self.check_avl(node.left) and self.check_avl(node.right)
+    
+    def delete(self, node, key):
+        if node is None:
+            return node
+        if key < node.key:
+            node.left = self.delete(node.left, key)
+        elif key > node.key:
+            node.right = self.delete(node.right, key)
+        else:
+            if node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+            temp = super().min_value_node(node.right)
+            node.key = temp.key
+            node.right = self.delete(node.right, temp.key)
+
+        return self.balance_tree(node)
 
 # Example usage:
 if __name__ == "__main__":
@@ -74,3 +101,6 @@ if __name__ == "__main__":
     print("Height of AVL Tree:", avl.get_height(avl.root))
     print("Balance factor of root:", avl.get_balance_factor(avl.root))
     print("Is the tree a valid AVL Tree?", avl.check_avl(avl.root))
+    avl.delete(avl.root, 5)
+    print("Inorder traversal after deleting 5:", avl.inorder(avl.root))
+    print("Is the tree a valid AVL Tree after deletion?", avl.check_avl(avl.root))
