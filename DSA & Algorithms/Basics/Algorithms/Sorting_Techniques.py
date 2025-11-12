@@ -41,3 +41,4 @@ if __name__ == "__main__":
     print("Unsorted array:", a)
     print("Bubble sorted array:", bubble)
     print("Insertion sorted array:", insertion) 
+

@@ -1,5 +1,6 @@
 # can be represent using both linked list (doubly ll) and array but mostly linked list is used
 # Node class for the binary tree
+# Array representation is also possible where for any index i, left child is at 2*i + 1 and right child is at 2*i + 2
 class Node:
     def __init__(self, key):
         self.key = key
