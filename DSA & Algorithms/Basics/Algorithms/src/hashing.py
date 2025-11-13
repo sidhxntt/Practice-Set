@@ -1,11 +1,11 @@
 # Main use of Hashing: Efficient data retrieval using key-value pairs 
 # i.e. search, insert, delete operations.
 # This implementation includes both Open Addressing (Chaining) and Closed Addressing (Linear Probing, Quadratic Probing, Double Hashing) methods which are commonly used in hash tables to avoid collisions.
+from abc import ABC
 class Node:
     def __init__(self, data):
         self.data = data
-        self.next = None
-        
+        self.next = None      
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -29,12 +29,13 @@ class LinkedList:
         # Insert in correct position
         new_node.next = current.next
         current.next = new_node
+class BaseHashTable(ABC):
+    def __init__(self):
+        pass
 
-class ChainingHashTable:
-    def __init__(self, table_size):
-        self.table_size = table_size # Size of the hash table
-        self.table = [LinkedList() for _ in range(table_size)] # Initialize table with linked lists for chaining
-
+    def _chaining_hash(self, value):
+        return value % self.table_size
+    
     def display(self):
         table_dict = {}
 
@@ -48,16 +49,18 @@ class ChainingHashTable:
             table_dict[i] = values if values else None
 
         return table_dict
+class ChainingHashTable(BaseHashTable):
+    def __init__(self, table_size):
+        self.table_size = table_size # Size of the hash table
+        self.table = [LinkedList() for _ in range(table_size)] # Initialize table with linked lists for chaining
 
-    def _hash(self, value):
-        return value % self.table_size
 
     def insert(self, value):
-        index = self._hash(value) # Get index using hash function where to insert
+        index = self._chaining_hash(value) # Get index using hash function where to insert
         self.table[index].insert_sorted_ascending(value) # Insert value in sorted order in the linked list at that index
      
     def search(self, value):
-        index = self._hash(value)
+        index = self._chaining_hash(value)
         current = self.table[index].head
 
         while current:
@@ -67,7 +70,7 @@ class ChainingHashTable:
         return False
 
     def delete(self, value):
-        index = self._hash(value)
+        index = self._chaining_hash(value)
         current = self.table[index].head
         prev = None
 
@@ -90,8 +93,12 @@ if __name__ == "__main__":
     hash_table.insert(15)
     hash_table.insert(25)
     hash_table.insert(5)
-    hash_table.display()
+    print(hash_table.display())
+
     print(hash_table.search(15))  # Output: True
     print(hash_table.search(10))  # Output: False
+
     hash_table.delete(15)
+    print(hash_table.display())
+
     print(hash_table.search(15))  # Output: False
