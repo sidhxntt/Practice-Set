@@ -1,7 +1,7 @@
 # Main use of Hashing: Efficient data retrieval using key-value pairs 
 # i.e. search, insert, delete operations.
 # This implementation includes both Open Addressing (Chaining) and Closed Addressing (Linear Probing, Quadratic Probing, Double Hashing) methods which are commonly used in hash tables to avoid collisions.
-from typing import Iterable, Dict, Callable
+from typing import Iterable, Dict
 class Node:
     def __init__(self, data):
         self.data = data
@@ -289,7 +289,6 @@ class HashingExamplesFactory:
                 print(f"search({v_search}) after delete -> {table.search(v_search)}")
 
             print("\n")
-
 
 if __name__ == "__main__":
     # Demo parameters
