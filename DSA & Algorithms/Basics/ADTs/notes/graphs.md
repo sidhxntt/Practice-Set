@@ -516,3 +516,12 @@ Use cases:
 ## Conclusion
 
 Graphs form the backbone of many systems in computer science. Understanding their types, features, and use cases helps you design better algorithms, build more robust systems, and solve complex problems efficiently.
+
+> NOTE
+	Graph unweighted → BFS for shortest path
+	•	Graph deep & long → DFS
+	•	Need all possible solutions → DFS
+	•	Need minimum number of steps → BFS
+	•	Need to check if graph has a cycle → DFS
+	•	Need to check bipartite → BFS
+	•	Need topological order → DFS

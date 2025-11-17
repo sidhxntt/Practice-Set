@@ -1,5 +1,5 @@
 import time
-
+# Recursion always uses a stack data structure internally
 class RecursionExample:
     def __init__(self):
         pass
