@@ -55,6 +55,7 @@ class GraphOperations(Graph):
 
     @staticmethod
     def bfs(self, start_vertex):
+        # queue for BFS
         # Put the first vertex in the queue and mark it as visited then repeat the process
         visited = set()  # to keep track of visited vertices
         queue = deque([start_vertex])  # initialize queue with start vertex
@@ -62,7 +63,7 @@ class GraphOperations(Graph):
 
         while queue:
             current = queue.popleft()  # pop from left end for current vertex
-            for neighbor in super().get_neighbors(current): # explore its neighbors
+            for neighbor in self.get_neighbors(current): # explore its neighbors
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)  # append at right end
@@ -71,10 +72,11 @@ class GraphOperations(Graph):
     
     @staticmethod
     def dfs(self, start_vertex, visited=None):
+        #  stack for DFS as we use recursion
         if visited is None:
             visited = set()
         visited.add(start_vertex)
-        for neighbor in super().get_neighbors(start_vertex):
+        for neighbor in self.get_neighbors(start_vertex):
             if neighbor not in visited:
                 GraphOperations.dfs(self, neighbor, visited)
         return visited
@@ -89,7 +91,7 @@ class GraphOperations(Graph):
             current, path = queue.popleft()
             if current == target_vertex:
                 return path  # return the path when target is found
-            for neighbor in super().get_neighbors(current):
+            for neighbor in self.get_neighbors(current):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append((neighbor, path + [neighbor]))
@@ -103,7 +105,7 @@ class GraphOperations(Graph):
 
         def dfs(vertex, parent):
             visited.add(vertex)
-            for neighbor in super().get_neighbors(vertex):
+            for neighbor in self.get_neighbors(vertex):
                 if neighbor not in visited:
                     if dfs(neighbor, vertex):
                         return True
@@ -117,7 +119,7 @@ class GraphOperations(Graph):
                     return True
         return False
 
-
+    
 if __name__ == "__main__":
     g = GraphOperations()
     g.add_edge_undirected(1, 2)
@@ -140,3 +142,6 @@ if __name__ == "__main__":
 
     print("Cycle detected in undirected graph:")
     print(GraphOperations.detect_cycle_undirected(g))
+
+    
+   
