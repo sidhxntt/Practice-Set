@@ -6,15 +6,30 @@ class DisjointSet(GraphOperations):
         pass
 
     def find(self,parent, v):
+        """
+        This function finds the leader/representative of the set that contains v. So that we can know which set v belongs to. If both a and b have the same leader, they are in the same set.
+        If the person v is not the leader
+        Follow the chain:
+            parent of v
+            parent of parent of v
+        Finally find the leader.
+        Path compression means:
+            When you finally find the leader, you say:
+            “Everyone I passed on the way should now point DIRECTLY to the leader.”
+        This makes future searches faster.
+        """
         if parent[v] != v: # parent[x] tells you the representative/root of the set containing x. If parent[v] == v, v is the root of its group → return v
             parent[v] = self.find(parent, parent[v])  # path compression , It flattens the tree so future lookups become extremely fast.
         return parent[v]
 
     def union(self,parent, rank, a, b):
+        """
+        Two school groups are standing. Each group has a leader. When two groups join, the leader with the higher rank/weight (stronger group) becomes boss. If both leaders have same strength → choose one, and increase its rank.
+        """
         root_a = self.find(parent, a)
         root_b = self.find(parent, b)
         if root_a == root_b:
-            return False
+            return False # already in the same set
         # union by rank
         if rank[root_a] > rank[root_b]:
              parent[root_b] = root_a
@@ -115,13 +130,12 @@ if __name__ == "__main__":
             print("DS1 - Find 1:", ds1.find(parent1, 1))
             print("DS1 - Find 5:", ds1.find(parent1, 5))
 
-        set1()
+        ds1 = set1()   # Create only once
         print("\n")
 
-        set2()
+        ds2 = set2()   # Create only once
         print("\n")
-
-        DisjointSetOperations(set1(), set2())
+        DisjointSetOperations(ds1, ds2)  # Pass the SAME ds1, ds2
         print("\n")
 
     main()
