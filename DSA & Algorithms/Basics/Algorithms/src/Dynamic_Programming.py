@@ -75,12 +75,35 @@ class DP:
             dp[i][j] = min(dp[i][j], cost)
 
         return dp[i][j]
+    
+    def LCS(self, i, j, A, B):
+        """Longest Common Subsequence using memoization."""
+        memo = {}
+        if (i, j) in memo:
+            return memo[(i, j)]
+        if i == 0 or j == 0:
+            return 0
+        if A[i - 1] == B[j - 1]:
+            memo[(i, j)] = 1 + self.LCS(i - 1, j - 1, A, B)
+            return memo[(i, j)]
+        else:
+            left = self.LCS(i - 1, j, A, B)
+            right = self.LCS(i, j - 1, A, B)
+            memo[(i, j)] = max(left, right)
+            return memo[(i, j)]
+        
 
 # Example usage
 dp = DP()
 print("Fibonacci of 6 using DP:", dp.fibonacci(6))
+
 weights = [1, 2, 3]
 values = [10, 15, 40]
 capacity = 6
 print("0/1 Knapsack maximum value:", dp.knapsack(weights, values, capacity, len(weights) - 1))
+
 print("Minimum cost of Matrix Chain Multiplication:", dp.mcm([10, 20, 30, 40, 30], 1, 3))
+
+A = "AGGTAB"
+B = "GXTXAYB"
+print("Length of LCS is", dp.LCS(len(A), len(B), A, B))
