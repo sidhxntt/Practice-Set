@@ -17,6 +17,15 @@ class RecursionExample:
             return 1
         else:
             return n * self.factorial(n-1)
+        
+    def fibonacci(self, n):
+        """Returns the nth Fibonacci number using simple recursion."""
+        if n <= 1:
+            return n
+        else:
+            return self.fibonacci(n-1) + self.fibonacci(n-2)
 
 example = RecursionExample()
 example.count_down(3)
+print("Factorial of 5:", example.factorial(5))
+print("Fibonacci of 6:", example.fibonacci(6))
