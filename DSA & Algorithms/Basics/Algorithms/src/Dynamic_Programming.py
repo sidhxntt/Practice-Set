@@ -57,7 +57,7 @@ class DP:
         #                  |                 |                 |                   |
         #            base case 0        base case 0       base case 0          base case 0
 
-    def mcm(self, p, i, j):
+    def MCM(self, p, i, j):
         if i == j:
             return 0
         
@@ -68,8 +68,8 @@ class DP:
         dp[i][j] = float('inf')
 
         for k in range(i, j):
-            cost = (self.mcm(p, i, k) 
-                    + self.mcm(p, k+1, j)
+            cost = (self.MCM(p, i, k) 
+                    + self.MCM(p, k+1, j)
                     + p[i-1] * p[k] * p[j])
 
             dp[i][j] = min(dp[i][j], cost)
@@ -92,6 +92,17 @@ class DP:
             memo[(i, j)] = max(left, right)
             return memo[(i, j)]
         
+    def max_subarray_sum(self, arr):
+        """Kadane's Algorithm to find the maximum subarray sum."""
+        max_so_far = arr[0]
+        max_ending_here = arr[0]
+        
+        for i in range(1, len(arr)):
+            max_ending_here = max(arr[i], max_ending_here + arr[i])
+            max_so_far = max(max_so_far, max_ending_here)
+        
+        return max_so_far
+        
 
 # Example usage
 dp = DP()
@@ -102,8 +113,11 @@ values = [10, 15, 40]
 capacity = 6
 print("0/1 Knapsack maximum value:", dp.knapsack(weights, values, capacity, len(weights) - 1))
 
-print("Minimum cost of Matrix Chain Multiplication:", dp.mcm([10, 20, 30, 40, 30], 1, 3))
+print("Minimum cost of Matrix Chain Multiplication:", dp.MCM([10, 20, 30, 40, 30], 1, 3))
 
 A = "AGGTAB"
 B = "GXTXAYB"
 print("Length of LCS is", dp.LCS(len(A), len(B), A, B))
+
+arr = [-2,1,-3,4,-1,2,1,-5,4]
+print("Maximum subarray sum is", dp.max_subarray_sum(arr))
