@@ -94,15 +94,18 @@ class DP:
         
     def max_subarray_sum(self, arr):
         """Kadane's Algorithm to find the maximum subarray sum."""
-        max_so_far = arr[0]
-        max_ending_here = arr[0]
-        
+        "if prev_sum < 0: prev_sum = arr[i] else: prev_sum += arr[i] ie we add only when prev_sum is positive"
+        max_sub = prev_sum= arr[0]
+
         for i in range(1, len(arr)):
-            max_ending_here = max(arr[i], max_ending_here + arr[i])
-            max_so_far = max(max_so_far, max_ending_here)
-        
-        return max_so_far
-        
+            if prev_sum < 0:
+                prev_sum = arr[i]
+            else:
+                prev_sum += arr[i]
+
+            max_sub = max(max_sub, prev_sum)
+
+        return max_sub
 
 # Example usage
 dp = DP()
