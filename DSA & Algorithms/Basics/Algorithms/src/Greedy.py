@@ -181,6 +181,34 @@ class GreedyAlgorithm:
                     heapq.heappush(heap, (new_dist, v))
                     print(f"Updated distance for vertex {v}: {new_dist}")
         return dist
+    
+    def optimal_merge_pattern(self, lengths):
+        """
+        Solve the optimal merge pattern problem using a greedy approach.
+
+        :param lengths: List of lengths of files to be merged
+        :return: Minimum cost of merging the files
+        """
+        import heapq
+
+        # Create a min-heap from the lengths
+        heapq.heapify(lengths)
+        total_cost = 0
+
+        while len(lengths) > 1:
+            # Pop the two smallest lengths
+            first = heapq.heappop(lengths)
+            second = heapq.heappop(lengths)
+
+            # Merge them
+            merged_length = first + second
+            total_cost += merged_length
+            print(f"Merged files of lengths {first} and {second}: new length={merged_length}, current total cost={total_cost}")
+
+            # Push the merged length back into the heap
+            heapq.heappush(lengths, merged_length)
+
+        return total_cost
 
 if __name__ == "__main__":
     def main():
@@ -263,10 +291,21 @@ if __name__ == "__main__":
             print("Shortest distances from vertex", start_vertex, ":", distances)
             print("--------------------------------------------------")
             print("\n")
+        
+        def optimal_merge_pattern():
+            print("Optimal Merge Pattern using Greedy Algorithm")
+            print("--------------------------------------------------")
+            lengths = [4, 3, 2, 6]
+            print("File lengths:", lengths)
+            min_cost = g.optimal_merge_pattern(lengths)
+            print(f"Minimum cost of merging files = {min_cost}")
+            print("--------------------------------------------------")
+            print("\n")
        
         fractional_knapsack()
         activity_selection()
         kruskal_mst()
         prim_mst()  
         dijkstra()
+        optimal_merge_pattern()
     main()

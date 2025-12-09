@@ -82,15 +82,15 @@ class RecursionExample:
             memo[(n, r)] = self.combinations(n - 1, r - 1) + self.combinations(n - 1, r)
             return memo[(n, r)]
         
-    def towers_of_hanoi(self, n, source, target, auxiliary):
+    def towers_of_hanoi(self, n, source, auxiliary, target):
         """Returns a list of moves for the Towers of Hanoi problem."""
         if n == 1:
             return [(source, target)]
 
         moves = []
-        moves += self.towers_of_hanoi(n - 1, source, auxiliary, target)
+        moves += self.towers_of_hanoi(n - 1, source, target, auxiliary)
         moves.append((source, target))
-        moves += self.towers_of_hanoi(n - 1, auxiliary, target, source)
+        moves += self.towers_of_hanoi(n - 1, auxiliary, source, target)
         return moves
         
 example = RecursionExample()
