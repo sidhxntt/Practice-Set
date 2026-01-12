@@ -65,7 +65,7 @@ class GreedyAlgorithm:
     
     def kruskal_mst(self, edges, num_vertices):
         """
-        Think of every vertex as a separate island.Each edge is a bridge with a cost (weight).Your job in Kruskal’s algorithm is:
+        Think of every vertex as a separate island. Each edge is a bridge with a cost (weight).Your job in Kruskal’s algorithm is:
         👉 Build the cheapest possible network of bridges so that every island becomes connected, without creating loops (loops = cycles).
         Solve the Minimum Spanning Tree problem using Kruskal's algorithm.
         And why do we need DSU here? To efficiently check and avoid cycles when adding edges to the MST. DFS or BFS can also be used for cycle detection, but they are less efficient compared to DSU, especially when dealing with a large number of edges and vertices.
