@@ -67,7 +67,7 @@ class GraphOperations(Graph):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)  # append at right end
-
+        # using queue ensures we explore all neighbors at current depth before going deeper ie to maintain BFS order
         return visited
     
     @staticmethod

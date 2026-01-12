@@ -10,6 +10,7 @@
 #   middle child1 between key1 and key2 (if key2 exists)
 #   middle child2 between key2 and key3 (if key3 exists)
 #   right child > key3
+#  therefore, left child < key1 < middle child1 < key2 < middle child2 < key3 < right child
 
 class Node:
     def __init__(self, key1, key2=None, key3=None):
@@ -83,9 +84,9 @@ if __name__ == "__main__":
     b_tree.insert(18)
 
     print("Inorder traversal of B-Tree:", b_tree.inorder(b_tree.root))
-    print("Height of B-Tree:", b_tree.height(b_tree.root))
-    print("Number of nodes:", b_tree.count_nodes(b_tree.root))
-    print("Number of leaves:", b_tree.count_leaves(b_tree.root))
+    # print("Height of B-Tree:", b_tree.height(b_tree.root))
+    # print("Number of nodes:", b_tree.count_nodes(b_tree.root))
+    # print("Number of leaves:", b_tree.count_leaves(b_tree.root))
     # Note: Delete operation is not yet implemented
     print("Searching for 7:", b_tree.search(b_tree.root, 7))
     print("Searching for 100:", b_tree.search(b_tree.root, 100))
