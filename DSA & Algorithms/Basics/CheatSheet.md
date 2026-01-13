@@ -58,6 +58,7 @@ Last-In, First-Out (LIFO) structure.
 
 **When to use**
 - Undo operations, function call stacks, recursion
+- Reversal for arrays/linkedlist due to FIFO
 - Depth-first search (DFS), expression parsing
 
 **Time complexity**
