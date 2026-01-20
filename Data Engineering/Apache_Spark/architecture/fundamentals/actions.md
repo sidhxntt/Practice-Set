@@ -19,7 +19,7 @@ In Spark, operations are divided into **two types**:
 Example:
 
 ```python
-df = spark.read.csv("people.csv", header=True, inferSchema=True)
+df = spark.read.csv("people.csv", header=True, inferSchema=True) 
 df_filtered = df.filter(df.age > 30)  # transformation → lazy
 
 # Action triggers Spark execution

@@ -1,0 +1,15 @@
+[project]
+name = "Spark"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Sid.", email = "siddhantg2002@gmail.com"},
+]
+dependencies = ["pyspark>=4.0.1", "ipykernel>=7.1.0", "confluent-kafka>=2.12.2"]
+requires-python = "==3.14.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
