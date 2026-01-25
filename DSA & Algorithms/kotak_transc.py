@@ -35,3 +35,5 @@ limit = 50000
 print("How much i can afford:", limit - total)
 print("Spent EMI for 12 months:", total / 12)
 print("Limit EMI for 12 months:", limit / 12)
+
+# different patterns/ techniques to solve array prob, one of them is the above window slider 
