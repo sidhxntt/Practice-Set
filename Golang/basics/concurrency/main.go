@@ -1,9 +1,15 @@
 package main
 
-import "concurrency/src"
+import (
+	"concurrency/src"
+	// "fmt"
+)
 
 func main() {
-	src.ExampleGoroutines1()
+	// src.ExampleGoroutines1()
+	// fmt.Println("This wll print before goroutines1 complete to show that main does not wait for goroutines to finish")
+	// src.ExampleGoroutines2()
+	// src.ExampleGoroutines3()
+	// src.RaceCondition()
+	src.ChannelsExample()
 }
-
-// see how we are not calling main function as main is the entry point

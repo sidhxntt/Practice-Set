@@ -4,11 +4,12 @@ import "fmt"
 
 func ExampleGoroutines1() {
 	// This is a placeholder for the actual implementation of goroutines example.
-	go greeter("Sid") // only pri will run as sid is in a goroutine and main thread ends before it can execute, it doesnt wait for goroutine to finish
-	greeter("Pri")
+	go greeter1("Sid")
+	go greeter1("Pri")
+	// Without synchronization, main may exit before goroutines complete therefore both greetings will not be printed
 }
 
-func greeter(name string) {
+func greeter1(name string) {
 	for i := 0; i < 5; i++ {
 		fmt.Println("Hello, " + name + "!")
 	}
