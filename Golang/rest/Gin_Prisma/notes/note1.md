@@ -1,0 +1,1 @@
+1. prisma client go suitable only with prisma@6.4.1 only
