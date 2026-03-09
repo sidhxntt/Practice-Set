@@ -1,0 +1,18 @@
+[project]
+name = "project_initialisation_new_way"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Sid.", email = "siddhantg2002@gmail.com"},
+]
+dependencies = ["requests>=2.32.3"]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+start = "python main.py"
+greet = "echo Hello from PDM script!"

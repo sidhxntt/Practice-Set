@@ -1,13 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from .utils.TimestampMixin import TimestampMixin
+from django.contrib.auth import get_user_model
 
-
+User = get_user_model()
 class Album(TimestampMixin):
     """
     Album model that stores album information

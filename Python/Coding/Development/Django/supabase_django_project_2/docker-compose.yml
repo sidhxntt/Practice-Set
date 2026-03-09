@@ -1,36 +1,98 @@
-# in grafana ui give source as http://prometheus:9090
+version: '3.8'
 services:
   app:
     build:
       context: .
       dockerfile: dockerfile
     ports:
-    # change if port number has been changed
       - "4000:4000"
-    # networks:
-    #   - app-network
+    volumes:
+      - ./error_logs:/app/error_logs
+      - ./request_logs:/app/request_logs
+    networks:
+      - django
 
-#   prometheus:
-#     image: prom/prometheus
-#     ports:
-#       - "9090:9090"
-#     volumes:
-#       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-#     networks:
-#       - app-network
-#     depends_on:
-#       - app
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - django
+    depends_on:
+      - app
 
-# #  username & password : admin
-#   grafana:
-#     image: grafana/grafana-oss
-#     ports:
-#       - "3000:3000"
-#     networks:
-#       - app-network
-#     depends_on:
-#       - prometheus
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - django
+    depends_on:
+      - prometheus
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - django
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200"]
+      interval: 10s
+      timeout: 10s
+      retries: 120
 
-# networks:
-#   app-network:
-#     driver: bridge
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.1
+    container_name: kibana
+    ports:
+      - 5601:5601
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    networks:
+      - django
+    
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.12.1
+    container_name: logstash
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      # Mount your specific log directories
+      - ./src/core/utils/request_logs:/logs/request_logs:ro
+      - ./src/core/utils/error_logs:/logs/error_logs:ro
+    ports:
+      - "5044:5044"   # Beats input
+      - "5001:5001"   # TCP input
+      - "9600:9600"   # API endpoint
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - django
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+
+networks:
+  django:
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
+    driver: local

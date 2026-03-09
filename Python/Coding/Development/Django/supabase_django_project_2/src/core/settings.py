@@ -1,19 +1,19 @@
 import os
 from pathlib import Path
-from core.utils.drf.installed_apps import installed_apps
-from core.utils.drf.middlewares import middlewares
-from core.utils.templates import templates
-from core.utils.db_and_cache.databases import database_connections
-from core.utils.db_and_cache.caching import caching
-from core.utils.drf.app_pass_validators import app_pass_validators
+from utils.drf.installed_apps import installed_apps
+from utils.drf.middlewares import middlewares
+from utils.templates import templates
+from utils.db_and_cache.databases import database_connections
+from utils.db_and_cache.caching import caching
+from utils.drf.app_pass_validators import app_pass_validators
 from django.core.management.utils import get_random_secret_key
-from core.utils.drf.DRF_settings import DRF
-from core.utils.envs import get_env
-from core.utils.drf.security import security_settings
+from utils.drf.DRF_settings import DRF
+from utils.envs import get_env
+from utils.drf.security import security_settings
 import logging.config
 from datetime import timedelta
-from core.utils.logging.sentry import sentry
-from core.utils.logging.elk_config import configure_logging
+from utils.logging.sentry import sentry
+# from utils.logging.elk_config import configure_logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,15 +46,19 @@ INSTALLED_APPS = installed_apps()
 MIDDLEWARE = middlewares()
 ROOT_URLCONF = 'core.urls'
 TEMPLATES = templates(BASE_DIR)
-WSGI_APPLICATION = 'core.wsgi.application'
+# WSGI_APPLICATION = 'wsgi.application'
 
 # Database 
 DATABASES = database_connections(env)
-
+ELASTICSEARCH_DSL = {
+    'default':{
+        'hosts': 'http://localhost:9200'
+    }
+}
 # Caches
 cache_settings = caching(env)
 CACHES = cache_settings['cache_config']
-
+SITE_ID = 1 
 # Session configuration
 # Ensure SESSION_ENGINE is always defined, even if it's not returned from caching()
 SESSION_ENGINE = cache_settings.get('SESSION_ENGINE', 'django.contrib.sessions.backends.db')
@@ -106,7 +110,7 @@ USE_I18N = True
 USE_TZ = True
 
 # Only initialize Sentry if DSN is provided
-sentry(env)
+sentry()
 
 # Base directory for logs
 LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
@@ -118,12 +122,13 @@ APP_NAME = 'django_backend'
 ENVIRONMENT = os.environ.get('DJANGO_ENV', 'development')
 
 # ELK configuration
-ELASTICSEARCH_HOST = os.environ.get('ELASTICSEARCH_HOST', 'localhost')
+ELASTICSEARCH_HOST = os.environ.get('ELASTICSEARCH_HOST', 'elasticsearch')
 ELASTICSEARCH_PORT = os.environ.get('ELASTICSEARCH_PORT', 9200)
-LOGSTASH_HOST = os.environ.get('LOGSTASH_HOST', 'localhost')
+LOGSTASH_HOST = os.environ.get('LOGSTASH_HOST', 'logstash')
 LOGSTASH_PORT = os.environ.get('LOGSTASH_PORT', 5044)
 
 # Configure Django logging
+# Uncomment if using configure_logging function
 # LOGGING = configure_logging(
 #     app_name=APP_NAME,
 #     environment=ENVIRONMENT,
@@ -137,3 +142,97 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'authentication.User'
+
+# ELK_ENABLED = True
+
+# ELASTIC_APM = {
+#     'SERVICE_NAME': APP_NAME,  # Use the same app name as defined earlier
+#     'SECRET_TOKEN': '',  # Not needed for development
+#     'SERVER_URL': 'http://apm-server:8200',  # If you add APM server later
+#     'ENVIRONMENT': ENVIRONMENT,  # Use the environment variable defined earlier
+#     'DJANGO_TRANSACTION_NAME_FROM_ROUTE': True,
+#     'CAPTURE_BODY': 'all',
+#     'CAPTURE_HEADERS': True,
+#     'TRANSACTIONS_IGNORE_PATTERNS': [
+#         '^OPTIONS ', 
+#         '^/health/', 
+#         '^/favicon.ico'
+#     ],
+# }
+
+# # Customize your logging configuration for ELK
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'json': {
+#             'class': 'your_app.utils.JsonFormatter',  # Make sure this class exists
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'json',
+#         },
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'request_logs', 'requests.log'),
+#             'maxBytes': 10 * 1024 * 1024,  # 10MB
+#             'backupCount': 10,
+#             'formatter': 'json',
+#         },
+#         'error_file': {
+#             'level': 'ERROR',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'error_logs', 'api_exceptions.log'),
+#             'maxBytes': 10 * 1024 * 1024,  # 10MB
+#             'backupCount': 10,
+#             'formatter': 'json',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#         'request_logger': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',
+#             'propagate': False,
+#         },
+#         'api_exceptions': {
+#             'handlers': ['console', 'error_file'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#         'elasticapm.errors': {
+#             'handlers': ['console', 'error_file'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#     },
+# }
+
+# # Request logging settings
+# REQUEST_LOGGING_LEVEL = logging.INFO
+# REQUEST_LOGGING_COLORIZE = False
+# REQUEST_LOGGING_MAX_BODY_LENGTH = 1000
+# REQUEST_LOGGING_SENSITIVE_HEADERS = [
+#     'Authorization', 'Proxy-Authorization', 'Cookie', 'Set-Cookie'
+# ]
+# REQUEST_LOGGING_SENSITIVE_BODY_FIELDS = [
+#     'password', 'token', 'secret', 'key', 'credit_card', 'cvv'
+# ]
+# REQUEST_LOGGING_EXEMPT_PATHS = [
+#     '/health/', '/metrics/', '/static/', '/media/', '/admin/jsi18n/'
+# ]
+# REQUEST_LOGGING_EXEMPT_USER_AGENTS = [
+#     'ELB-HealthChecker', 'kube-probe'
+# ]
+# REQUEST_LOGGING_LOG_METRICS = True
+# REQUEST_LOGGING_LOG_BODY = True
+# REQUEST_LOGGING_LOG_HEADERS = True

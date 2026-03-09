@@ -18,6 +18,8 @@ K8s
 S3
 
 steps
+1. create supabase db
+1. Populate .env file
 1. DOwnload Redis docker img and run it
 2. pdm run migrate
 3. pdm run user

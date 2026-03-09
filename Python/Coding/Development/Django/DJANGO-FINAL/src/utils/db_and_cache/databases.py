@@ -7,7 +7,7 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 def database_connections(env):
     db_config = {
-        'default': dj_database_url.parse(DATABASE_URL)
+        'default': dj_database_url.parse("postgresql://postgres.bguypzibuyecpvsnkzlh:siddhantgupta@aws-0-ap-south-1.pooler.supabase.com:6543/postgres")
     }
 
     if env.get('prod') or env.get('stage'):

@@ -7,26 +7,32 @@ authors = [
 ]
 dependencies = [
     "django>=4.2.0",
+    "django-elasticsearch-dsl>=8.0",
+    "djangorestframework-simplejwt>=5.5.0",
     "djangorestframework>=3.16.0",
-    "psycopg2-binary>=2.9.6",
-    "python-dotenv>=1.0.0",
     "dj-database-url>=2.3.0",
-    "django-cors-headers>=4.7.0",
-    "faker>=37.1.0",
     "django-filter>=25.1",
     "django-health-check>=3.18.3",
-    "djangorestframework-simplejwt>=5.5.0",
     "drf-spectacular>=0.28.0",
     "django-prometheus>=2.3.1",
     "django-storages>=1.14.6",
-    "boto3>=1.38.6",
+    "faker>=37.1.0",
+    "django-cors-headers>=4.7.0",
+    "python-dotenv>=1.1.0",
+    "psycopg2-binary>=2.9.10",
     "whitenoise>=6.9.0",
+    "boto3>=1.38.7",
     "sentry-sdk[django]>=2.27.0",
-    "python-logstash>=0.4.8",
-    "elasticsearch>=9.0.1",
+    "django-redis>=5.4.0",
+    "celery>=5.5.2",
+    "redis>=6.0.0",
+    "django-celery-results>=2.6.0",
+    "pillow>=11.2.1",
+    "pytz>=2025.2",
+    "geoip2>=5.0.1"
 ]
 requires-python = ">=3.10"
-readme = "README.md"
+# readme = "README.md"
 license = {text = "MIT"}
 
 [build-system]
@@ -34,16 +40,24 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pdm.scripts]
-setup = "python -m django startproject src/core ." # Creates the project
 dev = "python src/manage.py runserver 4000"  # Starts local server
 docker = "python src/manage.py runserver 0.0.0.0:4000"  # Starts local server
 user = "python src/manage.py createsuperuser" # user that can access admin
 app = "python src/manage.py startapp" # different apps/(main_routes)
 shell = "python src/manage.py shell"
 seed = "python src/manage.py populate_db"
+elasti = "python src/manage.py search_index --rebuild"
 
 [tool.pdm.scripts.migrate]
 composite = [
     "python src/manage.py makemigrations", # Creates new DB migrations
     "python src/manage.py migrate" # Applies DB migrations
+]
+
+[tool.pdm.scripts.setup]
+composite = [
+    "python -m django startproject core .",
+    "mkdir src",
+    "mv manage.py src/",
+    "mv main/ src/"
 ]

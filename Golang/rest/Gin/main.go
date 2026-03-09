@@ -7,7 +7,7 @@ package main
 // @BasePath /
 
 import (
-	_ "gin/docs"
+	// _ "gin/docs"
 	"gin/src"
 )
 

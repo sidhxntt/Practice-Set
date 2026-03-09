@@ -4,7 +4,7 @@ An API, or Application Programming Interface, is a defined set of rules and prot
 
 ---
 
-### 2. Difference btw SDK & API
+### 2. Difference b/w SDK & API
 
 An API defines how software components communicate—it’s the _interface_. An SDK, or Software Development Kit, is a collection of tools, libraries, and documentation that helps developers integrate or build on top of a platform more efficiently.
 For example, when building authentication features, I could use Clerk's SDK like `clerk.js`, which abstracts away much of the boilerplate needed for login/signup flows. Under the hood, the SDK typically uses APIs but also includes helper functions, UI components, and docs to speed up development
@@ -44,9 +44,11 @@ In REST APIs, endpoints are usually structured around resources (like users, pos
 
 ---
 
-### 7. What is a request and response in HTTP?
+### 7. What is a request and response in HTTP? What are HTTP headers and cookies?
 
-A request is when client asks for resource from server/ wants to put/post a resource where as server providing resource or making the applied chages is a response. An this request-response cycle takes place in HTTP protocol.
+- A request is when client asks for resource from server/ wants to put/post a resource where as server providing resource or making the applied chages is a response. An this request-response cycle takes place in HTTP protocol.
+- HTTP headers are key-value pairs sent between clients and servers in HTTP requests and responses. They carry metadata about the request or response, such as content type, authorization info, caching rules, and more.
+- Cookies are small pieces of data stored on the client (browser) and sent automatically with every HTTP request to the server that set them. They are mainly used to maintain state, like session IDs, user preferences, or tracking info.
 
 ---
 
@@ -80,11 +82,7 @@ A request is when client asks for resource from server/ wants to put/post a reso
 
 ---
 
-Absolutely! Here's a concise, **interview-ready markdown (`.md`) format** answer for questions 9, 10, and 11:
-
----
-
-9. What are query parameters vs path parameters?
+### 9. What are query parameters vs path parameters?
 
 - **Path Parameters** are part of the URL and identify a specific resource.
 
@@ -133,7 +131,7 @@ Absolutely! Here's a concise, **interview-ready markdown (`.md`) format** answer
 
 ---
 
-### 13. Explain Statefulness for REST APIs
+### 13. Explain Statefulness for RESTF APIs
 
 - REST APIs are stateless, meaning each request must contain all the necessary information for the server to process it. The server does not retain client session data between requests. such as JWT auth
 - This makes REST APIs scalable, cacheable, and easier to distribute across multiple servers.
@@ -141,3 +139,191 @@ Absolutely! Here's a concise, **interview-ready markdown (`.md`) format** answer
 - While true REST requires statelessness, some APIs adopt stateful behavior for convenience — especially in internal apps or legacy systems.
 
 ---
+
+### 14. **What is HATEOAS in REST APIs?**
+
+HATEOAS stands for **Hypermedia As The Engine Of Application State**.
+It's a REST constraint where the **server includes links in the response**, telling the client what actions can be performed next.
+
+For example, when you request order details, the API response might include links like:
+
+```json
+"_links": {
+  "cancel": { "href": "/orders/123/cancel", "method": "POST" },
+  "track": { "href": "/orders/123/track", "method": "GET" }
+}
+```
+
+This way, the client doesn’t need to hardcode URLs or guess what to do next — the server guides it.
+
+It improves **discoverability** and makes the API more **self-descriptive**, but it's **rarely used in public APIs** due to added complexity and because most frontends already know the routes & Good documentation often replaces it.
+
+---
+
+### 15. What are the different types of APIs?
+
+1. **Open APIs (Public APIs):**
+
+   - Available to anyone.
+   - Example: Google Maps API, OpenWeather API.
+   - Used for public integrations.
+
+2. **Internal APIs (Private APIs):**
+
+   - Only used within an organization.
+   - Helps different internal systems communicate securely.
+   - Not exposed to external developers.
+
+3. **Partner APIs:**
+
+   - Shared with specific business partners.
+   - Requires authentication or API keys.
+   - Example: Payment gateway APIs shared with merchant partners.
+
+4. **Composite APIs:**
+
+   - Combines multiple APIs into one call.
+   - Useful in microservices where data from multiple services is needed.
+   - Improves performance by reducing multiple roundtrips.
+
+---
+
+### 16. **What are the different types of APIs (technically)?**
+
+1. **REST (Representational State Transfer):**
+
+   - Most common and widely used.
+   - Uses standard HTTP methods (GET, POST, PUT, DELETE).
+   - Stateless, scalable, and easy to use with JSON data.
+   - Example: GitHub REST API.
+
+2. **SOAP (Simple Object Access Protocol):**
+
+   - XML-based protocol.
+   - Strict structure with built-in error handling and security (WS-Security).
+   - Used in legacy systems or enterprise apps like banking.
+
+3. **GraphQL:**
+
+   - Query language for APIs developed by Facebook.
+   - Allows clients to request exactly what they need — nothing more, nothing less.
+   - Efficient for frontend-heavy apps with dynamic data needs.
+   - Example: GitHub GraphQL API.
+
+4. **gRPC (Google Remote Procedure Call):**
+
+   - High-performance, contract-based API using Protocol Buffers (protobuf).
+   - Suitable for microservices and internal service-to-service communication.
+   - Works over HTTP/2 and supports streaming.
+
+5. **WebSockets (for real-time APIs):**
+
+   - Maintains a persistent connection between client and server.
+   - Ideal for real-time apps like chat, gaming, live dashboards.
+
+---
+
+### 17. What is Overfetching and Underfetching in APIs?
+
+- **Overfetching** happens when an API returns **more data than needed**.
+  _Example_: A REST endpoint returns the entire user object when you only need the user's name.
+
+- **Underfetching** happens when an API returns **too little data**, forcing multiple API calls to get all required info.
+  _Example_: You fetch a list of posts, but have to call another endpoint for each post’s author.
+
+These are common limitations in REST APIs, and technologies like **GraphQL** aim to solve them by allowing clients to request exactly what they need.
+
+---
+
+### 18 What’s the difference between synchronous and asynchronous APIs?
+
+- Synchronous APIs are blocking — the client sends a request and waits until the server responds before doing anything else. They’re simple and predictable, but can slow down if the operation is long.
+- Asynchronous APIs are non-blocking — the client sends a request and can do other work while waiting for the server’s response. The reply may come via a callback, event, or future. They’re great for handling many concurrent or long-running operations but require more complex code.
+
+---
+
+### 19. How would you implement API versioning & API documentation
+
+- Use URI versioning for public APIs (clarity).
+- Use header or media type versioning for internal APIs where URLs shouldn’t change.
+- For Documentation: OpenAPI / Swagger Machine-readable specification that can auto-generate interactive docs.
+  - Example: Swagger UI for testing endpoints directly in the browser.
+
+---
+
+### 20. How do you handle long-running API requests?
+
+- Making it Async using queues
+- webhooks (push model): Client provides a callback URL → server processes in the background → sends result when ready.
+- or use websockets
+- Serialise larg response data and sent in chunks
+
+---
+
+### 21. What are the Authentication Models for APIs
+
+1.  Basic Auth - HTTP Basic Authentication - Sends a username:password (Base64 encoded) in the Authorization header.
+2.  Token Based Auth - Use OAuth 2.0 / JWT for user-facing APIs.
+    - OAuth 2.0 - Client gets a token from an authorization server using flows like Authorization Code or Client Credentials, then sends it in requests.
+    - JWT - Server issues a signed JWT after login; client sends it in each request.
+3.  Session Based
+
+- Use HMAC or mTLS for server-to-server APIs.
+  - Both client and server present TLS certificates to authenticate each other.
+  - Client signs requests with a shared secret; server verifies signature.
+
+4. Always enforce HTTPS and rotate keys/tokens regularly.
+
+---
+
+### 22. What are the Authorisation Models for APIs
+
+1.  Role Based Access Control (RBAC) - Role-Based Access Control (RBAC) in API design assigns system access based on user roles, ensuring data security and integrity by assigning privileges based on job function.
+2.  Attribute Based Access Control (ABAC) - Attribute Based Access Control (ABAC) is a flexible authorization method in API design, enhancing security and efficiency by using attributes associated with users, actions, resources, or environments.
+
+---
+
+### 23. What is CORS? How does it affect API communication?
+
+CORS is a browser-enforced policy that controls cross-domain API access. Without correct CORS setup, browser clients will be blocked from calling your API.
+
+---
+
+### 24. Error Handling in REST
+
+```json
+{
+  "status": "error", // This can be ‘error’ or ‘success’
+  "statusCode": 404,
+  "error": {
+    "code": "RESOURCE_NOT_FOUND",
+    "message": "The requested resource was not found.",
+    "details": "The user with the ID '12345' does not exist in our records.",
+    "timestamp": "2023-12-08T12:30:45Z",
+    "path": "/api/v1/users/12345",
+    "suggestion": "Please check if the user ID is correct or refer to our documentation at https://api.example.com/docs/errors#RESOURCE_NOT_FOUND for more information."
+  },
+  "requestId": "a1b2c3d4-e5f6-7890-g1h2-i3j4k5l6m7n8",
+  "documentation_url": "https://api.example.com/docs/errors"
+}
+```
+
+---
+
+### 25. What are API keys & how are they managed ?
+
+- API keys are unique identifiers used to authenticate and control access to APIs, typically sent with each request. 
+- They help monitor usage, enforce rate limits, and can be revoked or rotated if compromised. 
+- Best practices for managing API keys include generating strong keys, using HTTPS, limiting permissions, implementing quotas, securely distributing and storing keys, and monitoring for suspicious activity. 
+- Proper API key management is essential to protect your API and ensure secure, controlled access.
+
+---
+### 26. Design a highly Concurrent API
+   1. Non block code with [async](http://async.io) functions 
+   2. redis caching for caching frequently queried data
+   3. Queue system for offloading backgroud task such as emails/notifications
+   4. rate limitters
+   5. database sharding & **Connection pooling** for DBs
+   6. **Circuit breakers and retries** for resilience
+   7. **Horizontal scaling** via containerization 
+   8. **Load balancing** with Nginx or API Gateways.
