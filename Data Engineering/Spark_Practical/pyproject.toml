@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Sid.", email = "siddhantg2002@gmail.com"},
 ]
-dependencies = ["pyspark>=4.0.1", "ipykernel>=7.1.0", "confluent-kafka>=2.12.2"]
+dependencies = ["pyspark>=4.0.1", "ipykernel>=7.1.0", "confluent-kafka>=2.12.2", "pandas>=3.0.1"]
 requires-python = "==3.14.*"
 readme = "README.md"
 license = {text = "MIT"}

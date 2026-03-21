@@ -1,0 +1,421 @@
+{
+  "id" : "69be2a9531eb360007ba2113",
+  "modified" : 1774070586,
+  "name" : "Temp",
+  "dataDefinition" : {
+    "id" : "69be2afe31eb360007ba2114",
+    "modified" : 1774070526,
+    "name" : "Transactions",
+    "dataset" : {
+      "id" : "69be279e31eb360007ba210f",
+      "modified" : 1774069662,
+      "name" : "transactions.csv",
+      "type" : "csv",
+      "url" : "http://minio:9000",
+      "bucket" : "datasets",
+      "objectKey" : "transactions.csv",
+      "accessKey" : "58CZ5TR5PZV5RX14Q6I8",
+      "secretKey" : "JdY2rppyyCK1cEJ+tH8Cy7WhPAqkp1to2y/e2J4R"
+    },
+    "schema" : {
+      "metadata" : {
+        "type" : "csv"
+      },
+      "type" : "object",
+      "properties" : {
+        "11" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "11",
+            "name" : "promo_used",
+            "description" : ""
+          }
+        },
+        "12" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "12",
+            "name" : "avs_match",
+            "description" : ""
+          }
+        },
+        "13" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "13",
+            "name" : "cvv_result",
+            "description" : ""
+          }
+        },
+        "14" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "14",
+            "name" : "three_ds_flag",
+            "description" : ""
+          }
+        },
+        "15" : {
+          "type" : "number",
+          "metadata" : {
+            "format" : "seconds",
+            "position" : "15",
+            "name" : "transaction_time",
+            "description" : "",
+            "type" : "timestamp"
+          }
+        },
+        "16" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "double",
+            "position" : "16",
+            "name" : "shipping_distance_km",
+            "description" : ""
+          }
+        },
+        "17" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "17",
+            "name" : "is_fraud",
+            "description" : ""
+          }
+        },
+        "1" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "1",
+            "name" : "transaction_id",
+            "description" : ""
+          }
+        },
+        "2" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "2",
+            "name" : "user_id",
+            "description" : ""
+          }
+        },
+        "3" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "3",
+            "name" : "account_age_days",
+            "description" : ""
+          }
+        },
+        "4" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "4",
+            "name" : "total_transaction",
+            "description" : ""
+          }
+        },
+        "5" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "double",
+            "position" : "5",
+            "name" : "avg_amount_user",
+            "description" : ""
+          }
+        },
+        "6" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "double",
+            "position" : "6",
+            "name" : "amount",
+            "description" : ""
+          }
+        },
+        "7" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "7",
+            "name" : "country",
+            "description" : ""
+          }
+        },
+        "8" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "8",
+            "name" : "bin_country",
+            "description" : ""
+          }
+        },
+        "9" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "9",
+            "name" : "channel",
+            "description" : ""
+          }
+        },
+        "10" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "10",
+            "name" : "merchant_category",
+            "description" : ""
+          }
+        }
+      },
+      "schemaKey" : "http://json-schema.org/draft-04/schema#"
+    }
+  },
+  "timer" : {
+    "type" : "interval",
+    "metric" : "seconds",
+    "value" : 5
+  },
+  "ticksNumber" : 0,
+  "isReplayLooped" : false,
+  "devices" : [ {
+    "id" : "69be2a7931eb360007ba2112",
+    "modified" : 1774070393,
+    "name" : "Testing",
+    "targetSystems" : [ {
+      "id" : "69be2a67200be2c695cf8345",
+      "modified" : 0,
+      "name" : "dummy testing",
+      "type" : "dummy"
+    } ]
+  } ],
+  "deviceInjector" : {
+    "rule" : "round_robin"
+  },
+  "generator" : {
+    "type" : "schema_based",
+    "schema" : {
+      "metadata" : {
+        "type" : "csv"
+      },
+      "type" : "object",
+      "properties" : {
+        "11" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "11",
+            "name" : "promo_used",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "12" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "12",
+            "name" : "avs_match",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "13" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "13",
+            "name" : "cvv_result",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "14" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "14",
+            "name" : "three_ds_flag",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "15" : {
+          "type" : "number",
+          "metadata" : {
+            "format" : "seconds",
+            "position" : "15",
+            "name" : "transaction_time",
+            "description" : "",
+            "type" : "timestamp"
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "16" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "double",
+            "position" : "16",
+            "name" : "shipping_distance_km",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "17" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "17",
+            "name" : "is_fraud",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "1" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "1",
+            "name" : "transaction_id",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "2" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "2",
+            "name" : "user_id",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "3" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "3",
+            "name" : "account_age_days",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "4" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "integer",
+            "position" : "4",
+            "name" : "total_transaction",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "5" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "double",
+            "position" : "5",
+            "name" : "avg_amount_user",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "6" : {
+          "type" : "number",
+          "metadata" : {
+            "type" : "double",
+            "position" : "6",
+            "name" : "amount",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "7" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "7",
+            "name" : "country",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "8" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "8",
+            "name" : "bin_country",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "9" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "9",
+            "name" : "channel",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        },
+        "10" : {
+          "type" : "string",
+          "metadata" : {
+            "position" : "10",
+            "name" : "merchant_category",
+            "description" : ""
+          },
+          "rule" : {
+            "type" : "as_is"
+          }
+        }
+      },
+      "schemaKey" : "http://json-schema.org/draft-04/schema#"
+    }
+  },
+  "targetSystem" : {
+    "id" : "5a4223da85b4b900050e7474",
+    "modified" : 1774069508,
+    "name" : "Dummy",
+    "type" : "dummy"
+  },
+  "replayLooped" : false
+}
